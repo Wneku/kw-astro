@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import SocialLinks from '../ui/SocialLinks.astro';
+// Kwadratowy kadr sylwetki (1560×1560: głowa, tułów, skrzyżowane ręce) wycięty z IMG_3804 – ostry nawet na ekranach 3x
+import photo from '../../assets/images/avatar-kamil.jpg';
+---
+
+<aside class="author">
+  <Image src={photo} alt="Kamil Wnęk" width={160} height={160} densities={[1, 2, 3]} quality={85} class="author__photo" />
+  <div class="author__body">
+    <p class="eyebrow">Autor</p>
+    <p class="author__name"><a href="/o-mnie/">Kamil Wnęk</a></p>
+    <p>
+      Specjalista ds. SEO. Od 2018 roku pomagam firmom budować widoczność w Google i AI – od audytów, przez
+      pozycjonowanie, po link building.
+    </p>
+    <SocialLinks />
+  </div>
+</aside>
+
+<style>
+  .author {
+    display: flex;
+    gap: var(--space-xl);
+    align-items: center;
+    padding: var(--space-xl);
+    border-radius: var(--radius-l);
+    background: var(--color-surface);
+  }
+  .author__photo {
+    flex: none;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow:
+      0 0 0 4px var(--color-bg),
+      0 0 0 6px var(--color-primary-soft);
+  }
+  .author__body {
+    display: grid;
+    gap: var(--space-xs);
+  }
+  .author__name {
+    font-family: var(--font-heading);
+    font-size: var(--step-2);
+    font-weight: 800;
+  }
+  .author__name a {
+    color: var(--color-heading);
+    text-decoration: none;
+  }
+  @media (max-width: 560px) {
+    .author {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-l);
+    }
+  }
+</style>

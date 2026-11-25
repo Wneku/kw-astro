@@ -1,0 +1,327 @@
+---
+import type { MegaColumn } from '../../lib/navigation';
+import { MEGA_MENU_CTA } from '../../config/services';
+import Icon from '../ui/Icon.astro';
+
+export interface Props {
+  id: string;
+  columns: MegaColumn[];
+  allHref: string;
+}
+const { id, columns, allHref } = Astro.props;
+---
+
+<div class="mega" id={id}>
+  <div class="mega__inner container" style={`--cols: ${columns.length}`}>
+    <div class="mega__cols">
+      {columns.map((col) => (
+        <div class="mega__col">
+          <div class="mega__col-head">
+            <p class="mega__heading">{col.label}</p>
+            <p class="mega__lead">{col.description}</p>
+          </div>
+          <ul class="mega__list">
+            {col.items.map((item) => (
+              <li>
+                <a href={item.href} class="mega__link">
+                  <span class="mega__icon">
+                    <Icon name={item.icon ?? col.icon} size={20} />
+                  </span>
+                  <span class="mega__text">
+                    <span class="mega__title">{item.label}</span>
+                    {item.description && <span class="mega__desc">{item.description}</span>}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <aside class="mega__cta">
+      <span class="mega__cta-icon"><Icon name="calendar" size={22} /></span>
+      <p class="mega__cta-title">{MEGA_MENU_CTA.title}</p>
+      <p class="mega__cta-text">{MEGA_MENU_CTA.text}</p>
+      <a href={MEGA_MENU_CTA.href} class="mega__cta-btn">
+        {MEGA_MENU_CTA.label}
+        <Icon name="arrow-right" size={16} strokeWidth={2.2} />
+      </a>
+    </aside>
+  </div>
+
+  <div class="mega__bar">
+    <div class="container">
+      <a href={allHref} class="mega__all">
+        Zobacz całą ofertę <Icon name="arrow-right" size={16} strokeWidth={2.2} />
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .mega {
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.2s var(--ease),
+      transform 0.2s var(--ease),
+      visibility 0.2s;
+  }
+  :global([data-mega-open='true']) > .mega {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .mega__inner {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-2xl);
+    padding-block: var(--space-xl) var(--space-xl);
+  }
+  .mega__cols {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    column-gap: var(--space-xl);
+  }
+  /* subgrid wyrównuje listy usług, nawet gdy opisy grup mają różną długość */
+  .mega__col {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+  }
+
+  .mega__col-head {
+    padding-bottom: var(--space-s);
+    margin-bottom: var(--space-s);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .mega__heading {
+    font-family: var(--font-heading);
+    font-size: var(--step--2);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+  .mega__lead {
+    font-size: var(--step--1);
+    color: var(--color-muted);
+    line-height: var(--leading-snug);
+    margin-top: var(--space-2xs);
+  }
+
+  .mega__list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    align-content: start;
+    gap: var(--space-2xs);
+  }
+  .mega__link {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-s);
+    padding: var(--space-s);
+    margin-inline: calc(-1 * var(--space-s));
+    border-radius: var(--radius);
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+  .mega__icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    transition:
+      background-color 0.15s,
+      color 0.15s;
+  }
+  .mega__text {
+    display: grid;
+    gap: 2px;
+    padding-top: 1px;
+  }
+  .mega__title {
+    font-family: var(--font-heading);
+    font-size: var(--step--1);
+    font-weight: 700;
+    color: var(--color-heading);
+    line-height: var(--leading-snug);
+    transition: color 0.15s;
+  }
+  .mega__desc {
+    font-size: var(--step--1);
+    color: var(--color-muted);
+    line-height: 1.4;
+  }
+  .mega__link:hover,
+  .mega__link:focus-visible {
+    background: var(--color-surface);
+  }
+  .mega__link:hover .mega__icon,
+  .mega__link:focus-visible .mega__icon {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+  .mega__link:hover .mega__title {
+    color: var(--color-primary);
+  }
+
+  /* Karta CTA */
+  .mega__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-s);
+    padding: var(--space-l);
+    border-radius: var(--radius-l);
+    background: var(--color-heading);
+    color: var(--color-on-dark-muted);
+    background-image: radial-gradient(120% 90% at 100% 0%, rgb(40 114 250 / 0.55), transparent 60%);
+  }
+  .mega__cta-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgb(255 255 255 / 0.12);
+    color: var(--color-on-dark);
+  }
+  .mega__cta-title {
+    font-family: var(--font-heading);
+    font-size: var(--step-1);
+    font-weight: 700;
+    line-height: var(--leading-snug);
+    color: var(--color-on-dark);
+  }
+  .mega__cta-text {
+    font-size: var(--step--1);
+    line-height: 1.55;
+  }
+  .mega__cta-btn {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 0.7em 1.2em;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--step--1);
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+  .mega__cta-btn:hover {
+    background: var(--color-primary-hover);
+    color: var(--color-on-primary);
+  }
+
+  .mega__bar {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+  .mega__all {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding-block: var(--space-s);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--step--1);
+    text-decoration: none;
+  }
+  .mega__all :global(svg) {
+    transition: transform 0.15s;
+  }
+  .mega__all:hover :global(svg) {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 1200px) {
+    .mega__inner {
+      grid-template-columns: 1fr;
+    }
+    .mega__cta {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .mega__cta-text {
+      flex: 1 1 320px;
+    }
+    .mega__cta-btn {
+      margin-top: 0;
+    }
+  }
+
+  /* Mobile: panel staje się akordeonem wewnątrz menu */
+  @media (max-width: 960px) {
+    .mega {
+      position: static;
+      width: 100%;
+      box-shadow: none;
+      border: 0;
+      transform: none;
+      display: none;
+    }
+    :global([data-mega-open='true']) > .mega {
+      display: block;
+    }
+    .mega__inner {
+      width: 100%;
+      padding-block: 0 var(--space-m);
+      gap: var(--space-l);
+    }
+    .mega__cols {
+      grid-template-columns: 1fr;
+      gap: var(--space-l);
+    }
+    .mega__col-head {
+      border: 0;
+      margin: 0;
+      padding-bottom: var(--space-2xs);
+    }
+    .mega__lead,
+    .mega__desc,
+    .mega__cta {
+      display: none;
+    }
+    .mega__icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+    }
+    .mega__link {
+      align-items: center;
+      padding-block: var(--space-xs);
+    }
+    .mega__bar {
+      background: none;
+      border: 0;
+    }
+    .mega__bar .container {
+      width: 100%;
+    }
+    .mega__all {
+      padding-block: 0 var(--space-m);
+    }
+  }
+</style>

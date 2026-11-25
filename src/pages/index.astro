@@ -1,0 +1,361 @@
+---
+/** Strona główna – treść przeniesiona 1:1 z WordPressa. */
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Icon from '../components/ui/Icon.astro';
+import SocialLinks from '../components/ui/SocialLinks.astro';
+import PostList from '../components/blog/PostList.astro';
+import { getPosts } from '../lib/blog';
+import pageSeo from '../data/page-seo.json';
+import portrait from '../assets/images/wp/2025/12/IMG_3804.jpg';
+import nobleplace from '../assets/images/wp/2025/12/nobleplace-logo.jpg';
+import riff from '../assets/images/wp/2025/12/riff-logo.jpg';
+import moliera from '../assets/images/wp/2025/12/moliera2-logo.jpg';
+import ntfy from '../assets/images/wp/2025/12/ntfy-logo.jpg';
+import neonet from '../assets/images/wp/2025/12/neonet-logo.jpg';
+import timetrend from '../assets/images/wp/2025/12/timetrend-logo.jpg';
+
+const seo = pageSeo['/'];
+const posts = (await getPosts()).slice(0, 3);
+
+const clients = [
+  { src: nobleplace, alt: 'Logo firmy Noble Place' },
+  { src: riff, alt: 'Logo firmy Riff' },
+  { src: moliera, alt: 'Logo firmy Moliera 2' },
+  { src: ntfy, alt: 'Logo firmy Nice To Fit You' },
+  { src: neonet, alt: 'Logo firmy Neonet' },
+  { src: timetrend, alt: 'Logo firmy TimeTrend' },
+];
+
+const services = [
+  {
+    title: 'Konsultacje SEO',
+    icon: 'message-circle',
+    text: 'Konsultacje SEO skoncentrowane na realnych problemach strony lub sklepu. Otrzymasz konkretne rekomendacje, uporządkowaną wiedzę i kierunek działań bez zbędnych ogólników.',
+    href: '/oferta/konsultacje-seo/',
+  },
+  {
+    title: 'Audyt SEO',
+    icon: 'search',
+    text: 'Kompleksowy audyt SEO pokazujący, co faktycznie ogranicza widoczność strony w Google. Analizuję treści, strukturę serwisu i część techniczną, a wynikiem jest czytelny plan działań do wdrożenia.',
+    href: '/oferta/audyt-seo/',
+  },
+  {
+    title: 'Pozycjonowanie',
+    icon: 'trending-up',
+    text: 'Pozycjonowanie stron oparte na długofalowej strategii i danych. Celem nie są same pozycje, ale wartościowy ruch, zapytania ofertowe i realne wsparcie w rozwoju Twojego biznesu.',
+    href: '/oferta/pozycjonowanie-stron/',
+  },
+];
+---
+
+<BaseLayout title={seo.title} description={seo.description} image={portrait}>
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="eyebrow">Specjalista ds. SEO</p>
+        <h1>Kamil Wnęk</h1>
+        <p class="hero__lead">
+          Pomagam firmom budować widoczność w Google i AI w sposób, który realnie wspiera rozwój biznesu. SEO opieram na
+          intencji użytkownika, kontekście wyszukiwania i danych, bo współczesne pozycjonowanie to nie tylko optymalizacja
+          pod algorytmy, ale sposób, w jaki wyszukiwarki i AI rozumieją markę.
+        </p>
+        <p>
+          Nie wierzę w magiczne skróty i gotowe pakiety. Każdy projekt zaczynam od rozmowy i analizy, chcę zrozumieć Twój
+          biznes, kim jest Twój klient i jaki efekt może realnie przynieść SEO.
+        </p>
+        <p>
+          SEO to proces, od analizy, przez wdrożenie i ciągłą optymalizację. Transparentnie pokazuję, co robię, dlaczego i
+          jaki ma to wpływ na ruch, sprzedaż i pozyskiwanie leadów.
+        </p>
+        <div class="hero__actions">
+          <Button href="/kontakt/#kalendarz" size="l">Umów się na bezpłatną rozmowę</Button>
+          <SocialLinks />
+        </div>
+      </div>
+      <div class="hero__photo">
+        <Image
+          src={portrait}
+          alt="Kamil Wnęk – specjalista SEO"
+          widths={[360, 540, 720]}
+          sizes="(max-width: 960px) 80vw, 460px"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="clients" aria-labelledby="clients-title">
+    <div class="container">
+      <h2 id="clients-title" class="clients__title">Współpracowałem z…</h2>
+    </div>
+    <!--
+      Pętla: dwie identyczne połówki, każda szersza niż najszerszy ekran (logotypy powtórzone 4×).
+      Animacja przesuwa tor o dokładnie -50%, więc nigdy nie widać końca paska.
+    -->
+    <div class="marquee">
+      <div class="marquee__track">
+        {
+          [0, 1].map((half) => (
+            <ul class="marquee__group" aria-hidden={half === 1 ? 'true' : undefined}>
+              {Array.from({ length: 4 }, (_, copy) =>
+                clients.map((c) => (
+                  <li data-dup={copy > 0 ? '' : undefined}>
+                    <Image src={c.src} alt={half === 0 && copy === 0 ? c.alt : ''} height={64} />
+                  </li>
+                )),
+              )}
+            </ul>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Oferta</p>
+        <h2>Co mogę dla Ciebie zrobić?</h2>
+      </div>
+      <Button href="/oferta/" variant="outline">Sprawdź całą ofertę</Button>
+    </div>
+    <ul class="services">
+      {
+        services.map((s) => (
+          <li class="service">
+            <span class="service__icon">
+              <Icon name={s.icon} size={24} />
+            </span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+            <a href={s.href} class="service__link">
+              Przeczytaj więcej <Icon name="arrow-right" size={16} strokeWidth={2.2} />
+              <span class="visually-hidden">: {s.title}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="container section">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Blog</p>
+        <h2>Blog o SEO i nie tylko</h2>
+      </div>
+      <Button href="/blog/" variant="outline">Wszystkie wpisy</Button>
+    </div>
+    <PostList posts={posts} headingLevel="h3" />
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface) 100%);
+    overflow: hidden;
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+    padding-block: var(--space-2xl) var(--space-3xl);
+  }
+  .hero__text {
+    display: grid;
+    gap: var(--space-m);
+  }
+  .hero__text h1 {
+    font-size: clamp(2.5rem, 1.8rem + 3.2vw, 4.25rem);
+  }
+  .hero__lead {
+    font-size: var(--step-1);
+    color: var(--color-heading);
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-l);
+    margin-top: var(--space-m);
+  }
+  .hero__photo {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 460px);
+  }
+  .hero__photo::before {
+    content: '';
+    position: absolute;
+    inset: 8% -8% -6% 10%;
+    border-radius: 32px;
+    background: var(--color-primary);
+    transform: rotate(4deg);
+  }
+  .hero__photo :global(img) {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 28px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Logotypy */
+  .clients {
+    padding-block: var(--space-2xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .clients__title {
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-muted);
+    margin-bottom: var(--space-l);
+  }
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+  .marquee__track {
+    --logo-gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+    display: flex;
+    width: max-content;
+    animation: marquee 160s linear infinite;
+  }
+  .marquee__group {
+    display: flex;
+    align-items: center;
+    gap: var(--logo-gap);
+    /* odstęp na końcu połówki = odstęp między logotypami → szew pętli niewidoczny */
+    padding: 0 var(--logo-gap) 0 0;
+    list-style: none;
+    margin: 0;
+  }
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+  .marquee__track :global(img) {
+    height: 56px;
+    width: auto;
+    filter: grayscale(1);
+    opacity: 0.75;
+    mix-blend-mode: multiply;
+    transition:
+      filter 0.2s,
+      opacity 0.2s;
+  }
+  .marquee__track :global(img:hover) {
+    filter: none;
+    opacity: 1;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      mask-image: none;
+    }
+    .marquee__track {
+      animation: none;
+      width: auto;
+      justify-content: center;
+    }
+    .marquee__group {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0;
+    }
+    /* bez animacji: każde logo tylko raz */
+    .marquee__group[aria-hidden='true'],
+    .marquee__group li[data-dup] {
+      display: none;
+    }
+  }
+
+  /* Sekcje */
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-m);
+    margin-bottom: var(--space-2xl);
+  }
+  .section-head h2 {
+    margin-top: var(--space-xs);
+  }
+  .services {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: var(--space-l);
+  }
+  .service {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    padding: var(--space-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-l);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-s);
+    transition:
+      box-shadow 0.2s,
+      transform 0.2s,
+      border-color 0.2s;
+  }
+  .service:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    border-color: rgb(40 114 250 / 0.35);
+  }
+  .service__icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+  .service__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: auto;
+    padding-top: var(--space-s);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--step--1);
+    text-decoration: none;
+  }
+  .service__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  @media (max-width: 960px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+    .hero__photo {
+      width: min(80%, 380px);
+    }
+  }
+</style>

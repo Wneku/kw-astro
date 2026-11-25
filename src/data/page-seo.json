@@ -1,0 +1,26 @@
+{
+  "/": {
+    "title": "Freelancer SEO - Pozycjonowanie, audyty, konsultacje | Kamil Wnęk",
+    "description": "SEO oparte na danych, AI i strategii. Pomagam firmom rosnąć w Google, dzięki audytom, konsultacjom i skutecznemu pozycjonowaniu.",
+    "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+    "ogTitle": "Freelancer SEO - Pozycjonowanie, audyty, konsultacje | Kamil Wnęk"
+  },
+  "/oferta/": {
+    "title": "Usługi SEO i widoczności w AI – cennik | Kamil Wnęk",
+    "description": "Zajmuję się kompleksową obsługą pozycjonowania stron i sklepów internetowych. Od audytów SEO po skuteczne strategie zwiększające widoczność.",
+    "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+    "ogTitle": "Usługi SEO i widoczności w AI – cennik | Kamil Wnęk"
+  },
+  "/kontakt/": {
+    "title": "Kontakt – bezpłatna rozmowa i wycena SEO | Kamil Wnęk",
+    "description": "Szukasz specjalisty SEO? Napisz – odpowiadam w ciągu 24 godzin. Pierwsza rozmowa i wycena są bezpłatne.",
+    "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+    "ogTitle": "Kontakt – bezpłatna rozmowa i wycena SEO | Kamil Wnęk"
+  },
+  "/blog/": {
+    "title": "Blog | Kamil Wnęk",
+    "description": "Blog o SEO, algorytmach Google, strategii budowania widoczności i AI. Bez lania wody, sama praktyka.",
+    "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+    "ogTitle": "Blog | Kamil Wnęk"
+  }
+}

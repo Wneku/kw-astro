@@ -1,0 +1,213 @@
+---
+/**
+ * Formularz kontaktowy – wysyłka przez własny skrypt na hostingu: public/api/kontakt.php (PHP mail()).
+ * Bez JS formularz wysyła się zwykłym POST-em (→ /kontakt/dziekuje/); z JS – w tle, z komunikatem na miejscu.
+ * Antyspam: ukryte pole „website” (honeypot) + pułapka czasowa „ts” + limity po stronie PHP.
+ */
+export interface Props {
+  /** Skąd przyszło zapytanie – trafia do tematu maila */
+  source?: string;
+  title?: string;
+}
+const { source = 'kamilwnek.pl', title } = Astro.props;
+const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<form class="cf" action="/api/kontakt.php" method="POST" data-contact-form>
+  {title && <p class="cf__title">{title}</p>}
+  <input type="hidden" name="source" value={source} />
+  <input type="hidden" name="ts" value="" />
+  <!-- honeypot: niewidoczne dla ludzi, boty je wypełniają -->
+  <div class="cf__hp" aria-hidden="true">
+    <label>Strona www <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
+  <div class="cf__field">
+    <label for={`${id}-name`}>Imię</label>
+    <input id={`${id}-name`} type="text" name="name" autocomplete="name" maxlength="400" required />
+  </div>
+  <div class="cf__field">
+    <label for={`${id}-email`}>Adres e-mail</label>
+    <input id={`${id}-email`} type="email" name="email" autocomplete="email" maxlength="400" required />
+  </div>
+  <div class="cf__field">
+    <label for={`${id}-msg`}>Wiadomość</label>
+    <textarea
+      id={`${id}-msg`}
+      name="message"
+      rows="6"
+      maxlength="2000"
+      placeholder="Adres strony, z czym potrzebujesz pomocy, ewentualnie budżet i termin"
+      required></textarea>
+  </div>
+  <label class="cf__consent">
+    <input type="checkbox" name="zgoda" value="tak" required />
+    <span>
+      Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z <a href="/polityka-prywatnosci/"
+        >Polityką prywatności</a
+      >.
+    </span>
+  </label>
+  <button type="submit" class="cf__submit">Wyślij wiadomość</button>
+  <p class="cf__note">Odpowiadam w ciągu 24 godzin w dni robocze.</p>
+  <p class="cf__status" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
+    const status = form.querySelector<HTMLElement>('.cf__status')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    // pułapka czasowa – czas wczytania formularza
+    form.querySelector<HTMLInputElement>('input[name="ts"]')!.value = String(Date.now());
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      button.disabled = true;
+      status.dataset.state = 'pending';
+      status.textContent = 'Wysyłam…';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.success) {
+          // komunikat z serwera (np. błędy walidacji), a gdy go brak – ogólny
+          throw new Error(data.message || 'Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz na kontakt@kamilwnek.pl.');
+        }
+        form.reset();
+        form.querySelector<HTMLInputElement>('input[name="ts"]')!.value = String(Date.now());
+        status.dataset.state = 'ok';
+        status.textContent = data.message;
+        (window as any).dataLayer?.push({ event: 'form_submit_success', form: 'kontakt' });
+      } catch (err) {
+        status.dataset.state = 'error';
+        status.textContent = (err as Error).message;
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .cf {
+    display: grid;
+    gap: var(--space-m);
+    padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-l);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-lg);
+  }
+  .cf__title {
+    font-family: var(--font-heading);
+    font-size: var(--step-1);
+    font-weight: 700;
+    color: var(--color-heading);
+  }
+  .cf__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .cf__field {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+  label {
+    font-family: var(--font-heading);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+  input[type='text'],
+  input[type='email'],
+  textarea {
+    width: 100%;
+    padding: 0.75em 0.9em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-s);
+    background: var(--color-bg);
+    color: var(--color-heading);
+    font: inherit;
+    font-size: var(--step-0);
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgb(40 114 250 / 0.18);
+  }
+  ::placeholder {
+    color: var(--color-muted);
+    opacity: 0.8;
+  }
+  .cf__consent {
+    display: flex;
+    gap: var(--space-s);
+    align-items: flex-start;
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+  .cf__consent input {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--color-primary);
+  }
+  .cf__submit {
+    justify-self: start;
+    padding: 0.9em 1.8em;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px -8px rgb(40 114 250 / 0.6);
+    transition: background-color 0.15s;
+  }
+  .cf__submit:hover {
+    background: var(--color-primary-hover);
+  }
+  .cf__submit:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+  .cf__note {
+    font-size: var(--step--1);
+    color: var(--color-muted);
+  }
+  .cf__status:empty {
+    display: none;
+  }
+  .cf__status {
+    padding: var(--space-s) var(--space-m);
+    border-radius: var(--radius-s);
+    font-size: var(--step--1);
+    background: var(--color-surface);
+  }
+  .cf__status[data-state='ok'] {
+    background: #e8f7ee;
+    color: #146c3a;
+  }
+  .cf__status[data-state='error'] {
+    background: #fdecec;
+    color: #a12121;
+  }
+</style>

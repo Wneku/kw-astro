@@ -1,0 +1,9 @@
+# Jednolite końce linii (LF) – Windows, GitHub i Pages CMS widzą te same pliki
+* text=auto eol=lf
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.woff2 binary

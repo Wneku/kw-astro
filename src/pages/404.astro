@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import illustration from '../assets/images/wp/2026/01/Animowane-404.png';
+---
+
+<BaseLayout title="Nie znaleziono strony | Kamil Wnęk" noindex>
+  <section class="container nf">
+    <Image src={illustration} alt="" width={420} class="nf__img" />
+    <h1>Ups, nie ma takiej strony</h1>
+    <p>Strona mogła zostać przeniesiona albo usunięta. Sprawdź ofertę lub wróć na stronę główną.</p>
+    <div class="nf__actions">
+      <Button href="/">Strona główna</Button>
+      <Button href="/oferta/" variant="outline">Oferta</Button>
+      <Button href="/blog/" variant="outline">Blog</Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-m);
+    text-align: center;
+    padding-block: var(--space-2xl) var(--space-xl);
+  }
+  .nf__img {
+    width: min(100%, 420px);
+    height: auto;
+  }
+  .nf__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-s);
+    margin-top: var(--space-s);
+  }
+</style>

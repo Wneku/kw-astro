@@ -1,0 +1,46 @@
+---
+/** /kontakt/dziekuje/ – po wysłaniu formularza bez JavaScriptu (przekierowanie z api/kontakt.php). */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import Icon from '../../components/ui/Icon.astro';
+---
+
+<BaseLayout title="Dziękuję za wiadomość | Kamil Wnęk" description="Wiadomość została wysłana." noindex>
+  <section class="container ty">
+    <span class="ty__icon"><Icon name="check" size={32} strokeWidth={2.6} /></span>
+    <h1>Dziękuję za wiadomość!</h1>
+    <p>Odpowiadam w ciągu 24 godzin w dni robocze. Jeśli sprawa jest pilna, możesz od razu wybrać termin rozmowy.</p>
+    <div class="ty__actions">
+      <Button href="/kontakt/#kalendarz">Umów bezpłatną rozmowę</Button>
+      <Button href="/blog/" variant="outline">Zajrzyj na bloga</Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ty {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-m);
+    text-align: center;
+    padding-block: var(--space-3xl);
+  }
+  .ty__icon {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+  .ty p {
+    max-width: 52ch;
+  }
+  .ty__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-s);
+  }
+</style>

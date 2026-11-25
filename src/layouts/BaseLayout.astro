@@ -1,0 +1,110 @@
+---
+import '@fontsource-variable/montserrat';
+import '@fontsource-variable/open-sans';
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import Seo, { type SeoProps } from '../components/seo/Seo.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { SITE, TRACKING } from '../config/site';
+import siteIcon from '../assets/images/wp/2026/06/cropped-Logo-512.jpg';
+
+type Props = SeoProps;
+
+const [favicon, appleIcon] = await Promise.all([
+  getImage({ src: siteIcon, width: 48, height: 48, format: 'png' }),
+  getImage({ src: siteIcon, width: 180, height: 180, format: 'png' }),
+]);
+const isProd = import.meta.env.PROD;
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--
+      Wymuszamy jasny motyw:
+      - "only light" wyłącza Auto Dark Theme w Chrome/Edge/Operze (Android i desktop),
+      - theme-color koloruje pasek przeglądarki na mobile,
+      - darkreader-lock blokuje rozszerzenie Dark Reader.
+    -->
+    <meta name="color-scheme" content="only light" />
+    <meta name="supported-color-schemes" content="light only" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="darkreader-lock" />
+
+    {
+      isProd && (
+        <>
+          {/* CookieYes – baner zgód (musi być przed GTM) */}
+          <script
+            is:inline
+            id="cookieyes"
+            type="text/javascript"
+            src={`https://cdn-cookieyes.com/client_data/${TRACKING.cookieYesId}/script.js`}
+          />
+          {/* Google Tag Manager */}
+          <script is:inline define:vars={{ id: TRACKING.gtmId }}>
+            (function (w, d, s, l, i) {
+              w[l] = w[l] || [];
+              w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+              var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+              j.async = true;
+              j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+              f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', id);
+          </script>
+        </>
+      )
+    }
+
+    <link rel="icon" type="image/png" sizes="48x48" href={favicon.src} />
+    <link rel="apple-touch-icon" href={appleIcon.src} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Kamil Wnęk – blog" href="/rss.xml" />
+    <meta name="generator" content={Astro.generator} />
+    <Seo {...Astro.props} />
+    <slot name="head" />
+  </head>
+  <body>
+    {
+      isProd && (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${TRACKING.gtmId}`}
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"
+          />
+        </noscript>
+      )
+    }
+    <a class="visually-hidden skip-link" href="#main">Przejdź do treści</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      /*
+       * Kotwice do pytań FAQ (np. #faq-question-…) – rozwiń <details>, do którego prowadzi link,
+       * zanim przeglądarka do niego przewinie. Działa też przy wejściu z linku z hashem.
+       */
+      const openTarget = (hash: string) => {
+        if (!hash || hash === '#') return;
+        const el = document.getElementById(decodeURIComponent(hash.slice(1)));
+        const details = el?.closest('details');
+        if (details && !details.open) details.open = true;
+      };
+      document.addEventListener('click', (e) => {
+        const link = (e.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
+        if (link) openTarget(link.hash);
+      });
+      openTarget(location.hash);
+    </script>
+  </body>
+</html>

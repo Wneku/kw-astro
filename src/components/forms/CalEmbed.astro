@@ -1,0 +1,139 @@
+---
+/**
+ * Kalendarz cal.com osadzony na stronie (inline).
+ * Skrypt cal.com ładuje się leniwie – dopiero gdy sekcja zbliża się do ekranu – żeby nie spowalniać strony.
+ * Bez JS (lub gdy cal.com nie odpowie) zostaje link do kalendarza w nowej karcie.
+ */
+import Icon from '../ui/Icon.astro';
+import { SITE } from '../../config/site';
+
+const calLink = new URL(SITE.calUrl).pathname.slice(1); // "kamilwnek/rozmowa-30-minut"
+---
+
+<div class="cal" data-cal-embed data-cal-link={calLink}>
+  <div class="cal__frame" data-cal-target>
+    <div class="cal__placeholder">
+      <span class="cal__spinner" aria-hidden="true"></span>
+      <p>Wczytuję kalendarz…</p>
+      <a href={SITE.calUrl} target="_blank" rel="noopener">
+        Otwórz kalendarz w nowej karcie <Icon name="arrow-right" size={14} strokeWidth={2.2} />
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const CAL_ORIGIN = 'https://app.cal.com';
+  const NS = 'rozmowa';
+
+  function loadCal(target: HTMLElement, calLink: string) {
+    /* Oficjalny loader cal.com (embed snippet), w wersji z jedną przestrzenią nazw */
+    const w = window as any;
+    w.Cal =
+      w.Cal ||
+      function (...args: any[]) {
+        const cal = w.Cal;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          const s = document.createElement('script');
+          s.src = `${CAL_ORIGIN}/embed/embed.js`;
+          document.head.appendChild(s);
+          cal.loaded = true;
+        }
+        if (args[0] === 'init') {
+          const api: any = (...a: any[]) => api.q.push(a);
+          api.q = [];
+          const namespace = args[1];
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          cal.ns[namespace].q.push(args);
+          cal.q.push(['initNamespace', namespace]);
+          return;
+        }
+        cal.q.push(args);
+      };
+
+    w.Cal('init', NS, { origin: CAL_ORIGIN });
+    w.Cal.ns[NS]('inline', {
+      elementOrSelector: target,
+      calLink,
+      config: { layout: 'month_view', theme: 'light' },
+    });
+    w.Cal.ns[NS]('ui', {
+      theme: 'light', // zawsze jasny – spójnie z resztą strony
+      layout: 'month_view',
+      hideEventTypeDetails: false,
+      cssVarsPerTheme: { light: { 'cal-brand': '#2872fa' } },
+    });
+    // Po rezerwacji – zdarzenie do GTM
+    w.Cal.ns[NS]('on', {
+      action: 'bookingSuccessful',
+      callback: () => w.dataLayer?.push({ event: 'cal_booking_success' }),
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-cal-embed]').forEach((root) => {
+    const target = root.querySelector<HTMLElement>('[data-cal-target]')!;
+    const calLink = root.dataset.calLink!;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        loadCal(target, calLink);
+      },
+      { rootMargin: '600px 0px' },
+    );
+    io.observe(root);
+  });
+</script>
+
+<style>
+  .cal {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-l);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+  .cal__frame {
+    min-height: 560px;
+    position: relative;
+  }
+  /* cal.com wstawia iframe do środka – placeholder znika pod nim */
+  .cal__frame :global(iframe) {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    background: var(--color-bg);
+  }
+  .cal__placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--space-s);
+    text-align: center;
+    color: var(--color-muted);
+    font-size: var(--step--1);
+  }
+  .cal__placeholder a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-weight: 600;
+  }
+  .cal__spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--color-primary-soft);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

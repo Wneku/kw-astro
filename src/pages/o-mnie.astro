@@ -1,0 +1,76 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import SocialLinks from '../components/ui/SocialLinks.astro';
+import PostList from '../components/blog/PostList.astro';
+import { getPosts } from '../lib/blog';
+
+const page = (await getEntry('strony', 'o-mnie'))!;
+const { Content } = await render(page);
+const posts = (await getPosts()).slice(0, 3);
+const crumbs = [
+  { name: 'Strona główna', href: '/' },
+  { name: 'O mnie', href: '/o-mnie/' },
+];
+---
+
+<BaseLayout
+  title={page.data.seoTitle}
+  description={page.data.description}
+  crumbs={crumbs}
+  datePublished={page.data.pubDate}
+  dateModified={page.data.updatedDate}
+>
+  <header class="container page-head">
+    <Breadcrumbs crumbs={crumbs} />
+    {page.data.eyebrow && <p class="eyebrow">{page.data.eyebrow}</p>}
+    <h1>{page.data.title}</h1>
+  </header>
+
+  <div class="container">
+    <article class="prose about">
+      <Content />
+      <SocialLinks />
+    </article>
+  </div>
+
+  <section class="container section">
+    <h2 class="latest-title">Najnowsze na blogu</h2>
+    <PostList posts={posts} headingLevel="h3" />
+  </section>
+</BaseLayout>
+
+<style>
+  .about {
+    max-width: 860px;
+  }
+  /* Zdjęcie z pierwszego akapitu obok wstępu (jak kolumny w WordPressie) */
+  .about :global(> p:first-child) {
+    float: right;
+    width: min(46%, 420px);
+    margin: 0 0 var(--space-l) var(--space-xl);
+  }
+  .about :global(> p:first-child img) {
+    width: 100%;
+    border-radius: var(--radius-l);
+    border: 0;
+  }
+  .about :global(> h2:nth-of-type(1)) {
+    margin-top: 0;
+  }
+  .about :global(> h2:nth-of-type(2)) {
+    clear: both;
+  }
+  .latest-title {
+    font-size: var(--step-3);
+    margin-bottom: var(--space-l);
+  }
+  @media (max-width: 760px) {
+    .about :global(> p:first-child) {
+      float: none;
+      width: 100%;
+      margin: 0 0 var(--space-l);
+    }
+  }
+</style>

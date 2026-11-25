@@ -1,0 +1,218 @@
+---
+import { getEntries, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../ui/Breadcrumbs.astro';
+import AuthorBox from './AuthorBox.astro';
+import PostCard from './PostCard.astro';
+import Button from '../ui/Button.astro';
+import Faq from '../ui/Faq.astro';
+import { formatDate, readingTime, postHref, categoryHref, type Post } from '../../lib/blog';
+
+export interface Props {
+  post: Post;
+  /** Wszystkie wpisy (do sekcji „Przeczytaj też”) */
+  posts: Post[];
+}
+
+const { post, posts } = Astro.props;
+const { data } = post;
+const { Content } = await render(post);
+const categories = await getEntries(data.categories);
+const primary = categories[0];
+const minutes = readingTime(post.body);
+const faqFromFields = data.faq.length > 0 && !post.body?.includes('class="faq"');
+const updated = data.updatedDate && data.updatedDate.toDateString() !== data.pubDate.toDateString();
+
+// Powiązane: najpierw z tej samej kategorii, potem najnowsze
+const related = posts
+  .filter((p) => p.id !== post.id)
+  .sort(
+    (a, b) =>
+      Number(b.data.categories.some((c) => c.id === primary?.id)) -
+      Number(a.data.categories.some((c) => c.id === primary?.id)),
+  )
+  .slice(0, 3);
+
+const crumbs = [
+  { name: 'Strona główna', href: '/' },
+  { name: 'Blog', href: '/blog/' },
+  ...(primary ? [{ name: primary.data.name, href: categoryHref(primary.id) }] : []),
+  { name: data.title, href: postHref(post.id) },
+];
+---
+
+<BaseLayout
+  title={data.seoTitle ?? `${data.title} | Kamil Wnęk`}
+  description={data.description}
+  image={data.cover}
+  imageAlt={data.coverAlt}
+  type="article"
+  crumbs={crumbs}
+  faq={data.faq}
+  datePublished={data.pubDate}
+  dateModified={data.updatedDate}
+  article={{ headline: data.title, section: primary?.data.name }}
+>
+  <article>
+    <header class="container post-head">
+      <Breadcrumbs crumbs={crumbs} />
+      <ul class="cats">
+        {
+          categories.map((c) => (
+            <li>
+              <a href={categoryHref(c.id)}>{c.data.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+      <h1>{data.title}</h1>
+      <p class="meta">
+        <span>Kamil Wnęk</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={data.pubDate.toISOString()}>{formatDate(data.pubDate)}</time>
+        {
+          updated && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>
+                aktualizacja: <time datetime={data.updatedDate!.toISOString()}>{formatDate(data.updatedDate!)}</time>
+              </span>
+            </>
+          )
+        }
+        <span aria-hidden="true">·</span>
+        <span>{minutes} min czytania</span>
+      </p>
+    </header>
+
+    {
+      data.cover && (
+        <div class="container cover">
+          <Image
+            src={data.cover}
+            alt={data.coverAlt}
+            widths={[640, 960, 1280, 1600]}
+            sizes="(max-width: 1290px) 100vw, 1100px"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      )
+    }
+
+    <div class="container post-body">
+      <div class="prose">
+        <Content />
+      </div>
+
+      {/* FAQ z pól formularza (nowe wpisy z CMS). Wpisy z WordPressa mają FAQ wpisane w treść – wtedy nie dublujemy. */}
+      {faqFromFields && <Faq title="Najczęściej zadawane pytania i odpowiedzi" items={data.faq} />}
+
+      <div class="post-cta">
+        <p>Chcesz, żebym sprawdził to na Twojej stronie?</p>
+        <Button href="/kontakt/#kalendarz">Umów bezpłatną rozmowę</Button>
+      </div>
+
+      <AuthorBox />
+    </div>
+  </article>
+
+  {
+    related.length > 0 && (
+      <section class="container section">
+        <h2 class="related-title">Przeczytaj też</h2>
+        <ul class="related">
+          {related.map((p) => (
+            <li>
+              <PostCard post={p} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .post-head {
+    display: grid;
+    gap: var(--space-m);
+    max-width: 900px;
+    padding-block: var(--space-xl) var(--space-2xl);
+  }
+  .cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-m);
+  }
+  .cats a {
+    display: inline-block;
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+    background: var(--color-primary-soft);
+    font-family: var(--font-heading);
+    font-size: var(--step--2);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .post-head h1 {
+    font-size: var(--step-5);
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs) var(--space-xs);
+    font-size: var(--step--1);
+    color: var(--color-muted);
+  }
+  .cover {
+    max-width: 1100px;
+  }
+  .cover :global(img) {
+    width: 100%;
+    border-radius: var(--radius-l);
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .post-body {
+    display: grid;
+    gap: var(--space-2xl);
+    max-width: 780px;
+    margin-top: var(--space-2xl);
+  }
+  .post-body .prose {
+    max-width: none;
+  }
+  .post-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    padding: var(--space-l) var(--space-xl);
+    border-radius: var(--radius-l);
+    border: 1px solid var(--color-border);
+  }
+  .post-cta p {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-heading);
+  }
+  .related-title {
+    font-size: var(--step-3);
+    margin-bottom: var(--space-l);
+  }
+  .related {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: var(--space-xl);
+  }
+</style>

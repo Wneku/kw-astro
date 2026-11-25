@@ -1,0 +1,136 @@
+---
+import Icon from '../ui/Icon.astro';
+import { pageUrl, pageNumbers } from '../../lib/pagination';
+
+export interface Props {
+  current: number;
+  total: number;
+  base: string;
+}
+const { current, total, base } = Astro.props;
+const prev = current > 1 ? pageUrl(base, current - 1) : null;
+const next = current < total ? pageUrl(base, current + 1) : null;
+---
+
+{
+  total > 1 && (
+    <nav class="pager" aria-label="Paginacja">
+      {prev ? (
+        <a href={prev} class="pager__step" rel="prev">
+          <Icon name="arrow-right" size={16} strokeWidth={2.2} class="flip" />
+          <span>Poprzednia</span>
+        </a>
+      ) : (
+        <span class="pager__step is-disabled" aria-hidden="true">
+          <Icon name="arrow-right" size={16} strokeWidth={2.2} class="flip" />
+          <span>Poprzednia</span>
+        </span>
+      )}
+
+      <ol class="pager__list">
+        {pageNumbers(current, total).map((n) =>
+          n === '…' ? (
+            <li class="pager__gap" aria-hidden="true">
+              …
+            </li>
+          ) : (
+            <li>
+              <a
+                href={pageUrl(base, n)}
+                class:list={['pager__num', { 'is-current': n === current }]}
+                aria-current={n === current ? 'page' : undefined}
+                aria-label={`Strona ${n}`}
+              >
+                {n}
+              </a>
+            </li>
+          ),
+        )}
+      </ol>
+
+      {next ? (
+        <a href={next} class="pager__step" rel="next">
+          <span>Następna</span>
+          <Icon name="arrow-right" size={16} strokeWidth={2.2} />
+        </a>
+      ) : (
+        <span class="pager__step is-disabled" aria-hidden="true">
+          <span>Następna</span>
+          <Icon name="arrow-right" size={16} strokeWidth={2.2} />
+        </span>
+      )}
+    </nav>
+  )
+}
+
+<style>
+  .pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    margin-top: var(--space-2xl);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--step--1);
+  }
+  .pager__list {
+    display: flex;
+    gap: var(--space-2xs);
+    list-style: none;
+    padding: 0;
+  }
+  .pager__num,
+  .pager__step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    min-width: 44px;
+    height: 44px;
+    padding-inline: var(--space-s);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-heading);
+    text-decoration: none;
+    transition:
+      border-color 0.15s,
+      color 0.15s,
+      background-color 0.15s;
+  }
+  .pager__step {
+    padding-inline: var(--space-m);
+  }
+  a.pager__num:hover,
+  a.pager__step:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+  .pager__num.is-current {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+  .pager__gap {
+    display: grid;
+    place-items: center;
+    min-width: 28px;
+    color: var(--color-muted);
+  }
+  .is-disabled {
+    opacity: 0.4;
+  }
+  .pager :global(.flip) {
+    transform: scaleX(-1);
+  }
+  @media (max-width: 560px) {
+    .pager__step span {
+      display: none;
+    }
+    .pager__step {
+      padding-inline: 0;
+      width: 44px;
+    }
+  }
+</style>

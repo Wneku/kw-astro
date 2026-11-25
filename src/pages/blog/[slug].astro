@@ -1,0 +1,36 @@
+---
+/**
+ * /blog/<slug>/ – wpis ALBO kategoria (strona 1). Oba typy dzielą ten sam poziom adresu,
+ * więc build przerywa się, jeśli slug wpisu i kategorii byłby taki sam.
+ */
+import PostView from '../../components/blog/PostView.astro';
+import BlogListing from '../../components/blog/BlogListing.astro';
+import { getPosts } from '../../lib/blog';
+import { getCategoryPages, categoryListingProps } from '../../lib/listing';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const categoryPages = (await getCategoryPages()).filter(({ page }) => page.current === 1);
+
+  const postIds = new Set(posts.map((p) => p.id));
+  const clash = categoryPages.find(({ category }) => postIds.has(category.id));
+  if (clash) {
+    throw new Error(`Slug „${clash.category.id}” jest użyty i przez wpis, i przez kategorię – zmień jeden z nich.`);
+  }
+
+  return [
+    ...posts.map((post) => ({ params: { slug: post.id }, props: { kind: 'post' as const, post, posts } })),
+    ...categoryPages.map((c) => ({ params: { slug: c.category.id }, props: { kind: 'category' as const, ...c } })),
+  ];
+}
+
+const props = Astro.props;
+---
+
+{
+  props.kind === 'post' ? (
+    <PostView post={props.post} posts={props.posts} />
+  ) : (
+    <BlogListing page={props.page} {...categoryListingProps(props.category, props.postCount)} />
+  )
+}

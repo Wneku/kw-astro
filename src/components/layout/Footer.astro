@@ -1,0 +1,194 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import { getServiceColumns } from '../../lib/navigation';
+import { SITE } from '../../config/site';
+import Button from '../ui/Button.astro';
+import SocialLinks from '../ui/SocialLinks.astro';
+import { getPosts, categoryHref } from '../../lib/blog';
+import logo from '../../assets/images/wp/2026/06/Logo-512.jpg';
+
+const columns = await getServiceColumns();
+const posts = await getPosts();
+// tylko kategorie z wpisami (puste są noindex – nie linkujemy ich ze stopki)
+const categories = (await getCollection('kategorie')).filter((c) =>
+  posts.some((p) => p.data.categories.some((pc) => pc.id === c.id)),
+);
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cta">
+      <div>
+        <p class="footer__cta-title">Porozmawiajmy o widoczności Twojej strony</p>
+        <p class="footer__cta-text">Pierwsza konsultacja jest bezpłatna i do niczego nie zobowiązuje.</p>
+      </div>
+      <Button href="/kontakt/#kalendarz" size="l">Umów bezpłatną rozmowę</Button>
+    </div>
+
+    <div class="footer__grid">
+      <div class="footer__about">
+        <a href="/" class="footer__brand">
+          <Image src={logo} alt="" width={40} height={40} class="footer__logo" />
+          {SITE.name}
+        </a>
+        <p>Specjalista ds. SEO. Pomagam firmom zdobywać klientów z Google – od audytu, przez pozycjonowanie, po link building.</p>
+        <p><a href={`mailto:${SITE.email}`} class="footer__mail">{SITE.email}</a></p>
+        <SocialLinks variant="dark" />
+      </div>
+
+      {columns.map((col) => (
+        <div>
+          <p class="footer__heading">{col.label}</p>
+          <ul class="footer__links">
+            {col.items.map((i) => (
+              <li>
+                <a href={i.href}>{i.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div>
+        <p class="footer__heading">Blog</p>
+        <ul class="footer__links">
+          {categories.map((c) => (
+            <li>
+              <a href={categoryHref(c.id)}>{c.data.name}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© {year} {SITE.name}</span>
+      <a href="/polityka-prywatnosci/">Polityka prywatności i plików cookie</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: var(--space-3xl);
+    background: var(--color-dark);
+    color: var(--color-on-dark-muted);
+    font-size: var(--step--1);
+  }
+  a {
+    color: var(--color-on-dark-muted);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-on-dark);
+  }
+
+  .footer__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-l);
+    padding-block: var(--space-2xl);
+    border-bottom: 1px solid rgb(255 255 255 / 0.12);
+  }
+  .footer__cta-title {
+    font-family: var(--font-heading);
+    font-size: var(--step-3);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
+    color: var(--color-on-dark);
+    max-width: 22ch;
+  }
+  .footer__cta-text {
+    margin-top: var(--space-xs);
+    font-size: var(--step-0);
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(4, 1fr);
+    gap: var(--space-xl);
+    padding-block: var(--space-2xl);
+  }
+  .footer__about p {
+    margin-block: var(--space-m);
+    max-width: 36ch;
+    line-height: 1.65;
+  }
+  .footer__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-s);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--color-on-dark);
+  }
+  .footer__logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+  .footer__heading {
+    font-family: var(--font-heading);
+    font-size: var(--step--2);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-on-dark);
+    margin-bottom: var(--space-m);
+  }
+  .footer__links {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-xs);
+  }
+  .footer__socials {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+  .footer__socials a {
+    display: inline-block;
+    padding: 0.35em 0.9em;
+    border-radius: 999px;
+    background: rgb(218 222 228 / 0.15);
+    color: var(--color-on-dark);
+    font-size: var(--step--2);
+    font-weight: 600;
+    transition: background-color 0.15s;
+  }
+  .footer__socials a:hover {
+    background: var(--color-primary);
+  }
+
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding-block: var(--space-l);
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+  }
+
+  @media (max-width: 1100px) {
+    .footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .footer__about {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 520px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,37 @@
+---
+/**
+ * Lista FAQ (akordeon). Ten sam markup (.faq / .faq__item) importer wstawia
+ * w treść wpisów, więc style są globalne (global.css).
+ */
+import type { FaqItem } from '../../lib/schema';
+import { slugify } from '../../lib/slugify.mjs';
+
+export interface Props {
+  title?: string;
+  items: FaqItem[];
+}
+const { title, items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section class="faq-section">
+      {title && <h2 id={slugify(title)}>{title}</h2>}
+      <div class="faq">
+        {items.map((item) => (
+          <details class="faq__item" id={item.id}>
+            <summary class="faq__q">{item.question}</summary>
+            <div class="faq__a" set:html={item.answer} />
+          </details>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .faq-section h2 {
+    font-size: var(--step-3);
+    margin-bottom: var(--space-l);
+  }
+</style>

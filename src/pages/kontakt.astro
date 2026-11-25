@@ -1,0 +1,244 @@
+---
+/** Kontakt – treść przeniesiona 1:1 z WordPressa. */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import Button from '../components/ui/Button.astro';
+import Icon from '../components/ui/Icon.astro';
+import Faq from '../components/ui/Faq.astro';
+import SocialLinks from '../components/ui/SocialLinks.astro';
+import ContactForm from '../components/forms/ContactForm.astro';
+import CalEmbed from '../components/forms/CalEmbed.astro';
+import { SITE } from '../config/site';
+import pageSeo from '../data/page-seo.json';
+
+const seo = pageSeo['/kontakt/'];
+const crumbs = [
+  { name: 'Strona główna', href: '/' },
+  { name: 'Kontakt', href: '/kontakt/' },
+];
+
+const faq = [
+  {
+    question: 'Czy pierwsza rozmowa jest płatna?',
+    answer:
+      '<p>Nie. Rozmowa i wycena nie są płatne. Płatne są dopiero wybrane usługi, np. <a href="/oferta/konsultacje-seo/">konsultacja SEO</a>, podczas których analizuję Twoją stronę i przygotowuję plan działań.</p>',
+  },
+  {
+    question: 'Czy podpisujemy umowę?',
+    answer:
+      '<p>Tak, przy stałej współpracy lub jednorazowych usługach podpisujemy umowę, która zabezpiecza interesy obu stron. W przypadku stałej współpracy umowa ma miesięczny okres wypowiedzenia.</p>',
+  },
+  { question: 'Czy wystawiasz faktury VAT?', answer: '<p>Tak, wystawiam faktury VAT.</p>' },
+];
+---
+
+<BaseLayout title={seo.title} description={seo.description} crumbs={crumbs} faq={faq}>
+  <header class="head">
+    <div class="container head__inner">
+      <Breadcrumbs crumbs={crumbs} />
+      <h1>Porozmawiajmy o Twojej widoczności</h1>
+      <p class="lead">Opowiedz mi o swoim projekcie — wspólnie ustalimy, co możemy zrobić.</p>
+      <div class="head__actions">
+        <Button href="#kalendarz" size="l">
+          <Icon name="calendar" size={18} strokeWidth={2.2} /> Umów bezpłatną 30-minutową rozmowę
+        </Button>
+        <Button href="#formularz" size="l" variant="outline">Napisz wiadomość</Button>
+      </div>
+    </div>
+  </header>
+
+  <section class="container booking" id="kalendarz" aria-labelledby="kalendarz-title">
+    <div class="booking__info">
+      <p class="eyebrow">Bezpłatna rozmowa</p>
+      <h2 id="kalendarz-title">Wybierz termin w kalendarzu</h2>
+      <p>
+        Zarezerwuj 30 minut w dogodnym dla Ciebie terminie. Porozmawiamy o Twojej stronie i celach, a ja podpowiem, od
+        czego warto zacząć.
+      </p>
+      <ul class="booking__facts">
+        <li><Icon name="calendar" size={18} strokeWidth={2.2} /> 30 minut</li>
+        <li><Icon name="check" size={18} strokeWidth={2.4} /> Bezpłatnie i bez zobowiązań</li>
+        <li><Icon name="message-circle" size={18} strokeWidth={2.2} /> Potwierdzenie przyjdzie na e-mail</li>
+      </ul>
+    </div>
+    <CalEmbed />
+  </section>
+
+  <div class="container grid section" id="formularz">
+    <div class="prose">
+      <h2>Wolisz napisać?</h2>
+      <p>
+        Nie musimy od razu umawiać spotkania. Jeśli wolisz kontakt mailowy skorzystaj z formularza kontaktowego. Opisz
+        krótko swój projekt, wyzwania lub pomysł na współpracę. Na wiadomość odpowiadam w ciągu 24h.
+      </p>
+      <p><strong>Co warto zawrzeć w wiadomości?</strong></p>
+      <ul>
+        <li><strong>Adres strony internetowej</strong> – żebym mógł lepiej poznać Twój biznes.</li>
+        <li><strong>Cel lub problem</strong> – napisz, co chcesz osiągnąć albo z czym obecnie się mierzysz.</li>
+        <li>
+          <strong>Zakres współpracy</strong> – interesuje Cię SEO, zwiększenie widoczności w AI, audyt, konsultacja czy
+          coś innego?
+        </li>
+        <li>
+          <strong>Dodatkowe informacje</strong> – jeśli masz określony termin realizacji lub budżet, możesz o tym wspomnieć.
+        </li>
+      </ul>
+      <p>
+        Nie musisz przygotowywać szczegółowego briefu. Wystarczy kilka zdań, które pozwolą mi zrozumieć Twoje potrzeby i
+        zaproponować kolejne kroki.
+      </p>
+    </div>
+    <ContactForm source="Kontakt" />
+  </div>
+
+  <div class="container section details">
+    <section class="card">
+      <h2>Dane kontaktowe</h2>
+      <ul class="contact-list">
+        <li>
+          <span class="contact-list__label">E-mail:</span>{" "}
+          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        </li>
+        <li>
+          <span class="contact-list__label">LinkedIn:</span>{" "}
+          <a href="https://www.linkedin.com/in/kamil-wnek/" target="_blank" rel="noopener">https://www.linkedin.com/in/kamil-wnek/</a>
+        </li>
+        <li>
+          <span class="contact-list__label">Instagram:</span>{" "}
+          <a href="https://www.instagram.com/kamilwnekpl/" target="_blank" rel="noopener">https://www.instagram.com/kamilwnekpl/</a>
+        </li>
+      </ul>
+      <SocialLinks />
+    </section>
+    <Faq title="Najczęstsze pytania" items={faq} />
+  </div>
+</BaseLayout>
+
+<style>
+  .head {
+    background: linear-gradient(180deg, var(--color-surface), var(--color-bg));
+  }
+  .head__inner {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-m);
+    padding-block: var(--space-xl) var(--space-3xl);
+  }
+  .head h1 {
+    margin-top: var(--space-m);
+    max-width: 18ch;
+  }
+  .lead {
+    font-size: var(--step-1);
+    margin-bottom: var(--space-s);
+  }
+  .head__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+  }
+
+  /* Kalendarz cal.com */
+  .booking {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.8fr) 2fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  .booking__info {
+    display: grid;
+    gap: var(--space-m);
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-l));
+  }
+  .booking__info h2 {
+    font-size: var(--step-3);
+  }
+  .booking__facts {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-s);
+    margin-top: var(--space-xs);
+  }
+  .booking__facts li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+  .booking__facts :global(svg) {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    border-radius: 10px;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+  @media (max-width: 960px) {
+    .booking {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .booking__info {
+      position: static;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  .grid .prose h2 {
+    margin-top: 0;
+  }
+  .details {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  .card {
+    display: grid;
+    gap: var(--space-l);
+    padding: var(--space-xl);
+    border-radius: var(--radius-l);
+    background: var(--color-surface);
+  }
+  .card h2,
+  .details :global(.faq-section h2) {
+    font-size: var(--step-2);
+  }
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-m);
+  }
+  .contact-list li {
+    display: grid;
+  }
+  .contact-list__label {
+    font-family: var(--font-heading);
+    font-size: var(--step--2);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .contact-list a {
+    font-weight: 600;
+    word-break: break-word;
+  }
+  @media (max-width: 900px) {
+    .grid,
+    .details {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

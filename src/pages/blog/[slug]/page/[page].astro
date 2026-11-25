@@ -1,0 +1,15 @@
+---
+/** /blog/<kategoria>/page/2/ … */
+import BlogListing from '../../../../components/blog/BlogListing.astro';
+import { getCategoryPages, categoryListingProps } from '../../../../lib/listing';
+
+export async function getStaticPaths() {
+  return (await getCategoryPages())
+    .filter(({ page }) => page.current > 1)
+    .map((props) => ({ params: { slug: props.category.id, page: String(props.page.current) }, props }));
+}
+
+const { category, page, postCount } = Astro.props;
+---
+
+<BlogListing page={page} {...categoryListingProps(category, postCount)} />

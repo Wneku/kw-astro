@@ -1,0 +1,364 @@
+---
+import { Image } from 'astro:assets';
+import { getMainNav } from '../../lib/navigation';
+import { SITE } from '../../config/site';
+import MegaMenu from './MegaMenu.astro';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import logo from '../../assets/images/wp/2026/06/Logo-512.jpg';
+
+const nav = await getMainNav();
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="header" data-header>
+  <div class="header__bar container">
+    <a href="/" class="logo" aria-label={`${SITE.name} – strona główna`}>
+      <Image src={logo} alt="" width={44} height={44} class="logo__img" loading="eager" />
+      <span class="logo__text">
+        <span class="logo__name">Kamil Wnęk</span>
+        <span class="logo__tag">Specjalista SEO</span>
+      </span>
+    </a>
+
+    <button class="burger" type="button" aria-expanded="false" aria-controls="main-nav" data-burger>
+      <span class="visually-hidden">Menu</span>
+      <span class="burger__lines" aria-hidden="true"></span>
+    </button>
+
+    <nav id="main-nav" class="nav" aria-label="Główna nawigacja" data-nav>
+      <ul class="nav__list">
+        {nav.map((item, i) =>
+          item.mega ? (
+            <li class="nav__item nav__item--mega" data-mega data-mega-open="false">
+              <a
+                href={item.href}
+                class:list={['nav__link', { 'is-active': isActive(item.href) }]}
+                aria-current={path === item.href ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+              <button
+                class="nav__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls={`mega-${i}`}
+                data-mega-toggle
+              >
+                <span class="visually-hidden">Rozwiń: {item.label}</span>
+                <Icon name="chevron-down" size={16} strokeWidth={2.4} />
+              </button>
+              <MegaMenu id={`mega-${i}`} columns={item.mega} allHref={item.href} />
+            </li>
+          ) : (
+            <li class="nav__item">
+              <a
+                href={item.href}
+                class:list={['nav__link', { 'is-active': isActive(item.href) }]}
+                aria-current={path === item.href ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ),
+        )}
+      </ul>
+      <Button href="/kontakt/#kalendarz" class="nav__cta">Bezpłatna rozmowa</Button>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const burger = header?.querySelector<HTMLButtonElement>('[data-burger]');
+  const nav = header?.querySelector<HTMLElement>('[data-nav]');
+  const desktop = window.matchMedia('(min-width: 961px)');
+
+  // Cień nagłówka po przewinięciu
+  const onScroll = () => header?.toggleAttribute('data-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const setMobileOpen = (open: boolean) => {
+    burger?.setAttribute('aria-expanded', String(open));
+    nav?.toggleAttribute('data-open', open);
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+  };
+  burger?.addEventListener('click', () => setMobileOpen(burger.getAttribute('aria-expanded') !== 'true'));
+  desktop.addEventListener('change', () => setMobileOpen(false));
+
+  header?.querySelectorAll<HTMLElement>('[data-mega]').forEach((item) => {
+    const toggle = item.querySelector<HTMLButtonElement>('[data-mega-toggle]');
+    if (!toggle) return;
+    let closeTimer: number | undefined;
+
+    const setOpen = (open: boolean) => {
+      item.dataset.megaOpen = String(open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+
+    toggle.addEventListener('click', () => setOpen(item.dataset.megaOpen !== 'true'));
+
+    // Hover tylko na desktopie (mysz), z krótkim opóźnieniem zamknięcia
+    item.addEventListener('pointerenter', (e) => {
+      if (!desktop.matches || e.pointerType !== 'mouse') return;
+      clearTimeout(closeTimer);
+      setOpen(true);
+    });
+    item.addEventListener('pointerleave', (e) => {
+      if (!desktop.matches || e.pointerType !== 'mouse') return;
+      closeTimer = window.setTimeout(() => setOpen(false), 180);
+    });
+    item.addEventListener('focusout', (e) => {
+      if (desktop.matches && !item.contains(e.relatedTarget as Node | null)) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && item.dataset.megaOpen === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border-bottom: 1px solid transparent;
+    transition:
+      box-shadow 0.2s,
+      border-color 0.2s;
+  }
+  .header[data-scrolled] {
+    border-bottom-color: var(--color-border);
+    box-shadow: 0 6px 24px -12px rgb(25 42 61 / 0.18);
+  }
+  .header__bar {
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-l);
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    text-decoration: none;
+  }
+  .logo__img {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+  .logo__text {
+    display: grid;
+    line-height: 1.1;
+  }
+  .logo__name {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--color-heading);
+  }
+  .logo__tag {
+    font-family: var(--font-heading);
+    font-size: var(--step--2);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  /* Nawigacja – desktop */
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    list-style: none;
+    padding: 0;
+  }
+  .nav__item {
+    display: flex;
+    align-items: center;
+    height: var(--header-h);
+  }
+  /* static => panel mega menu pozycjonuje się względem całego headera (pełna szerokość) */
+  .nav__item--mega {
+    position: static;
+  }
+  .nav__link {
+    position: relative;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-heading);
+    text-decoration: none;
+    padding: var(--space-xs) var(--space-s);
+  }
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    left: var(--space-s);
+    right: var(--space-s);
+    bottom: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s var(--ease);
+  }
+  .nav__link:hover,
+  .nav__link.is-active,
+  [data-mega-open='true'] > .nav__link {
+    color: var(--color-primary);
+  }
+  .nav__link.is-active::after,
+  [data-mega-open='true'] > .nav__link::after {
+    transform: scaleX(1);
+  }
+  .nav__item--mega .nav__link {
+    padding-right: var(--space-2xs);
+  }
+  .nav__item--mega .nav__link::after {
+    right: var(--space-2xs);
+  }
+  .nav__toggle {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--color-heading);
+    cursor: pointer;
+  }
+  .nav__toggle :global(svg) {
+    transition: transform 0.2s var(--ease);
+  }
+  [data-mega-open='true'] .nav__toggle {
+    color: var(--color-primary);
+  }
+  [data-mega-open='true'] .nav__toggle :global(svg) {
+    transform: rotate(180deg);
+  }
+
+  .burger {
+    display: none;
+  }
+
+  /* Nawigacja – mobile */
+  @media (max-width: 960px) {
+    .logo__img {
+      width: 38px;
+      height: 38px;
+    }
+    .burger {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      margin-right: calc(-1 * var(--space-xs));
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+    .burger__lines,
+    .burger__lines::before,
+    .burger__lines::after {
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--color-heading);
+      transition:
+        transform 0.2s var(--ease),
+        background-color 0.2s;
+    }
+    .burger__lines {
+      position: relative;
+    }
+    .burger__lines::before,
+    .burger__lines::after {
+      content: '';
+      position: absolute;
+      left: 0;
+    }
+    .burger__lines::before {
+      top: -7px;
+    }
+    .burger__lines::after {
+      top: 7px;
+    }
+    [aria-expanded='true'] .burger__lines {
+      background: transparent;
+    }
+    [aria-expanded='true'] .burger__lines::before {
+      transform: translateY(7px) rotate(45deg);
+    }
+    [aria-expanded='true'] .burger__lines::after {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav {
+      position: fixed;
+      inset: var(--header-h) 0 0 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-l);
+      padding: var(--space-s) var(--space-l) var(--space-2xl);
+      background: var(--color-bg);
+      border-top: 1px solid var(--color-border);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      display: none;
+    }
+    .nav[data-open] {
+      display: flex;
+    }
+    .nav__list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    .nav__item {
+      height: auto;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav__link,
+    .nav__item--mega .nav__link {
+      flex: 1;
+      font-size: 1rem;
+      padding: var(--space-m) 0;
+    }
+    .nav__link::after {
+      display: none;
+    }
+    .nav__toggle {
+      width: 44px;
+      height: 44px;
+      margin-right: calc(-1 * var(--space-xs));
+    }
+    .nav__cta {
+      width: 100%;
+      font-size: 1rem;
+    }
+  }
+</style>

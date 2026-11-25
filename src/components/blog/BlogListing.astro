@@ -1,0 +1,149 @@
+---
+/** Wspólny widok listingu: /blog/, /blog/page/N/, /blog/<kategoria>/ (+ /page/N/). */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../ui/Breadcrumbs.astro';
+import PostList from './PostList.astro';
+import Pagination from './Pagination.astro';
+import { categoryHref, type Post } from '../../lib/blog';
+import { pageUrl, type PageInfo } from '../../lib/pagination';
+import type { Crumb } from '../../lib/schema';
+
+export interface Props {
+  page: PageInfo<Post>;
+  heading: string;
+  eyebrow?: string;
+  lead?: string;
+  /** Dłuższy opis (np. kategorii) – pod listą wpisów, tylko na stronie 1 */
+  description?: string;
+  /** title i description strony 1 (z Rank Math); na kolejnych dopisujemy numer */
+  seoTitle: string;
+  seoDescription: string;
+  noindex?: boolean;
+  crumbs: Crumb[];
+  /** Pokaż pasek kategorii (blog i strony kategorii) */
+  showCategories?: boolean;
+  /** id bieżącej kategorii – wyróżniona w pasku; brak = „Wszystkie” (/blog/) */
+  activeCategory?: string;
+}
+
+const {
+  page,
+  heading,
+  eyebrow,
+  lead,
+  description: about,
+  seoTitle,
+  seoDescription,
+  noindex,
+  crumbs,
+  showCategories,
+  activeCategory,
+} = Astro.props;
+const { current, total, base } = page;
+
+const suffix = current > 1 ? ` – strona ${current}` : '';
+const title = current > 1 ? seoTitle.replace(/( \| [^|]+)$/, `${suffix}$1`) : seoTitle;
+const description = current > 1 ? `${seoDescription} Strona ${current} z ${total}.` : seoDescription;
+const pageCrumbs = current > 1 ? [...crumbs, { name: `Strona ${current}`, href: pageUrl(base, current) }] : crumbs;
+
+let categories: Awaited<ReturnType<typeof getCollection<'kategorie'>>> = [];
+if (showCategories) {
+  // wszystkie kategorie (jak w widżecie na WordPressie), alfabetycznie
+  categories = (await getCollection('kategorie')).sort((a, b) => a.data.name.localeCompare(b.data.name, 'pl'));
+}
+---
+
+<BaseLayout title={title} description={description} noindex={noindex} crumbs={pageCrumbs}>
+  <header class="container page-head">
+    <Breadcrumbs crumbs={pageCrumbs} />
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>
+      {heading}{current > 1 && <span class="page-no"> – strona {current}</span>}
+    </h1>
+    {lead && current === 1 && <p class="lead">{lead}</p>}
+    {
+      categories.length > 0 && (
+        <nav aria-label="Kategorie bloga">
+          <ul class="cats">
+            {[{ id: undefined, href: '/blog/', name: 'Wszystkie' }, ...categories.map((c) => ({ id: c.id, href: categoryHref(c.id), name: c.data.name }))].map(
+              (c) => {
+                const isActive = c.id === activeCategory;
+                return (
+                  <li>
+                    <a
+                      href={c.href}
+                      class:list={{ 'is-active': isActive }}
+                      aria-current={isActive ? (current === 1 ? 'page' : 'true') : undefined}
+                    >
+                      {c.name}
+                    </a>
+                  </li>
+                );
+              },
+            )}
+          </ul>
+        </nav>
+      )
+    }
+  </header>
+  <section class="container">
+    <PostList posts={page.items} />
+    <Pagination current={current} total={total} base={base} />
+  </section>
+  {
+    about && current === 1 && (
+      <section class="container section">
+        <div class="about">
+          <p>{about}</p>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .about {
+    max-width: var(--measure);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+  }
+  .about p {
+    color: var(--color-text);
+  }
+  .page-no {
+    color: var(--color-muted);
+    font-weight: 600;
+  }
+  .cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-l);
+  }
+  .cats a {
+    display: inline-block;
+    padding: 0.45em 1em;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-family: var(--font-heading);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--color-heading);
+    text-decoration: none;
+    transition:
+      border-color 0.15s,
+      color 0.15s;
+  }
+  .cats a:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+  .cats a.is-active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+</style>

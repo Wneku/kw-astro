@@ -1,0 +1,119 @@
+---
+/** Blok „Dlaczego warto ze mną współpracować?” – wspólny dla stron usług (treść 1:1 z WordPressa). */
+import { Image } from 'astro:assets';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import photo from '../../assets/images/wp/2025/12/IMG_3829.jpg';
+
+const reasons = [
+  {
+    title: 'Pracujesz bezpośrednio ze specjalistą.',
+    text: 'Nie ma account managera ani przekazywania zadań juniorom. Ta sama osoba robi analizę, planuje działania i odpowiada na pytania.',
+  },
+  {
+    title: 'SEO od 2018 roku.',
+    text: 'Zaczynałem od agencji marketingowej, a potem pracowałem in-house dla takich firm jak TimeTrend, Nice to Fit You, Noble Place, NEONET.',
+  },
+  {
+    title: 'Mówię wprost, co ma sens.',
+    text: 'Jeśli SEO nie jest dla Ciebie najlepszym kanałem, usłyszysz to na pierwszej rozmowie.',
+  },
+  {
+    title: 'Raportuję wyniki, nie listę czynności.',
+    text: 'Ruch, zapytania i sprzedaż z Google Search Console i Google Analytics.',
+  },
+  {
+    title: 'Znam też wyszukiwanie w AI.',
+    text: 'Sprawdzam, jak Twoja marka wypada w najpopularniejszych modelach AI.',
+  },
+];
+---
+
+<section class="why">
+  <div class="why__content">
+    <h2 id="dlaczego-warto-ze-mna-wspolpracowac">Dlaczego warto ze mną współpracować?</h2>
+    <ul>
+      {
+        reasons.map((r) => (
+          <li>
+            <span class="why__check">
+              <Icon name="check" size={16} strokeWidth={2.6} />
+            </span>
+            <p>
+              <strong>{r.title}</strong> {r.text}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+    <Button href="/kontakt/#kalendarz" size="l">Umów bezpłatną rozmowę</Button>
+  </div>
+  <!-- Kadr 4:5 wycinany przy buildzie (źródło jest poziome) – bez rozciągania w przeglądarce -->
+  <Image
+    src={photo}
+    alt="Kamil Wnęk siedzący przy laptopie na zewnątrz"
+    width={640}
+    height={800}
+    widths={[480, 640, 960, 1280]}
+    sizes="(max-width: 900px) 92vw, 520px"
+    fit="cover"
+    position="center"
+    quality={85}
+    class="why__photo"
+  />
+</section>
+
+<style>
+  .why {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+    padding: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+    border-radius: var(--radius-l);
+    background: var(--color-surface);
+  }
+  h2 {
+    font-size: var(--step-3);
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-m);
+    margin-block: var(--space-l) var(--space-xl);
+  }
+  li {
+    display: flex;
+    gap: var(--space-s);
+    align-items: flex-start;
+  }
+  .why__check {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    margin-top: 2px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+  .why__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-l);
+  }
+  @media (max-width: 900px) {
+    .why {
+      grid-template-columns: 1fr;
+    }
+    .why__photo {
+      order: -1;
+      aspect-ratio: 4 / 3;
+      object-position: center 30%;
+    }
+  }
+</style>

@@ -1,0 +1,10 @@
+---
+import BlogListing from '../../components/blog/BlogListing.astro';
+import { getPosts } from '../../lib/blog';
+import { paginate } from '../../lib/pagination';
+import { blogListingProps } from '../../lib/listing';
+
+const [page] = paginate(await getPosts(), '/blog/');
+---
+
+<BlogListing page={page} {...blogListingProps} />
