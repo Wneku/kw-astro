@@ -217,7 +217,7 @@ Optymalizacja obrazów i kodu wpływa na szybkość ładowania i sposób, w jaki
 
 **Wiele z tych problemów trudno wychwycić bez analizy danych i narzędzi.**
 
-<p class="cta"><a class="btn" href="/kontakt/">Jeśli chcesz, mogę to sprawdzić za Ciebie!</a></p>
+**[Jeśli chcesz, mogę to sprawdzić za Ciebie!](/kontakt/)**
 
 ## Narzędzia do wykorzystania w technicznym audycie SEO
 
@@ -245,6 +245,3 @@ Analiza logów serwera pokazuje, jak roboty naprawdę poruszają się po stronie
 
 Logi mogą ujawnić przykładowo próby wejścia na nieistniejące strony, zapętlone przekierowania, pomijanie ważnych sekcji albo marnowanie budżetu crawlowania na mało istotne podstrony. Do analizy można użyć, np. Screaming Frog Log File Analyser.
 
-## Najczęściej zadawane pytania i odpowiedzi
-
-<div class="faq"><details class="faq__item" id="faq-question-1774648477935"><summary class="faq__q">Co zrobić po otrzymaniu raportu z technicznego audytu SEO?</summary><div class="faq__a"><p>Raport to jest punkt startowy. Po jego otrzymaniu należy przygotować plan wdrożeń według priorytetów. Następnie ustala się harmonogram i osoby odpowiedzialne za poprawki. Po wdrożeniu zmian należy sprawdzić efekty w Google Search Console i narzędziach analitycznych.</p></div></details><details class="faq__item" id="faq-question-1774648537875"><summary class="faq__q">Ile kosztuje techniczny audyt SEO?</summary><div class="faq__a"><p>Cena zależy od wielkości i złożoności serwisu. Sklep z tysiącami produktów wymaga więcej pracy niż prosta strona firmowa. Wpływ ma też technologia (CMS, frameworki JS) oraz zakres audytu.</p></div></details><details class="faq__item" id="faq-question-1774686026902"><summary class="faq__q">Czy szybkość strony wpływa na indeksację?</summary><div class="faq__a"><p>Tak. Szybkość strony wpływa na pozycje i na zachowanie użytkowników. Wolna strona częściej traci odwiedzających, co wysyła słabe sygnały do Google. Google potwierdza, że metryki Core Web Vitals (LCP, INP, CLS) są elementem oceny strony. W praktyce warto regularnie sprawdzać PageSpeed Insights i poprawiać rzeczy, które spowalniają stronę (obrazy, kod, serwer, CDN). To poprawia UX i zwykle pomaga w SEO.</p></div></details></div>

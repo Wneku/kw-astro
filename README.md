@@ -37,7 +37,14 @@ Nowa usługa = nowy plik `.md` w `src/content/oferta/` – pojawi się w mega me
    a strona na serwerze zostaje bez zmian).
 4. `Szkic` zaznaczony = wpis nie pojawi się na stronie.
 
-Obrazki dodane w panelu trafiają do `src/assets/images/blog/` – Astro sam robi z nich WebP w kilku rozmiarach.
+Treść pisze się w **edytorze wizualnym** (zapisuje Markdown; przełącznik „Source” pokazuje kod). Edytor nie obsługuje
+surowego HTML, dlatego:
+
+- **Przycisk** = osobny akapit z linkiem, cały pogrubiony (`**[Umów rozmowę](/kontakt/#kalendarz)**`).
+  Pogrubiony link w środku zdania zostaje zwykłym linkiem. Obsługa: [src/lib/rehype-cta.mjs](src/lib/rehype-cta.mjs).
+- **FAQ** dodawaj w polu „FAQ” formularza, nie w treści – wyświetli się pod wpisem, w spisie treści i w schema FAQPage.
+- **Obrazki** przeciągnij do edytora i uzupełnij opis (alt). Trafiają do `src/assets/images/blog/` – Astro sam robi
+  z nich WebP w kilku rozmiarach.
 Konfiguracja panelu: [.pages.yml](.pages.yml). Nowa kategoria: dodaj ją w „Blog – kategorie” **i** w `.pages.yml`
 (lista `categories`), żeby była do wyboru przy wpisie.
 

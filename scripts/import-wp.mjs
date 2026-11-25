@@ -109,12 +109,12 @@ const baseEscape = td.escape.bind(td);
 td.escape = (s) => baseEscape(s).replace(/</g, '&lt;');
 td.addRule('cta', {
   filter: (node) => node.nodeName === 'P' && node.getAttribute('data-cta') !== null,
-  replacement: (_c, node) => {
-    const links = Array.from(node.getElementsByTagName('a'))
-      .map((a) => `<a class="btn" href="${a.getAttribute('href')}">${a.textContent.trim()}</a>`)
-      .join(' ');
-    return `\n\n<p class="cta">${links}</p>\n\n`;
-  },
+  // przycisk = pogrubiony link w osobnym akapicie (zamienia go src/lib/rehype-cta.mjs);
+  // czysty Markdown, który przetrwa edycję w edytorze wizualnym Pages CMS
+  replacement: (_c, node) =>
+    Array.from(node.getElementsByTagName('a'))
+      .map((a) => `\n\n**[${a.textContent.trim()}](${a.getAttribute('href') || '/kontakt/'})**\n\n`)
+      .join(''),
 });
 /** Bloki wstawiane do Markdown jako gotowy HTML (np. FAQ w treści wpisu) */
 const rawBlocks = new Map();
@@ -378,7 +378,8 @@ for (const p of pages.filter((p) => p.parent === offerPage.id)) {
 for (const p of posts) {
   const file = path.join(ROOT, `src/content/blog/${p.slug}.md`);
   const seo = await readSeo(p.link);
-  const c = await convert(p.content.rendered, file, { faqInline: true });
+  // FAQ → frontmatter (edytor wizualny Pages CMS nie obsługuje HTML w treści)
+  const c = await convert(p.content.rendered, file, { faqInline: false });
   const cover = media.find((m) => m.id === p.featured_media);
   const coverAbs = cover ? await localImage(cover.source_url) : null;
   await writeMd(
@@ -405,7 +406,7 @@ for (const slug of ['o-mnie', 'polityka-prywatnosci']) {
   const p = pages.find((x) => x.slug === slug);
   const file = path.join(ROOT, `src/content/strony/${slug}.md`);
   const seo = await readSeo(p.link);
-  const c = await convert(p.content.rendered, file, { pageMode: true, faqInline: true });
+  const c = await convert(p.content.rendered, file, { pageMode: true, faqInline: false });
   const h1 = cheerio.load(p.content.rendered)('h1').first().text().trim();
   await writeMd(
     file,

@@ -91,7 +91,7 @@ Raport otrzymujesz w formacie PDF + arkusz Excel z listą URL-i.
 
 Cena zależy od wielkości strony i zakresu. Można też zamówić audyt tylko jednego obszaru, na przykład audyt techniczny albo linków. Dokładną wycenę podaję po krótkiej rozmowie.
 
-<p class="cta"><a class="btn" href="/kontakt/">Zapytaj o wycenę audytu</a></p>
+**[Zapytaj o wycenę audytu](/kontakt/)**
 
 ## Jak wygląda współpraca?
 

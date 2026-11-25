@@ -85,4 +85,4 @@ Wpisy w sprawdzonych katalogach firm, wzmianki w lokalnych portalach i u partner
 
 Jeśli potrzebujesz tylko jednorazowej optymalizacji wizytówki, to koszt od 700 zł netto. Cena zależy od konkurencji w branży, obszaru działania i zakresu prac.
 
-<p class="cta"><a class="btn" href="/kontakt/">Sprawdź, jak wypadasz w mapach</a></p>
+**[Sprawdź, jak wypadasz w mapach](/kontakt/)**

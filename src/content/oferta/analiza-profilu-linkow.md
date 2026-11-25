@@ -68,7 +68,7 @@ faq:
 
 Ostateczna cena zależy od wielkości i złożoności profilu oraz zakresu analizy konkurencji. Termin liczę od otrzymania kompletu danych i dostępów.
 
-<p class="cta"><a class="btn" href="/kontakt/">Zamów analizę linków</a></p>
+**[Zamów analizę linków](/kontakt/)**
 
 ## Co dalej po analizie?
 

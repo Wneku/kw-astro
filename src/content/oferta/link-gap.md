@@ -69,4 +69,4 @@ Link Gap (nazywany też link intersect) to różnica między profilem linków Tw
 
 Analizę możesz wdrożyć samodzielnie albo zlecić mi pozyskiwanie linków w ramach [link buildingu](/oferta/link-building/).
 
-<p class="cta"><a class="btn" href="/kontakt/">Zamów analizę link gap</a></p>
+**[Zamów analizę link gap](/kontakt/)**

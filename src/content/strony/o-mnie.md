@@ -36,7 +36,7 @@ Na co dzień pomagam rosnąć firmom w Google, nie czaruję, nie obiecuję grusz
 
 Działam kompleksowo, od analizy po wdrożenie i nadzór nad procesem. Dzięki temu nie musisz zastanawiać się, jaki powinien być kolejny krok.
 
-<p class="cta"><a class="btn" href="/kontakt/">Skontaktuj się ze mną</a></p>
+**[Skontaktuj się ze mną](/kontakt/)**
 
 ## Dzielę się wiedzą
 
@@ -52,4 +52,4 @@ Dzięki temu social media znam nie tylko od strony strategii czy statystyk. Regu
 
 **Masz pytania dotyczące SEO?**
 
-<p class="cta"><a class="btn" href="/kontakt/">Napisz do mnie</a></p>
+**[Napisz do mnie](/kontakt/)**

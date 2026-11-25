@@ -69,4 +69,4 @@ Koszt składa się z dwóch części:
 - **Obsługa (od 500 zł netto miesięcznie)** – analiza, plan, dobór i weryfikacja źródeł, koordynacja publikacji oraz raport.
 - **Budżet na publikacje, zwykle od 1000 zł netto miesięcznie** – ustalany indywidualnie, zależnie od branży, konkurencji i wybranych portali.
 
-<p class="cta"><a class="btn" href="">Zamów usługę link buildingu</a></p>
+**[Zamów usługę link buildingu](/kontakt/)**

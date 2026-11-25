@@ -48,7 +48,7 @@ Wstęp – 2–3 zdania, które od razu odpowiadają na pytanie z tytułu.
 
 Treść…
 
-<p class="cta"><a class="btn" href="/kontakt/#kalendarz">Umów bezpłatną rozmowę</a></p>
+**[Umów bezpłatną rozmowę](/kontakt/#kalendarz)**
 `,
 );
 

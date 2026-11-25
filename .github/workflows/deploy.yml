@@ -14,9 +14,6 @@ name: Deploy
 on:
   push:
     branches: [main]
-    # zmiany tylko w pliku testowym edytora CMS nie wymagają wdrożenia
-    paths-ignore:
-      - 'src/cms-test/**'
   workflow_dispatch:
 
 env:

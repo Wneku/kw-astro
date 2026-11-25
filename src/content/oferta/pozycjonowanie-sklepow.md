@@ -100,7 +100,7 @@ Jeśli sklep działa na innej platformie, napisz, a sprawdzę, co da się w niej
 
 Nie sprzedaję gotowych pakietów. Zakres dobieram do potencjału sklepu, tak żeby SEO się zwracało. Budżet na linki ustalamy osobno.
 
-<p class="cta"><a class="btn" href="/kontakt/">Zapytaj o wycenę dla sklepu</a></p>
+**[Zapytaj o wycenę dla sklepu](/kontakt/)**
 
 ## Jak raportuję wyniki?
 

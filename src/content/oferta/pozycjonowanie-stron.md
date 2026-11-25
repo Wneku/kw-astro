@@ -81,7 +81,7 @@ Nie raportuję setek fraz, które nie przynoszą klientów. Liczy się ruch, kt�
 
 Cena zależy od konkurencji w branży, stanu strony i zakresu prac. Budżet na linki ustalamy osobno. Dokładną wycenę poznasz po bezpłatnej rozmowie.
 
-<p class="cta"><a class="btn" href="/kontakt/#kalendarz">Umów bezpłatną rozmowę</a></p>
+**[Umów bezpłatną rozmowę](/kontakt/#kalendarz)**
 
 ## Kiedy zobaczę efekty pozycjonowania?
 

@@ -5,6 +5,7 @@ import { unified } from '@astrojs/markdown-remark';
 import fs from 'node:fs';
 import YAML from 'yaml';
 import rehypeHeadingIds from './src/lib/rehype-heading-ids.mjs';
+import rehypeCta from './src/lib/rehype-cta.mjs';
 import htaccess from './src/integrations/htaccess.mjs';
 
 const SITE = 'https://kamilwnek.pl';
@@ -41,7 +42,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       // id nagłówków w ASCII – zgodne z kotwicami spisów treści z WordPressa
-      rehypePlugins: [rehypeHeadingIds],
+      rehypePlugins: [rehypeHeadingIds, rehypeCta],
       // treść 1:1 z WordPressa – bez automatycznej zamiany cudzysłowów
       smartypants: false,
     }),

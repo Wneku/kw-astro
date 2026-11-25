@@ -1,8 +1,10 @@
 # Konfiguracja panelu Pages CMS (https://app.pagescms.org) – edycja treści w przeglądarce.
 # Każdy zapis w panelu = commit do repozytorium → GitHub Actions buduje i wgrywa stronę na seohost.
 #
-# Treść wpisów/usług jest edytowana jako Markdown (edytor kodu), a nie WYSIWYG – dzięki temu
-# nie giną bloki HTML zaimportowane z WordPressa (FAQ w treści, przyciski <p class="cta">).
+# Treść edytowana wizualnie (rich-text zapisujący Markdown, z przełącznikiem Editor/Source).
+# Edytor nie obsługuje surowego HTML, dlatego:
+#  - PRZYCISK = pogrubiony link w osobnym akapicie (src/lib/rehype-cta.mjs),
+#  - FAQ = pola formularza „FAQ” (nie wpisuj go w treść).
 
 media:
   input: src/assets/images/blog
@@ -22,24 +24,6 @@ settings:
       delete: 'Treść: usunięto {path} (Pages CMS)'
 
 content:
-  # ─────────────── TEST edytora wizualnego (tymczasowe – do usunięcia po teście) ───────────────
-  # Plik leży poza src/content, więc nie trafia na stronę; jego zapis nie uruchamia wdrożenia.
-  - name: test-edytora
-    label: 'TEST – edytor wizualny'
-    type: file
-    path: src/cms-test/test-edytora.md
-    format: yaml-frontmatter
-    fields:
-      - name: title
-        label: Tytuł
-        type: string
-      - name: body
-        label: Treść (edytor wizualny)
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
   # ─────────────────────────── BLOG ───────────────────────────
   - name: blog
     label: Blog – wpisy
@@ -133,10 +117,12 @@ content:
         type: boolean
         default: false
       - name: body
-        label: Treść (Markdown)
-        type: code
-        options: { format: markdown }
-        description: '## Nagłówek, **pogrubienie**, [link](/oferta/audyt-seo/), ![opis](../../assets/images/blog/plik.jpg). Przycisk: <p class="cta"><a class="btn" href="/kontakt/#kalendarz">Tekst</a></p>'
+        label: Treść
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+        description: 'Przycisk: osobny akapit z linkiem, cały pogrubiony. Obrazki: przeciągnij do edytora (uzupełnij opis alt). FAQ dodawaj w polu „FAQ” wyżej, nie w treści.'
 
   - name: kategorie
     label: Blog – kategorie
@@ -235,9 +221,11 @@ content:
         label: Opis na karcie (/oferta/)
         type: text
       - name: intro
-        label: Wstęp obok formularza (Markdown)
-        type: code
-        options: { format: markdown }
+        label: Wstęp obok formularza
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
       - name: whyMe
         label: Pokaż blok „Dlaczego warto ze mną współpracować?”
         type: boolean
@@ -274,9 +262,11 @@ content:
         type: boolean
         default: false
       - name: body
-        label: Treść (Markdown)
-        type: code
-        options: { format: markdown }
+        label: Treść
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
 
   # ─────────────────────────── STRONY ───────────────────────────
   - name: strony
@@ -310,6 +300,8 @@ content:
         type: boolean
         default: false
       - name: body
-        label: Treść (Markdown)
-        type: code
-        options: { format: markdown }
+        label: Treść
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
