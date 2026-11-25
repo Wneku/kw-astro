@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import YAML from 'yaml';
 import rehypeHeadingIds from './src/lib/rehype-heading-ids.mjs';
 import rehypeCta from './src/lib/rehype-cta.mjs';
+import rehypeLinkRel from './src/lib/rehype-link-rel.mjs';
 import htaccess from './src/integrations/htaccess.mjs';
 
 const SITE = 'https://kamilwnek.pl';
@@ -42,7 +43,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       // id nagłówków w ASCII – zgodne z kotwicami spisów treści z WordPressa
-      rehypePlugins: [rehypeHeadingIds, rehypeCta],
+      rehypePlugins: [rehypeHeadingIds, rehypeCta, rehypeLinkRel],
       // treść 1:1 z WordPressa – bez automatycznej zamiany cudzysłowów
       smartypants: false,
     }),

@@ -42,6 +42,9 @@ surowego HTML, dlatego:
 
 - **Przycisk** = osobny akapit z linkiem, cały pogrubiony (`**[Umów rozmowę](/kontakt/#kalendarz)**`).
   Pogrubiony link w środku zdania zostaje zwykłym linkiem. Obsługa: [src/lib/rehype-cta.mjs](src/lib/rehype-cta.mjs).
+- **nofollow / sponsored / ugc** – dopisz znacznik na końcu adresu linku: `https://example.com/#nofollow`,
+  `#sponsored`, `#ugc` lub łącznie `#nofollow-sponsored`. Adres z kotwicą: `https://example.com/#sekcja~nofollow`.
+  Znacznik znika z adresu na stronie i zamienia się w `rel="…"`. Obsługa: [src/lib/rehype-link-rel.mjs](src/lib/rehype-link-rel.mjs).
 - **FAQ** dodawaj w polu „FAQ” formularza, nie w treści – wyświetli się pod wpisem, w spisie treści i w schema FAQPage.
 - **Obrazki** przeciągnij do edytora i uzupełnij opis (alt). Trafiają do `src/assets/images/blog/` – Astro sam robi
   z nich WebP w kilku rozmiarach.
