@@ -5,7 +5,7 @@
 #   FTP_SERVER      – adres serwera FTP z panelu seohost (np. s1.seohost.pl)
 #   FTP_USERNAME    – login FTP
 #   FTP_PASSWORD    – hasło FTP
-#   FTP_SERVER_DIR  – katalog strony na serwerze, ZAKOŃCZONY "/" (np. /domains/kamilwnek.pl/public_html/)
+#   FTP_SERVER_DIR  – katalog strony na serwerze (np. /domains/kamilwnek.pl/public_html/ – końcowy "/" dopisze się sam)
 name: Deploy
 
 on:
@@ -23,12 +23,34 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: npm
+
+      # Sprawdzenie sekretów przed buildem – czytelny błąd zamiast komunikatu z akcji FTP
+      - name: Sprawdzenie sekretów FTP
+        id: ftp
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          missing=""
+          for name in FTP_SERVER FTP_USERNAME FTP_PASSWORD FTP_SERVER_DIR; do
+            [ -z "${!name}" ] && missing="$missing $name"
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::Brak sekretów:$missing – dodaj je w Settings → Secrets and variables → Actions → Repository secrets"
+            exit 1
+          fi
+          # katalog musi kończyć się "/" – dopisujemy, jeśli brakuje
+          dir="$FTP_SERVER_DIR"
+          case "$dir" in */) ;; *) dir="$dir/" ;; esac
+          echo "dir=$dir" >> "$GITHUB_OUTPUT"
 
       - run: npm ci
 
@@ -48,4 +70,4 @@ jobs:
           # FTPS (szyfrowane). Gdyby seohost odrzucał połączenie – zmień na: ftp
           protocol: ftps
           local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: ${{ steps.ftp.outputs.dir }}
