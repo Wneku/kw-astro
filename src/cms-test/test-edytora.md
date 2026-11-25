@@ -1,28 +1,29 @@
 ---
 title: Test edytora wizualnego
 ---
-
 Ten plik służy tylko do sprawdzenia edytora wizualnego Pages CMS. **Nie trafia na stronę.**
 
 ## Nagłówek H2
 
-Akapit z **pogrubieniem**, _kursywą_ i [linkiem do oferty](/oferta/audyt-seo/).
+Akapit z **pogrubieniem**, *kursywą* i [linkiem do oferty](/oferta/audyt-seo/).
 
 ### Nagłówek H3
 
 - punkt listy
 - drugi punkt z **pogrubieniem**
-    - punkt zagnieżdżony
+  - punkt zagnieżdżony
 
 1. lista numerowana
 2. drugi krok
 
 > Cytat – tak jak w artykule o danych strukturalnych.
 
+
 | Rodzaj strony | Cena netto | Czas realizacji |
-| --- | --- | --- |
+| ----------------- | ------------ | ------------------- |
 | Strona firmowa | 2500-3000 zł | 10-15 dni roboczych |
 | Sklep internetowy | 3500-7000 zł | 15–25 dni roboczych |
+
 
 ![Obrazek testowy](../assets/images/wp/2026/04/technical-seo.jpg)
 
@@ -33,8 +34,15 @@ Akapit z **pogrubieniem**, _kursywą_ i [linkiem do oferty](/oferta/audyt-seo/).
 }
 ```
 
-<p class="cta"><a class="btn" href="/kontakt/#kalendarz">Umów bezpłatną rozmowę</a></p>
+[Umów bezpłatną rozmowę](/kontakt/#kalendarz)
 
-<div class="faq"><details class="faq__item" id="faq-question-test"><summary class="faq__q">Pytanie testowe w treści?</summary><div class="faq__a"><p>Odpowiedź z <a href="/kontakt/">linkiem</a>.</p></div></details></div>
+Pytanie testowe w treści?
+
+Odpowiedź z [linkiem](/kontakt/).
 
 Ostatni akapit – koniec testu.
+
+asdsdasdasdasdasdasd
+
+![](../../assets/images/blog/images.jpg)
+
