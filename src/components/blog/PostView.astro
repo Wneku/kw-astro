@@ -7,6 +7,7 @@ import AuthorBox from './AuthorBox.astro';
 import PostCard from './PostCard.astro';
 import Button from '../ui/Button.astro';
 import Faq from '../ui/Faq.astro';
+import Toc from './Toc.astro';
 import { formatDate, readingTime, postHref, categoryHref, type Post } from '../../lib/blog';
 
 export interface Props {
@@ -17,11 +18,14 @@ export interface Props {
 
 const { post, posts } = Astro.props;
 const { data } = post;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+// FAQ z pól formularza też trafia do spisu (nagłówek renderuje <Faq>, więc nie ma go w headings z Markdown)
+const faqHeading = { depth: 2, slug: 'najczesciej-zadawane-pytania-i-odpowiedzi', text: 'Najczęściej zadawane pytania i odpowiedzi' };
 const categories = await getEntries(data.categories);
 const primary = categories[0];
 const minutes = readingTime(post.body);
 const faqFromFields = data.faq.length > 0 && !post.body?.includes('class="faq"');
+const tocHeadings = faqFromFields ? [...headings, faqHeading] : headings;
 const updated = data.updatedDate && data.updatedDate.toDateString() !== data.pubDate.toDateString();
 
 // Powiązane: najpierw z tej samej kategorii, potem najnowsze
@@ -101,20 +105,27 @@ const crumbs = [
       )
     }
 
-    <div class="container post-body">
-      <div class="prose">
-        <Content />
+    <div class="container post-layout">
+      <!-- spis treści: desktop – przyklejona boczna kolumna, mobile – nad treścią (zwinięty) -->
+      <aside class="post-aside">
+        <Toc headings={tocHeadings} />
+      </aside>
+
+      <div class="post-body">
+        <div class="prose">
+          <Content />
+        </div>
+
+        {/* FAQ z pól formularza (nowe wpisy z CMS). Wpisy z WordPressa mają FAQ wpisane w treść – wtedy nie dublujemy. */}
+        {faqFromFields && <Faq title="Najczęściej zadawane pytania i odpowiedzi" items={data.faq} />}
+
+        <div class="post-cta">
+          <p>Chcesz, żebym sprawdził to na Twojej stronie?</p>
+          <Button href="/kontakt/#kalendarz">Umów bezpłatną rozmowę</Button>
+        </div>
+
+        <AuthorBox />
       </div>
-
-      {/* FAQ z pól formularza (nowe wpisy z CMS). Wpisy z WordPressa mają FAQ wpisane w treść – wtedy nie dublujemy. */}
-      {faqFromFields && <Faq title="Najczęściej zadawane pytania i odpowiedzi" items={data.faq} />}
-
-      <div class="post-cta">
-        <p>Chcesz, żebym sprawdził to na Twojej stronie?</p>
-        <Button href="/kontakt/#kalendarz">Umów bezpłatną rozmowę</Button>
-      </div>
-
-      <AuthorBox />
     </div>
   </article>
 
@@ -138,8 +149,12 @@ const crumbs = [
   .post-head {
     display: grid;
     gap: var(--space-m);
-    max-width: 900px;
+    max-width: 1100px;
     padding-block: var(--space-xl) var(--space-2xl);
+  }
+  .post-head h1,
+  .post-head .meta {
+    max-width: 900px;
   }
   .cats {
     display: flex;
@@ -180,11 +195,38 @@ const crumbs = [
     aspect-ratio: 16 / 9;
     object-fit: cover;
   }
+  /* Treść + spis treści. Szerokość jak okładka (1100px), żeby krawędzie się zgadzały. */
+  .post-layout {
+    max-width: 1100px;
+    margin-top: var(--space-2xl);
+    display: grid;
+    gap: var(--space-xl);
+  }
   .post-body {
     display: grid;
     gap: var(--space-2xl);
+    min-width: 0;
     max-width: 780px;
-    margin-top: var(--space-2xl);
+  }
+  .post-aside:empty {
+    display: none;
+  }
+  @media (min-width: 1100px) {
+    .post-layout {
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+    .post-aside {
+      grid-column: 2;
+      grid-row: 1;
+      position: sticky;
+      top: calc(var(--header-h) + var(--space-l));
+    }
+    .post-body {
+      grid-column: 1;
+      grid-row: 1;
+    }
   }
   .post-body .prose {
     max-width: none;

@@ -32,22 +32,6 @@ Modele językowe nie wybierają źródeł na podstawie obecności tego pliku. ll
 
 Ten artykuł będzie bazą wiedzy na temat pliku llms.txt oraz tego, czy rzeczywiście działa i czy potrzebujesz go na swojej stronie.
 
-## Spis treści
-
-- [Czym jest llms.txt?](#czym-jest-llms-txt)
-    - [Skąd wziął się pomysł na plik llms.txt?](#skad-wzial-sie-pomysl-na-plik-llms-txt)
-    - [Czy llms.txt to oficjalny standard?](#czy-llms-txt-to-oficjalny-standard)
-- [Jak działa (a właściwie miał działać) llms.txt w praktyce?](#jak-dziala-a-wlasciwie-mial-dzialac-llms-txt-w-praktyce)
-    - [Jak wygląda przykładowa struktura pliku llms.txt?](#jak-wyglada-przykladowa-struktura-pliku-llms-txt)
-    - [Gdzie należy umieścić plik llms.txt?](#gdzie-nalezy-umiescic-plik-llms-txt)
-- [Czy modele AI respektują llms.txt?](#czy-modele-ai-respektuja-llms-txt)
-- [Czy llms.txt to przyszłość? Moja opinia](#czy-llms-txt-to-przyszlosc-moja-opinia)
-- [Najczęściej zadawane pytania i odpowiedzi](#najczesciej-zadawane-pytania-i-odpowiedzi)
-    - [Czy llms.txt to oficjalny standard internetowy?](#faq-question-1771945432879)
-    - [Czy llms.txt wpływa na SEO/GEO?](#faq-question-1771945449969)
-    - [Czy wdrożenie llms.txt zwiększa szansę na pojawienie się w odpowiedziach AI?](#faq-question-1771945459442)
-    - [Gdzie umieścić plik llms.txt?](#faq-question-1771945464531)
-
 ## Czym jest llms.txt?
 
 llms.txt to plik tekstowy w formacie Markdown, który umieszcza się w głównym katalogu domeny, a jego zadaniem jest służyć jako przewodnik po najważniejszych treściach na stronie dla dużych modeli językowych (LLM), takich jak ChatGPT, Gemini czy Perplexity.

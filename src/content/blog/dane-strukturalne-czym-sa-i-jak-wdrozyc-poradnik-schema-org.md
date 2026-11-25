@@ -38,37 +38,6 @@ Dane strukturalne (Schema.org) to dodatkowe informacje umieszczane w kodzie stro
 - Najważniejsze typy danych strukturalnych dla większości stron to: Organization, Person, Article, BreadcrumbList, FAQPage, Product.
 - Poprawność wdrożenia warto sprawdzać za pomocą Rich Results Test oraz Schema Markup Validator.
 
-## Spis treści
-
-- [Czym są dane strukturalne?](#czym-sa-dane-strukturalne)
-- [Czym jest Schema.org?](#czym-jest-schema-org)
-- [Dlaczego dane strukturalne są ważne?](#dlaczego-dane-strukturalne-sa-wazne)
-- [Dane strukturalne a AI](#dane-strukturalne-a-ai)
-- [Formaty danych strukturalnych](#formaty-danych-strukturalnych)
-    - [Przykładowy kod JSON-LD](#przykladowy-kod-json-ld)
-- [Jak wdrożyć dane strukturalne?](#jak-wdrozyc-dane-strukturalne)
-- [Jak sprawdzić poprawność danych strukturalnych?](#jak-sprawdzic-poprawnosc-danych-strukturalnych)
-- [Najważniejsze typy Schema.org](#najwazniejsze-typy-schema-org)
-- [Wdrożenie danych strukturalnych krok po kroku](#wdrozenie-danych-strukturalnych-krok-po-kroku)
-    - [Krok 1 – Określ rodzaj strony](#krok-1-okresl-rodzaj-strony)
-    - [Krok 2 – Wybierz typ Schema.org](#krok-2-wybierz-typ-schema-org)
-    - [Krok 3 – Przygotuj kod JSON-LD](#krok-3-przygotuj-kod-json-ld)
-        - [Opcja 1 – Ręczne tworzenie kodu](#opcja-1-reczne-tworzenie-kodu)
-        - [Opcja 2 – Generatory schema lub AI](#opcja-2-generatory-schema-lub-ai)
-    - [Krok 4 – Dodaj kod do strony](#krok-4-dodaj-kod-do-strony)
-        - [WordPress](#wordpress)
-        - [Shopify](#shopify)
-    - [Krok 5 – Zweryfikuj poprawność wdrożenia](#krok-5-zweryfikuj-poprawnosc-wdrozenia)
-    - [Krok 6 – Monitoruj i aktualizuj dane](#krok-6-monitoruj-i-aktualizuj-dane)
-- [Najczęściej popełniane błędy przy wdrożeniu Schema](#najczesciej-popelniane-bledy-przy-wdrozeniu-schema)
-- [Najczęściej zadawane pytania i odpowiedzi](#najczesciej-zadawane-pytania-i-odpowiedzi)
-    - [Czy Schema wpływają na pozycję w Google?](#faq-question-1781551879067)
-    - [Czy każda strona powinna mieć Schema?](#faq-question-1781552051463)
-    - [Czy WordPress dodaje automatycznie dane strukturalne?](#faq-question-1781552084290)
-    - [Co to są dane strukturalne?](#faq-question-1781552203215)
-    - [Czym jest Schema.org?](#faq-question-1781552375651)
-- [Źródła](#zrodla)
-
 ## Czym są dane strukturalne?
 
 Dane strukturalne to ustandaryzowany sposób opisywania informacji, które znajdują się na stronie. Można je porównać do etykiet przyklejonych do poszczególnych elementów na stronie.

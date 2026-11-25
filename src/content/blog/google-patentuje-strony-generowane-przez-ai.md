@@ -14,14 +14,6 @@ coverAlt: Wyszukiwarka Google otwarta na MacBooku
 
 Co istotne, **uwagę na ten patent zwrócił Brandon Lazovic**, który w swoim wpisie na LinkedIn podkreślił, że rozwiązanie może mieć ogromny wpływ na SEO oraz performance marketing. To nie jest aktualizacja algorytmu, to całkowita zmiana modelu działania wyszukiwarki.
 
-## Spis treści
-
-- [Na czym polega patent US12536233B1?](#na-czym-polega-patent-us12536233b1)
-- [Zagrożenia wynikające z tego patentu](#zagrozenia-wynikajace-z-tego-patentu)
-- [Co to oznacza dla SEO?](#co-to-oznacza-dla-seo)
-- [Czy już można panikować?](#czy-juz-mozna-panikowac)
-- [Co powinni zrobić teraz właściciele e-commerce?](#co-powinni-zrobic-teraz-wlasciciele-e-commerce)
-
 ## Na czym polega patent US12536233B1?
 
 Patent opisuje mechanizm, w którym:

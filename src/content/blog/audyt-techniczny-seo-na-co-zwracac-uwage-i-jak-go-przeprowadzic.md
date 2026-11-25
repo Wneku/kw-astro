@@ -25,39 +25,6 @@ Audyt techniczny SEO to szczegółowe sprawdzenie strony lub sklepu internetoweg
 
 Dobrze wykonany audyt techniczny pozwala na usunięcie przeszkód, które ograniczają widoczność serwisu. Dodatkowo poprawia wygodę użytkownika – strona może zacząć działać szybciej i być łatwiejsza w obsłudze. Regularne audyty techniczne to stały element skutecznego SEO, ponieważ pozwalają na bieżąco dostosowywać witrynę do aktualnych wymagań Google.
 
-## Spis treści
-
-- [Czym jest audyt techniczny SEO?](#czym-jest-audyt-techniczny-seo)
-    - [Różnice pomiędzy audytem technicznym, audytem treści oraz audytem UX](#roznice-pomiedzy-audytem-technicznym-audytem-tresci-oraz-audytem-ux)
-- [Kiedy warto przeprowadzić techniczny audyt SEO?](#kiedy-warto-przeprowadzic-techniczny-audyt-seo)
-- [Jak często zaleca się wykonanie technicznego audytu SEO?](#jak-czesto-zaleca-sie-wykonanie-technicznego-audytu-seo)
-- [Elementy technicznego audytu SEO](#elementy-technicznego-audytu-seo)
-    - [Crawlability i indeksowanie strony](#crawlability-i-indeksowanie-strony)
-    - [Plik robots.txt](#plik-robots-txt)
-    - [Analiza mapy stron XML](#analiza-mapy-stron-xml)
-    - [Tagi noindex i canonical](#tagi-noindex-i-canonical)
-    - [Błędy 3xx, 4xx i 5xx](#bledy-3xx-4xx-i-5xx)
-    - [Struktura adresów URL i architektura informacji](#struktura-adresow-url-i-architektura-informacji)
-    - [Wydajność strony i Core Web Vitals](#wydajnosc-strony-i-core-web-vitals)
-    - [Dostosowanie strony do urządzeń mobilnych i Mobile-First Indexing](#dostosowanie-strony-do-urzadzen-mobilnych-i-mobile-first-indexing)
-        - [Jak sprawdzić wersję mobilną strony?](#jak-sprawdzic-wersje-mobilna-strony)
-    - [Bezpieczeństwo strony i HTTPS](#bezpieczenstwo-strony-i-https)
-        - [Certyfikat SSL](#certyfikat-ssl)
-        - [Problemy z mieszaną treścią (mixed content)](#problemy-z-mieszana-trescia-mixed-content)
-    - [Dane strukturalne (schema.org)](#dane-strukturalne-schema-org)
-        - [Najczęstsze typy danych strukturalnych](#najczestsze-typy-danych-strukturalnych)
-        - [Jak sprawdzić dane strukturalne?](#jak-sprawdzic-dane-strukturalne)
-    - [Optymalizacja grafik, kodu CSS i JavaScript](#optymalizacja-grafik-kodu-css-i-javascript)
-- [Narzędzia do wykorzystania w technicznym audycie SEO](#narzedzia-do-wykorzystania-w-technicznym-audycie-seo)
-    - [Crawlery SEO – Screaming Frog, Sitebulb](#crawlery-seo-screaming-frog-sitebulb)
-    - [Narzędzia od Google – Search Console, PageSpeed Insights i Lighthouse](#narzedzia-od-google-search-console-pagespeed-insights-i-lighthouse)
-    - [SSL Labs, XML Sitemap Checker, Robots.txt Tester](#ssl-labs-xml-sitemap-checker-robots-txt-tester)
-    - [Analiza logów serwera](#analiza-logow-serwera)
-- [Najczęściej zadawane pytania i odpowiedzi](#najczesciej-zadawane-pytania-i-odpowiedzi)
-    - [Co zrobić po otrzymaniu raportu z technicznego audytu SEO?](#faq-question-1774648477935)
-    - [Ile kosztuje techniczny audyt SEO?](#faq-question-1774648537875)
-    - [Czy szybkość strony wpływa na indeksację?](#faq-question-1774686026902)
-
 ## Czym jest audyt techniczny SEO?
 
 Techniczne SEO skupia się na tym, aby roboty Google mogły poprawnie przejść przez stronę, zrozumieć jej zawartość i dodać ją do indeksu. Obejmuje to działania „na zapleczu” strony – w kodzie, konfiguracji serwera oraz strukturze witryny.

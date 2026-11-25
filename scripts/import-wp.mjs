@@ -164,6 +164,8 @@ async function convert(html, mdFile, { pageMode = false, faqInline = false } = {
 
   $('style, script, noscript, nav.rank-math-breadcrumb, .wp-block-spacer').remove();
   $('ul.wp-block-social-links, .wp-block-stackable-posts').remove();
+  // Spis treści Rank Math – w Astro generuje go komponent Toc.astro z nagłówków
+  $('.wp-block-rank-math-toc-block').remove();
 
   // Wspólny blok „Dlaczego warto ze mną współpracować?” → komponent <WhyMe />
   $('h2').each((_, el) => {
