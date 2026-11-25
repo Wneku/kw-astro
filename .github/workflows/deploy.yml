@@ -1,17 +1,23 @@
 # Build i wdrożenie na seohost przy każdej zmianie w gałęzi main
 # (commit z Pages CMS, push z komputera albo ręcznie: zakładka Actions → Deploy → Run workflow).
 #
-# Wymagane sekrety (GitHub → Settings → Secrets and variables → Actions):
+# Wymagane sekrety (GitHub → Settings → Secrets and variables → Actions → Repository secrets):
 #   FTP_SERVER      – adres serwera FTP z panelu seohost (np. s1.seohost.pl)
 #   FTP_USERNAME    – login FTP
 #   FTP_PASSWORD    – hasło FTP
-#   FTP_SERVER_DIR  – katalog strony na serwerze (np. /domains/kamilwnek.pl/public_html/ – końcowy "/" dopisze się sam)
+#
+# Katalog docelowy (FTP_DIR niżej) nie jest tajny, więc jest tutaj, a nie w sekretach.
+# Ścieżka jest WZGLĘDNA – od folderu, w którym ląduje się po zalogowaniu FTP.
+# Nie wpisuj pełnej ścieżki /home/… – zostałaby odtworzona w środku katalogu FTP.
 name: Deploy
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+
+env:
+  FTP_DIR: public_html/
 
 # jedno wdrożenie naraz; kolejne czeka (nie przerywamy wysyłki w połowie)
 concurrency:
@@ -32,25 +38,19 @@ jobs:
 
       # Sprawdzenie sekretów przed buildem – czytelny błąd zamiast komunikatu z akcji FTP
       - name: Sprawdzenie sekretów FTP
-        id: ftp
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
         run: |
           missing=""
-          for name in FTP_SERVER FTP_USERNAME FTP_PASSWORD FTP_SERVER_DIR; do
+          for name in FTP_SERVER FTP_USERNAME FTP_PASSWORD; do
             [ -z "${!name}" ] && missing="$missing $name"
           done
           if [ -n "$missing" ]; then
             echo "::error::Brak sekretów:$missing – dodaj je w Settings → Secrets and variables → Actions → Repository secrets"
             exit 1
           fi
-          # katalog musi kończyć się "/" – dopisujemy, jeśli brakuje
-          dir="$FTP_SERVER_DIR"
-          case "$dir" in */) ;; *) dir="$dir/" ;; esac
-          echo "dir=$dir" >> "$GITHUB_OUTPUT"
 
       - run: npm ci
 
@@ -70,4 +70,4 @@ jobs:
           # FTPS (szyfrowane). Gdyby seohost odrzucał połączenie – zmień na: ftp
           protocol: ftps
           local-dir: ./dist/
-          server-dir: ${{ steps.ftp.outputs.dir }}
+          server-dir: ${{ env.FTP_DIR }}

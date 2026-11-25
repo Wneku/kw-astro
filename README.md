@@ -53,7 +53,8 @@ npm run dev                       # podgląd na http://localhost:4321
 
 [.github/workflows/deploy.yml](.github/workflows/deploy.yml): każdy push do `main` → `npm run check` → `npm run build`
 → wysyłka FTPS na seohost (tylko zmienione pliki). Sekrety w GitHub → Settings → Secrets and variables → Actions:
-`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`, `FTP_SERVER_DIR` (katalog strony zakończony `/`).
+`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`. Katalog docelowy jest w samym workflow (`FTP_DIR: public_html/`) – **względem folderu po zalogowaniu FTP**,
+na seohost zwykle `public_html/` (nie pełna ścieżka `/home/…`).
 
 ## Formularze kontaktowe
 
