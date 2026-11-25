@@ -26,6 +26,17 @@ const oferta = defineCollection({
     updatedDate: z.coerce.date().optional(),
     /** Markdown wyświetlany w hero obok formularza */
     intro: z.string().optional(),
+    /** Ceny netto do schemy Service (Offer). unit: HUR = za godzinę, MON = miesięcznie, brak = jednorazowo */
+    offers: z
+      .array(
+        z.object({
+          name: z.string().optional(),
+          minPrice: z.number(),
+          maxPrice: z.number().optional(),
+          unit: z.enum(['HUR', 'MON']).optional(),
+        }),
+      )
+      .default([]),
     /** Blok „Dlaczego warto ze mną współpracować?” przed FAQ */
     whyMe: z.boolean().default(false),
     faqTitle: z.string().default('Najczęściej zadawane pytania i odpowiedzi'),

@@ -7,6 +7,9 @@ menuDescription: Skąd linki ma konkurencja, a Ty nie
 cardDescription: Sprawdź, gdzie konkurencja ma przewagę linkową nad Tobą. Link gap ujawnia luki i konkretne źródła, które możesz wykorzystać.
 order: 30
 icon: git-compare
+offers:
+  - name: Analiza Link Gap
+    minPrice: 1200
 pubDate: 2026-02-08
 updatedDate: 2026-10-06
 intro: |-

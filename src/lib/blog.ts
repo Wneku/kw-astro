@@ -15,11 +15,15 @@ export const formatDate = (date: Date) =>
   date.toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Warsaw' });
 
 /** Szacowany czas czytania w minutach (~200 słów/min). */
-export function readingTime(markdown = '') {
-  const words = markdown
+/** Liczba słów treści (bez bloków kodu i znaczników HTML). */
+export function wordCount(markdown = '') {
+  return markdown
     .replace(/```[\s\S]*?```/g, ' ')
     .replace(/<[^>]+>/g, ' ')
     .split(/\s+/)
     .filter(Boolean).length;
-  return Math.max(1, Math.round(words / 200));
+}
+
+export function readingTime(markdown = '') {
+  return Math.max(1, Math.round(wordCount(markdown) / 200));
 }

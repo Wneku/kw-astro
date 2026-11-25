@@ -10,6 +10,7 @@ import ContactForm from '../components/forms/ContactForm.astro';
 import CalEmbed from '../components/forms/CalEmbed.astro';
 import { SITE } from '../config/site';
 import pageSeo from '../data/page-seo.json';
+import { ID, ref } from '../lib/schema';
 
 const seo = pageSeo['/kontakt/'];
 const crumbs = [
@@ -32,7 +33,13 @@ const faq = [
 ];
 ---
 
-<BaseLayout title={seo.title} description={seo.description} crumbs={crumbs} faq={faq}>
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  crumbs={crumbs}
+  faq={faq}
+  schema={{ type: 'ContactPage', about: ref(ID.organization) }}
+>
   <header class="head">
     <div class="container head__inner">
       <Breadcrumbs crumbs={crumbs} />

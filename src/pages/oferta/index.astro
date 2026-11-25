@@ -7,6 +7,7 @@ import Button from '../../components/ui/Button.astro';
 import { SERVICE_GROUPS } from '../../config/services';
 import { serviceHref } from '../../lib/navigation';
 import pageSeo from '../../data/page-seo.json';
+import { ID, ref, offerCatalogNode } from '../../lib/schema';
 
 const services = (await getCollection('oferta', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
 const groups = SERVICE_GROUPS.map((g) => ({ ...g, services: services.filter((s) => s.data.group === g.id) })).filter(
@@ -19,7 +20,21 @@ const crumbs = [
 ];
 ---
 
-<BaseLayout title={seo.title} description={seo.description} crumbs={crumbs}>
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  crumbs={crumbs}
+  schema={{
+    type: 'CollectionPage',
+    mainEntity: ref(ID.on('/oferta/', 'catalog')),
+    nodes: [
+      offerCatalogNode(
+        '/oferta/',
+        groups.map((g) => ({ name: g.label, servicePaths: g.services.map((s) => serviceHref(s.id)) })),
+      ),
+    ],
+  }}
+>
   <header class="container page-head">
     <Breadcrumbs crumbs={crumbs} />
     <h1>Co mogę dla Ciebie zrobić?</h1>

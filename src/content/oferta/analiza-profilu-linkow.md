@@ -7,6 +7,9 @@ menuDescription: Ocena jakości i ryzyka linków
 cardDescription: Dogłębna analiza linków wpływających na widoczność Twojej strony. Wykrywam ryzyka i wskazuję realne możliwości wzmocnienia SEO.
 order: 10
 icon: bar-chart
+offers:
+  - name: Analiza profilu linków
+    minPrice: 1000
 pubDate: 2026-01-30
 updatedDate: 2026-10-30
 intro: |-

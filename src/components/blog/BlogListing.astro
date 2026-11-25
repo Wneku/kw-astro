@@ -5,7 +5,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../ui/Breadcrumbs.astro';
 import PostList from './PostList.astro';
 import Pagination from './Pagination.astro';
-import { categoryHref, type Post } from '../../lib/blog';
+import { categoryHref, postHref, type Post } from '../../lib/blog';
+import { ID, ref, itemListNode } from '../../lib/schema';
 import { pageUrl, type PageInfo } from '../../lib/pagination';
 import type { Crumb } from '../../lib/schema';
 
@@ -45,6 +46,7 @@ const { current, total, base } = page;
 const suffix = current > 1 ? ` – strona ${current}` : '';
 const title = current > 1 ? seoTitle.replace(/( \| [^|]+)$/, `${suffix}$1`) : seoTitle;
 const description = current > 1 ? `${seoDescription} Strona ${current} z ${total}.` : seoDescription;
+const pagePath = pageUrl(base, current);
 const pageCrumbs = current > 1 ? [...crumbs, { name: `Strona ${current}`, href: pageUrl(base, current) }] : crumbs;
 
 let categories: Awaited<ReturnType<typeof getCollection<'kategorie'>>> = [];
@@ -54,7 +56,17 @@ if (showCategories) {
 }
 ---
 
-<BaseLayout title={title} description={description} noindex={noindex} crumbs={pageCrumbs}>
+<BaseLayout
+  title={title}
+  description={description}
+  noindex={noindex}
+  crumbs={pageCrumbs}
+  schema={{
+    type: 'CollectionPage',
+    mainEntity: ref(ID.on(pagePath, 'list')),
+    nodes: [itemListNode(pagePath, page.items.map((p) => postHref(p.id)))],
+  }}
+>
   <header class="container page-head">
     <Breadcrumbs crumbs={pageCrumbs} />
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}

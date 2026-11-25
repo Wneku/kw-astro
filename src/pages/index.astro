@@ -8,6 +8,8 @@ import SocialLinks from '../components/ui/SocialLinks.astro';
 import PostList from '../components/blog/PostList.astro';
 import { getPosts } from '../lib/blog';
 import pageSeo from '../data/page-seo.json';
+import { ID, ref } from '../lib/schema';
+import { PERSON } from '../config/site';
 import portrait from '../assets/images/wp/2025/12/IMG_3804.jpg';
 import nobleplace from '../assets/images/wp/2025/12/nobleplace-logo.jpg';
 import riff from '../assets/images/wp/2025/12/riff-logo.jpg';
@@ -50,7 +52,12 @@ const services = [
 ];
 ---
 
-<BaseLayout title={seo.title} description={seo.description} image={portrait}>
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  image={portrait}
+  schema={{ about: ref(ID.person), primaryImage: PERSON.image.url }}
+>
   <section class="hero">
     <div class="container hero__grid">
       <div class="hero__text">

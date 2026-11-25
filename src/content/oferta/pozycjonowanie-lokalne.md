@@ -7,6 +7,12 @@ menuDescription: Klienci z Twojej okolicy i Mapy Google
 cardDescription: Większa widoczność w Google i Mapach dla zapytań lokalnych. Idealne rozwiązanie, jeśli chcesz pozyskiwać klientów z Twojego regionu.
 order: 20
 icon: map-pin
+offers:
+  - name: Pozycjonowanie lokalne – abonament
+    minPrice: 1500
+    unit: MON
+  - name: Optymalizacja Profilu Firmy w Google
+    minPrice: 700
 pubDate: 2026-01-29
 updatedDate: 2026-10-30
 intro: |-

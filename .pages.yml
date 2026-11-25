@@ -213,6 +213,29 @@ content:
             - { name: git-compare, label: Porównanie }
             - { name: compass, label: Kompas }
             - { name: calendar, label: Kalendarz }
+      - name: offers
+        label: Ceny (do danych strukturalnych)
+        type: object
+        list: true
+        description: Ceny NETTO w zł, tak jak w treści strony. Trafiają do schemy Service – zmieniając cenę w treści, popraw ją też tutaj.
+        fields:
+          - name: name
+            label: Wariant
+            type: string
+          - name: minPrice
+            label: Cena od (zł netto)
+            type: number
+            required: true
+          - name: maxPrice
+            label: Cena do (zł netto, opcjonalnie)
+            type: number
+          - name: unit
+            label: Rozliczenie
+            type: select
+            options:
+              values:
+                - { name: HUR, label: za godzinę }
+                - { name: MON, label: miesięcznie }
       - name: menuDescription
         label: Krótki opis w mega menu
         type: string

@@ -7,6 +7,10 @@ menuDescription: SEO dla e-commerce nastawione na sprzedaż
 cardDescription: SEO stworzone z myślą o sklepach internetowych i sprzedaży. Optymalizacja, która zwiększa ruch, widoczność i realne przychody.
 order: 30
 icon: shopping-cart
+offers:
+  - name: Pozycjonowanie sklepu – abonament
+    minPrice: 3000
+    unit: MON
 pubDate: 2026-01-30
 updatedDate: 2026-10-30
 intro: |-

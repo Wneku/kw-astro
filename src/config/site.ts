@@ -11,13 +11,44 @@ export const SITE = {
   calUrl: 'https://cal.com/kamilwnek/rozmowa-30-minut',
 } as const;
 
-/** Dane do JSON-LD (przeniesione z ustawień Rank Math) */
+/**
+ * Dane do JSON-LD (src/lib/schema.ts). Uzgodnione w docs/schema-propozycja.md.
+ * Obrazki pod STAŁYMI adresami w public/images/schema/ (pliki z /_astro/ zmieniają nazwy).
+ */
 export const PERSON = {
   name: 'Kamil Wnęk',
   jobTitle: 'Specjalista SEO',
   url: 'https://kamilwnek.pl/o-mnie/',
+  description:
+    'Specjalista ds. SEO. Od 2018 roku pomagam firmom budować widoczność w Google i AI – od audytów, przez pozycjonowanie, po link building.',
+  image: { url: '/images/schema/kamil-wnek.jpg', width: 800, height: 1000 },
   knowsAbout: ['SEO', 'Techniczne SEO', 'AI Search', 'Link building', 'Pozycjonowanie lokalne', 'SEO e-commerce'],
-  worksFor: { name: 'W3 Digital Kamil Wnęk', taxID: '5833279388', url: 'https://kamilwnek.pl/' },
+  credentials: [
+    {
+      name: 'Kurs SEO 3.0',
+      issuer: 'SensAI Academy',
+      date: '2025-07',
+      id: 'fd141441-20d1-4623-9447-48de7b866398',
+    },
+    {
+      name: 'Wykorzystanie AI w rozwoju firmy',
+      issuer: 'Google',
+      date: '2025-09',
+      id: '2248f041-a323-4439-91f1-06b7429d3c9c',
+    },
+  ],
+} as const;
+
+export const ORGANIZATION = {
+  name: 'W3 Digital Kamil Wnęk',
+  alternateName: 'Kamil Wnęk – Specjalista SEO',
+  url: 'https://kamilwnek.pl/',
+  logo: { url: '/images/schema/logo.png', width: 512, height: 512 },
+  taxID: '5833279388',
+  vatID: 'PL5833279388',
+  city: 'Warszawa',
+  country: 'PL',
+  areaServed: 'Polska',
 } as const;
 
 /** Tagi i zgody – identyczne jak na WordPressie */

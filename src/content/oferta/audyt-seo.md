@@ -7,6 +7,15 @@ menuDescription: Pełna diagnoza techniczna i treściowa
 cardDescription: Kompleksowy audyt SEO, który pokazuje realne problemy i szanse wzrostu. Jasne wnioski, priorytety oraz plan działań gotowy do wdrożenia.
 order: 20
 icon: search
+offers:
+  - name: Strona firmowa (do 50 podstron)
+    minPrice: 2500
+    maxPrice: 3000
+  - name: Sklep internetowy (do 5000 podstron)
+    minPrice: 3500
+    maxPrice: 7000
+  - name: Duży serwis lub sklep – wycena indywidualna
+    minPrice: 7000
 pubDate: 2025-12-25
 updatedDate: 2026-10-30
 intro: |-

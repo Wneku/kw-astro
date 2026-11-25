@@ -8,6 +8,7 @@ import WhyMe from '../../components/sections/WhyMe.astro';
 import ContactForm from '../../components/forms/ContactForm.astro';
 import { SERVICE_GROUPS } from '../../config/services';
 import { serviceHref } from '../../lib/navigation';
+import { ID, ref, serviceNode } from '../../lib/schema';
 
 export async function getStaticPaths() {
   const services = await getCollection('oferta', ({ data }) => !data.draft);
@@ -35,6 +36,18 @@ const crumbs = [
   faq={data.faq}
   datePublished={data.pubDate}
   dateModified={data.updatedDate}
+  schema={{
+    about: ref(ID.on(serviceHref(service.id), 'service')),
+    nodes: [
+      serviceNode({
+        path: serviceHref(service.id),
+        name: data.title,
+        description: data.description,
+        category: group?.label,
+        offers: data.offers,
+      }),
+    ],
+  }}
 >
   <section class="hero">
     <div class="container hero__grid">

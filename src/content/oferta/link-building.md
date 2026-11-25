@@ -7,6 +7,13 @@ menuDescription: Pozyskiwanie wartościowych linków
 cardDescription: Bezpieczny linkbuilding oparty na jakości i strategii. Buduję linki, które realnie wspierają autorytet i widoczność domeny.
 order: 20
 icon: link
+offers:
+  - name: Obsługa link buildingu
+    minPrice: 500
+    unit: MON
+  - name: Budżet na publikacje
+    minPrice: 1000
+    unit: MON
 pubDate: 2026-02-03
 updatedDate: 2026-10-30
 intro: |-

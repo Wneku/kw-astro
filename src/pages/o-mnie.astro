@@ -5,6 +5,7 @@ import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
 import SocialLinks from '../components/ui/SocialLinks.astro';
 import PostList from '../components/blog/PostList.astro';
 import { getPosts } from '../lib/blog';
+import { ID, ref } from '../lib/schema';
 
 const page = (await getEntry('strony', 'o-mnie'))!;
 const { Content } = await render(page);
@@ -21,6 +22,7 @@ const crumbs = [
   crumbs={crumbs}
   datePublished={page.data.pubDate}
   dateModified={page.data.updatedDate}
+  schema={{ type: 'ProfilePage', mainEntity: ref(ID.person) }}
 >
   <header class="container page-head">
     <Breadcrumbs crumbs={crumbs} />

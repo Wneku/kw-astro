@@ -7,6 +7,10 @@ menuDescription: Odpowiedzi na Twoje pytania i plan działań
 cardDescription: Konkretne konsultacje SEO oparte na danych, nie domysłach. Dostajesz jasne rekomendacje i kierunek działań dopasowany do Twojego biznesu.
 order: 10
 icon: message-circle
+offers:
+  - name: Konsultacja SEO online (1 godzina)
+    minPrice: 250
+    unit: HUR
 pubDate: 2025-12-25
 updatedDate: 2026-10-28
 intro: |-

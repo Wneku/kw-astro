@@ -7,6 +7,10 @@ menuDescription: Stały wzrost widoczności w Google
 cardDescription: Strategiczne pozycjonowanie nastawione na widoczność i konwersję. Działania dopasowane do branży, konkurencji i celów biznesowych.
 order: 10
 icon: trending-up
+offers:
+  - name: Pozycjonowanie stron – abonament
+    minPrice: 2000
+    unit: MON
 pubDate: 2025-12-27
 updatedDate: 2026-10-28
 intro: |-
