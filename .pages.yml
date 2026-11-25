@@ -22,6 +22,24 @@ settings:
       delete: 'Treść: usunięto {path} (Pages CMS)'
 
 content:
+  # ─────────────── TEST edytora wizualnego (tymczasowe – do usunięcia po teście) ───────────────
+  # Plik leży poza src/content, więc nie trafia na stronę; jego zapis nie uruchamia wdrożenia.
+  - name: test-edytora
+    label: 'TEST – edytor wizualny'
+    type: file
+    path: src/cms-test/test-edytora.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Tytuł
+        type: string
+      - name: body
+        label: Treść (edytor wizualny)
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
   # ─────────────────────────── BLOG ───────────────────────────
   - name: blog
     label: Blog – wpisy
