@@ -162,6 +162,33 @@ button {
 .prose blockquote > * + * {
   margin-top: 0.6em;
 }
+
+/* Ramka z edytora: <Ramka typ="info|uwaga|wskazowka"> (src/lib/remark-components.mjs) */
+.prose .callout {
+  --callout: var(--color-primary);
+  --callout-bg: var(--color-primary-soft);
+  padding: var(--space-m) var(--space-l);
+  border-left: 4px solid var(--callout);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--callout-bg);
+  color: var(--color-text);
+}
+.prose .callout--uwaga {
+  --callout: #e8860c;
+  --callout-bg: #fff5e6;
+}
+.prose .callout--wskazowka {
+  --callout: #1a9a5b;
+  --callout-bg: #eaf7f0;
+}
+.prose .callout > * + * {
+  margin-top: 0.6em;
+}
+.prose .callout__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-heading);
+}
 .prose :not(pre) > code {
   padding: 0.1em 0.35em;
   border-radius: 4px;

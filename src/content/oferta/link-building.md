@@ -29,21 +29,21 @@ faqTitle: Najczęściej zadawane pytania i odpowiedzi
 faq:
   - id: faq-question-1770151903103
     question: Czy link building nadal działa w SEO?
-    answer: <p>Tak, linki nadal są jednym z najważniejszych czynników rankingowych, ale tylko wtedy, gdy są jakościowe i naturalne.</p>
+    answer: Tak, linki nadal są jednym z najważniejszych czynników rankingowych, ale tylko wtedy, gdy są jakościowe i naturalne.
   - id: faq-question-1770151932009
     question: Czy kupowanie linków jest bezpieczne?
-    answer: <p>To zależy od jakości, kontekstu i skali. Nie każdy płatny link jest ryzykowny, ale nieprzemyślane działania mogą zaszkodzić. Dlatego kluczowa jest strategia, nie samo źródło.</p>
+    answer: To zależy od jakości, kontekstu i skali. Nie każdy płatny link jest ryzykowny, ale nieprzemyślane działania mogą zaszkodzić. Dlatego kluczowa jest strategia, nie samo źródło.
   - id: faq-question-1770152053636
     question: Czy link building bez audytu ma sens?
-    answer: <p>Zazwyczaj nie. Bez audytu łatwo powielać błędy, marnować budżet albo nie dbać o zróżnicowanie linków.</p>
+    answer: Zazwyczaj nie. Bez audytu łatwo powielać błędy, marnować budżet albo nie dbać o zróżnicowanie linków.
   - id: faq-question-1791217518697
     question: Ile linków potrzebuje moja strona?
-    answer: <p>To zależy od konkurencji. Liczbę ustalam na podstawie analizy stron, które są dziś w TOP 10 na Twoje frazy.</p>
+    answer: To zależy od konkurencji. Liczbę ustalam na podstawie analizy stron, które są dziś w TOP 10 na Twoje frazy.
 ---
 
 ## Jak wygląda współpraca?
 
-1. **Analiza na start**. Sprawdzam obecny [profil linków](/oferta/analiza-profilu-linkow/) i [linki konkurencji](/oferta/link-gap/). Wiem dzięki temu, ilu i jakich linków potrzebujesz.
+1. **Analiza na start**. Sprawdzam obecny <LinkRel href="/oferta/analiza-profilu-linkow/">profil linków</LinkRel> i <LinkRel href="/oferta/link-gap/">linki konkurencji</LinkRel>. Wiem dzięki temu, ilu i jakich linków potrzebujesz.
 2. **Plan**. Ustalamy, które podstrony wzmacniamy, jakie anchory stosujemy i jaki jest miesięczny budżet.
 3. **Pozyskiwanie linków**. Dobieram miejsca publikacji, przygotowuję lub zlecam treści, pilnuję publikacji.
 4. **Raport**. Co miesiąc dostajesz listę linków z adresem, datą, anchorem i podstroną docelową.
@@ -76,4 +76,4 @@ Koszt składa się z dwóch części:
 - **Obsługa (od 500 zł netto miesięcznie)** – analiza, plan, dobór i weryfikacja źródeł, koordynacja publikacji oraz raport.
 - **Budżet na publikacje, zwykle od 1000 zł netto miesięcznie** – ustalany indywidualnie, zależnie od branży, konkurencji i wybranych portali.
 
-**[Zamów usługę link buildingu](/kontakt/)**
+<Cta label="Zamów usługę link buildingu" href="/kontakt/" />

@@ -7,7 +7,7 @@ pubDate: 2025-12-15
 updatedDate: 2026-11-25
 ---
 
-![](../../assets/images/wp/2025/12/IMG_3829.jpg)
+![](../../assets/images/strony/o-mnie/IMG_3829.jpg)
 
 ## Cześć, jestem Kamil…
 
@@ -25,18 +25,18 @@ Nie zasypuję raportami z metrykami, które nic Ci nie mówią. Zamiast tego pok
 
 Na co dzień pomagam rosnąć firmom w Google, nie czaruję, nie obiecuję gruszek na wierzbie, tylko stawiam na przemyślaną strategię. Zakres moich działań obejmuje:
 
-- [audyt SEO](/oferta/audyt-seo/),
-- [konsultacje SEO](/oferta/konsultacje-seo/),
-- [pozycjonowanie stron](/oferta/pozycjonowanie-stron/),
-- [pozycjonowanie sklepów internetowych](/oferta/pozycjonowanie-sklepow/),
-- [pozycjonowanie lokalne](/oferta/pozycjonowanie-lokalne/),
-- [linkbuilding](/oferta/link-building/),
-- [analiza profilu linków](/oferta/analiza-profilu-linkow/),
-- [link gap](/oferta/link-gap/).
+- <LinkRel href="/oferta/audyt-seo/">audyt SEO</LinkRel>,
+- <LinkRel href="/oferta/konsultacje-seo/">konsultacje SEO</LinkRel>,
+- <LinkRel href="/oferta/pozycjonowanie-stron/">pozycjonowanie stron</LinkRel>,
+- <LinkRel href="/oferta/pozycjonowanie-sklepow/">pozycjonowanie sklepów internetowych</LinkRel>,
+- <LinkRel href="/oferta/pozycjonowanie-lokalne/">pozycjonowanie lokalne</LinkRel>,
+- <LinkRel href="/oferta/link-building/">linkbuilding</LinkRel>,
+- <LinkRel href="/oferta/analiza-profilu-linkow/">analiza profilu linków</LinkRel>,
+- <LinkRel href="/oferta/link-gap/">link gap</LinkRel>.
 
 Działam kompleksowo, od analizy po wdrożenie i nadzór nad procesem. Dzięki temu nie musisz zastanawiać się, jaki powinien być kolejny krok.
 
-**[Skontaktuj się ze mną](/kontakt/)**
+<Cta label="Skontaktuj się ze mną" href="/kontakt/" />
 
 ## Dzielę się wiedzą
 
@@ -46,10 +46,6 @@ SEO to ciągły proces – uczysz się, testujesz, obserwujesz i znowu uczysz. N
 
 Kiedy nie siedzę w SEO, najczęściej i tak kończę gdzieś w internecie — tylko już po drugiej stronie ekranu. Lubię książki, gry i szeroko pojętą popkulturę. Szczególne miejsce mają u mnie horrory, Stephen King i Marvel, ale jeśli coś ma ciekawą historię, dobry klimat albo pozwala spędzić zdecydowanie za dużo godzin przed ekranem, jest spora szansa, że mnie zainteresuje.
 
-Po godzinach rozwijam swoje własne social media poświęcone tym tematom. Publikuję recenzje, dzielę się opiniami, tworzę materiały wideo i prowadzę livestreamy. To przede wszystkim moje hobby, ale również świetne miejsce do eksperymentowania z contentem — od pomysłu i scenariusza, przez nagranie i montaż, aż po publikację i sprawdzenie, co faktycznie angażuje odbiorcę.
-
-Dzięki temu social media znam nie tylko od strony strategii czy statystyk. Regularnie sam stoję przed kamerą, tworzę treści i przekonuję się na własnej skórze, że czasem materiał, któremu poświęciło się trzy godziny, przegrywa z filmem nagranym w piętnaście minut.
-
 **Masz pytania dotyczące SEO?**
 
-**[Napisz do mnie](/kontakt/)**
+<Cta label="Napisz do mnie" href="/kontakt/" />

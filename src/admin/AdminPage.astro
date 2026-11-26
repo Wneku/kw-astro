@@ -1,0 +1,38 @@
+---
+/**
+ * Edytor treści – http://localhost:4321/admin (tylko `npm run dev`, nie trafia do builda).
+ * Style treści w edytorze = style strony (global.css), żeby edycja wyglądała jak wpis.
+ */
+import '@fontsource-variable/montserrat';
+import '@fontsource-variable/open-sans';
+import '../styles/global.css';
+import './admin.css';
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Edytor treści · kamilwnek.pl</title>
+  </head>
+  <body class="adm-body">
+    <div class="adm">
+      <header class="adm-top">
+        <a href="#/" class="adm-brand">kamilwnek.pl <span>edytor</span></a>
+        <span class="adm-status" title=""></span>
+        <a href="/" target="_blank" class="adm-top__link">Strona ↗</a>
+        <button type="button" class="primary" data-publish>Opublikuj</button>
+      </header>
+      <nav class="adm-nav">
+        <input type="search" class="adm-search" placeholder="Szukaj…" />
+        <div class="adm-nav__lists"></div>
+      </nav>
+      <main class="adm-main"><p class="adm-home">Ładowanie…</p></main>
+    </div>
+    <script>
+      import './app.ts';
+    </script>
+  </body>
+</html>

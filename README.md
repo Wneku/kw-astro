@@ -6,7 +6,8 @@ Strona przeniesiona z WordPressa (Blocksy + Rank Math) do Astro. Statyczny build
 
 | Komenda             | Co robi                                                                 |
 | ------------------- | ----------------------------------------------------------------------- |
-| `npm run dev`       | serwer deweloperski (`localhost:4321`)                                  |
+| `npm run dev`       | serwer deweloperski (`localhost:4321`) + edytor treści `/admin`         |
+| `npm run publikuj`  | build + commit + push → automatyczne wdrożenie (opis: `-- "Nowy wpis"`) |
 | `npm run build`     | build do `dist/` (+ `.htaccess` z przekierowaniami)                     |
 | `npm run preview`   | podgląd builda                                                          |
 | `npm run check`     | sprawdzenie typów                                                       |
@@ -16,7 +17,7 @@ Strona przeniesiona z WordPressa (Blocksy + Rank Math) do Astro. Statyczny build
 ## Gdzie co jest
 
 - `src/content/oferta/*.md` – usługi (pole `group` = kolumna mega menu, `faq`, `intro` = tekst obok formularza)
-- `src/content/blog/*.md` – wpisy; `src/content/kategorie.json` – kategorie
+- `src/content/blog/*.md` – wpisy; `src/content/kategorie/*.json` – kategorie (nazwa pliku = adres URL)
 - `src/content/strony/*.md` – O mnie, Polityka prywatności
 - `src/pages/index.astro`, `kontakt.astro` – strony budowane ręcznie (treść w pliku)
 - `src/config/site.ts` – dane firmy, GTM, CookieYes, social media
@@ -26,38 +27,40 @@ Strona przeniesiona z WordPressa (Blocksy + Rank Math) do Astro. Statyczny build
 
 Nowa usługa = nowy plik `.md` w `src/content/oferta/` – pojawi się w mega menu, stopce, `/oferta/` i sitemapie.
 
-## Dodawanie i edycja treści
+## Dodawanie i edycja treści – edytor `/admin` (lokalnie)
 
-### W przeglądarce – Pages CMS (zalecane)
+1. `npm run dev` i wejdź na **http://localhost:4321/admin**.
+2. Po lewej lista: Wpisy, Oferta, Strony, Kategorie (`+ nowy` = nowa pozycja). Tytuł na górze, adres URL tworzy się
+   z tytułu; po prawej pola (meta title/description z licznikiem znaków, daty, kategorie, okładka, FAQ, szkic).
+3. **Zapisz** (Ctrl+S) zapisuje plik na dysku (`src/content/…`, obrazki w `src/assets/images/<sekcja>/<adres>/`).
+   **Podgląd ↗** zapisuje i otwiera gotową stronę (lokalnie widać też szkice).
+4. **Opublikuj** (prawy górny róg) sprawdza build, robi commit i push → GitHub Actions wgrywa stronę na seohost
+   (ok. 2–3 min). To samo z terminala: `npm run publikuj -- "opis"`. Licznik obok pokazuje nieopublikowane zmiany.
 
-1. Wejdź na https://app.pagescms.org, zaloguj się kontem GitHub i otwórz repozytorium strony.
-2. **Blog – wpisy → Add an entry**: tytuł, meta description, data, kategorie, okładka, FAQ i treść (Markdown).
-3. „Save” = commit do gałęzi `main` → GitHub Actions buduje stronę i wgrywa ją na seohost (ok. 2–3 min).
-   Postęp i ewentualne błędy: zakładka **Actions** w repozytorium (przy błędzie przychodzi też mail z GitHuba,
-   a strona na serwerze zostaje bez zmian).
-4. `Szkic` zaznaczony = wpis nie pojawi się na stronie.
+Edytor działa tylko na Twoim komputerze – do builda nic z niego nie trafia (strona jest w 100% statyczna).
 
-Treść pisze się w **edytorze wizualnym** (zapisuje Markdown; przełącznik „Source” pokazuje kod). Edytor nie obsługuje
-surowego HTML, dlatego:
+**W treści:**
 
-- **Przycisk** = osobny akapit z linkiem, cały pogrubiony (`**[Umów rozmowę](/kontakt/#kalendarz)**`).
-  Pogrubiony link w środku zdania zostaje zwykłym linkiem. Obsługa: [src/lib/rehype-cta.mjs](src/lib/rehype-cta.mjs).
-- **nofollow / sponsored / ugc** – dopisz znacznik na końcu adresu linku: `https://example.com/#nofollow`,
-  `#sponsored`, `#ugc` lub łącznie `#nofollow-sponsored`. Adres z kotwicą: `https://example.com/#sekcja~nofollow`.
-  Znacznik znika z adresu na stronie i zamienia się w `rel="…"`. Obsługa: [src/lib/rehype-link-rel.mjs](src/lib/rehype-link-rel.mjs).
-- **FAQ** dodawaj w polu „FAQ” formularza, nie w treści – wyświetli się pod wpisem, w spisie treści i w schema FAQPage.
-- **Obrazki** przeciągnij do edytora i uzupełnij opis (alt). Trafiają do `src/assets/images/blog/` – Astro sam robi
-  z nich WebP w kilku rozmiarach.
-Konfiguracja panelu: [.pages.yml](.pages.yml). Nowa kategoria: dodaj ją w „Blog – kategorie” **i** w `.pages.yml`
-(lista `categories`), żeby była do wyboru przy wpisie.
+- **Obrazki** – wklej (Ctrl+V), przeciągnij plik albo przycisk „Obrazek”. Po dodaniu od razu pyta o alt;
+  kliknięcie w obrazek → „Edytuj alt / podmień”. Astro sam robi z nich zoptymalizowane wersje (webp, rozmiary).
+- **Link** (przycisk albo Ctrl+K) – jedno okno: adres (podpowiada podstrony serwisu), `nofollow`, `sponsored`, `ugc`,
+  „nowa karta”. Nic nie zaznaczone = zwykły link follow. Kliknięcie w link → pasek nad treścią pokazuje rel → „Edytuj”.
+  Linki z atrybutami mają w edytorze przerywane podkreślenie.
+- nagłówki **H2–H4** (lista „Akapit”), pogrubienie, kursywa, listy, cytat, **tabela** (pasek nad treścią: + wiersz / kolumna),
+  **Przycisk** (CTA), **Ramka** (informacja / uwaga / wskazówka + tytuł), blok kodu, linia.
+- **Zakładka HTML** – cała treść jako kod do edycji. Elementy, których edytor nie zna (np. `<iframe>`, `<div class>`),
+  zamienia na blok „Kod HTML”, więc nic nie ginie. Blok „&lt;HTML&gt;” na pasku wstawia dowolny kod (embed, iframe) 1:1.
+- **FAQ** – w polach po prawej (odpowiedź: zwykły tekst, `**pogrubienie**`, `[link](/adres/)`). Wyświetla się pod treścią,
+  w spisie treści i w schema FAQPage.
 
-### Lokalnie
+Jak to działa: treść zapisuje się jako Markdown (`.md`). Przycisk, ramka i linki z atrybutami to tagi `<Cta … />`,
+`<Ramka …>`, `<LinkRel …>`, które przy buildzie zamienia [src/lib/remark-components.mjs](src/lib/remark-components.mjs).
+Edytor: [src/admin/](src/admin/) – pola formularza w [src/admin/fields.ts](src/admin/fields.ts), pasek narzędzi
+w [src/admin/editor.ts](src/admin/editor.ts), konwersja Markdown ↔ HTML w [src/admin/convert.mjs](src/admin/convert.mjs).
+Pliki `.md` można też dalej edytować ręcznie w VS Code – edytor wykryje zmianę i nie nadpisze jej bez pytania.
 
-```bash
-npm run nowy-wpis "Tytuł wpisu"   # tworzy szkic src/content/blog/tytul-wpisu.md (draft: true)
-npm run dev                       # podgląd na http://localhost:4321
-# gotowe? draft: false → git add . && git commit -m "Nowy wpis" && git push
-```
+Uwaga: adres URL opublikowanej pozycji jest zablokowany („zmień” pyta o potwierdzenie) – zmiana adresu = nowy URL
+(trzeba dodać przekierowanie 301). Usuwanie wpisów: skasuj plik `.md` w VS Code (albo zaznacz „Szkic”).
 
 ### Wdrożenie automatyczne (GitHub Actions)
 

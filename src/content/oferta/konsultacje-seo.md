@@ -26,19 +26,19 @@ faqTitle: Najczęściej zadawane pytania i odpowiedzi
 faq:
   - id: faq-question-1766660386362
     question: Ile kosztują konsultacje SEO?
-    answer: "<p>W ofercie są 4 pakiety godzinowe: godzina, 2 godziny, 5 godzin i 10 godzin. W przypadku większej liczby godzin cena jest ustalana indywidualnie.</p>"
+    answer: "W ofercie są 4 pakiety godzinowe: godzina, 2 godziny, 5 godzin i 10 godzin. W przypadku większej liczby godzin cena jest ustalana indywidualnie."
   - id: faq-question-1766660608997
     question: Czy muszę znać się na SEO, żeby skorzystać z konsultacji SEO?
-    answer: <p>Nie. Konsultacje dostosowuję do Twojego poziomu wiedzy. Wszystkie zagadnienia wyjaśniam w prosty sposób, tak aby każdy mógł wdrożyć zalecenia bez względu na doświadczenie.</p>
+    answer: Nie. Konsultacje dostosowuję do Twojego poziomu wiedzy. Wszystkie zagadnienia wyjaśniam w prosty sposób, tak aby każdy mógł wdrożyć zalecenia bez względu na doświadczenie.
   - id: faq-question-1766660625237
     question: Czy można nagrywać konsultacje?
-    answer: <p>Jest możliwość nagrywania spotkania po uprzednim poinformowaniu. Spotkanie mogę nagrać ja lub Ty.</p>
+    answer: Jest możliwość nagrywania spotkania po uprzednim poinformowaniu. Spotkanie mogę nagrać ja lub Ty.
   - id: faq-question-1766660636189
     question: Jak skorzystać z konsultacji SEO?
-    answer: <p>Napisz do mnie bezpośrednio na maila lub skorzystaj z formularza. Szczegółowo opisz swój problem i pytanie, a ja wrócę do Ciebie z propozycją terminu spotkania.</p>
+    answer: Napisz do mnie bezpośrednio na maila lub skorzystaj z formularza. Szczegółowo opisz swój problem i pytanie, a ja wrócę do Ciebie z propozycją terminu spotkania.
   - id: faq-question-1790966110075
     question: Czy konsultacja SEO obejmuje wdrożenie zmian?
-    answer: <p>Nie. Konsultacja ma charakter doradczy. Efekt zależy od tego, czy zalecenia zostaną wdrożone. Jeśli potrzebujesz pomocy we wdrożeniu, omówimy to osobno.</p>
+    answer: Nie. Konsultacja ma charakter doradczy. Efekt zależy od tego, czy zalecenia zostaną wdrożone. Jeśli potrzebujesz pomocy we wdrożeniu, omówimy to osobno.
 ---
 
 ## Czym jest konsultacja SEO?
@@ -75,7 +75,7 @@ Godziny z pakietu możesz wykorzystać w ciągu dwóch miesięcy, w przypadku pa
 
 ## Jak wyglądają konsultacje SEO?
 
-1. Piszesz przez formularz kontaktowy lub bezpośrednio na maila [kontakt@kamilwnek.pl](mailto:kontakt@kamilwnek.pl): adres strony i jak najbardziej szczegółowy opis problemu.
+1. Piszesz przez formularz kontaktowy lub bezpośrednio na maila <LinkRel href="mailto:kontakt@kamilwnek.pl">kontakt@kamilwnek.pl</LinkRel>: adres strony i jak najbardziej szczegółowy opis problemu.
 2. Odpowiadam z propozycją terminów. Trzy dni przed spotkaniem otrzymasz przypomnienie.
 3. Przed spotkaniem analizuję stronę i dane.
 4. Spotykamy się online i przechodzimy przez problemy oraz rozwiązania.
@@ -84,5 +84,5 @@ Godziny z pakietu możesz wykorzystać w ciągu dwóch miesięcy, w przypadku pa
 ## Konsultacja, audyt czy stała współpraca?
 
 - **Konsultacja SEO**: masz konkretne pytanie albo potrzebujesz kierunku, a wdrożenia zrobisz sam lub z zespołem.
-- **[Audyt SEO](/oferta/audyt-seo/)**: potrzebujesz pełnej diagnozy strony z listą wszystkich problemów.
-- **[Pozycjonowanie](/oferta/pozycjonowanie-stron/)**: chcesz, żeby ktoś prowadził SEO za Ciebie co miesiąc.
+- **<LinkRel href="/oferta/audyt-seo/">Audyt SEO</LinkRel>**: potrzebujesz pełnej diagnozy strony z listą wszystkich problemów.
+- **<LinkRel href="/oferta/pozycjonowanie-stron/">Pozycjonowanie</LinkRel>**: chcesz, żeby ktoś prowadził SEO za Ciebie co miesiąc.

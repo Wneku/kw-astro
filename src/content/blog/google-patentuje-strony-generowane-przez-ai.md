@@ -2,15 +2,15 @@
 title: Google patentuje strony generowane przez AI
 seoTitle: Google patentuje strony generowane przez AI | Kamil Wnęk
 description: Strony generowane przez AI w SERP? Nowy patent Google'a może zmienić ruch organiczny i zwiększyć zależność od ekosystemu wyszukiwarki.
-pubDate: 2026-03-02T19:34:47Z
-updatedDate: 2026-10-30T20:33:00Z
+pubDate: 2026-03-02
+updatedDate: 2026-10-30
 categories:
   - co-nowego-w-seo
-cover: ../../assets/images/wp/2026/03/wyszukiwarka-google-na-macbooku.jpg
+cover: ../../assets/images/blog/google-patentuje-strony-generowane-przez-ai/cover.jpg
 coverAlt: Wyszukiwarka Google otwarta na MacBooku
 ---
 
-[Search Engine Roundtable](https://www.seroundtable.com/google-patent-ai-generated-pages-search-41010.html) opublikował artykuł dotyczący **patentu Google US12536233B1**. W dokumencie opisany jest mechanizm, który miałby pozwolić Google’owi na generowanie w czasie rzeczywistym landing page’y e-commerce na podstawie kontekstu użytkownika, zamiast kierować ruch bezpośrednio na stronę marki.
+<LinkRel href="https://www.seroundtable.com/google-patent-ai-generated-pages-search-41010.html">Search Engine Roundtable</LinkRel> opublikował artykuł dotyczący **patentu Google US12536233B1**. W dokumencie opisany jest mechanizm, który miałby pozwolić Google’owi na generowanie w czasie rzeczywistym landing page’y e-commerce na podstawie kontekstu użytkownika, zamiast kierować ruch bezpośrednio na stronę marki.
 
 Co istotne, **uwagę na ten patent zwrócił Brandon Lazovic**, który w swoim wpisie na LinkedIn podkreślił, że rozwiązanie może mieć ogromny wpływ na SEO oraz performance marketing. To nie jest aktualizacja algorytmu, to całkowita zmiana modelu działania wyszukiwarki.
 
@@ -71,8 +71,8 @@ W danym momencie mówimy jedynie o patencie, a nie wdrożonym rozwiązaniu. Jedn
 
 **Źródła wykorzystane do napisania tekstu:**
 
-Artykuł w Search Engine Roundtable: [https://www.seroundtable.com/google-patent-ai-generated-pages-search-41010.html](https://www.seroundtable.com/google-patent-ai-generated-pages-search-41010.html)
+Artykuł w Search Engine Roundtable: <LinkRel href="https://www.seroundtable.com/google-patent-ai-generated-pages-search-41010.html">https://www.seroundtable.com/google-patent-ai-generated-pages-search-41010.html</LinkRel>
 
-Patent Google US12536233B1: [https://patents.google.com/patent/US12536233B1/en](https://patents.google.com/patent/US12536233B1/en)
+Patent Google US12536233B1: <LinkRel href="https://patents.google.com/patent/US12536233B1/en">https://patents.google.com/patent/US12536233B1/en</LinkRel>
 
-Komentarz Brandona Lazovica (LinkedIn): [https://www.linkedin.com/posts/brandon-lazovic\_google-just-got-a-patent-granted-us12536233b1-activity-7431776973804183552-rcyv/](https://www.linkedin.com/posts/brandon-lazovic_google-just-got-a-patent-granted-us12536233b1-activity-7431776973804183552-rcyv/)
+Komentarz Brandona Lazovica (LinkedIn): <LinkRel href="https://www.linkedin.com/posts/brandon-lazovic_google-just-got-a-patent-granted-us12536233b1-activity-7431776973804183552-rcyv/">https://www.linkedin.com/posts/brandon-lazovic_google-just-got-a-patent-granted-us12536233b1-activity-7431776973804183552-rcyv/</LinkRel>

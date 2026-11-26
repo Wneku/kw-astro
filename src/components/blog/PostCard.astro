@@ -40,7 +40,12 @@ const categories = await getEntries(post.data.categories);
       <a href={postHref(post.id)}>{post.data.title}</a>
     </H>
     <p class="card__excerpt">{post.data.description}</p>
-    <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+    <div class="card__foot">
+      <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+      <a href={postHref(post.id)} class="card__more" aria-label={`Czytaj więcej: ${post.data.title}`}>
+        Czytaj więcej <span class="card__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
   </div>
 </article>
 
@@ -117,9 +122,57 @@ const categories = await getEntries(post.data.categories);
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  time {
+  .card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
     margin-top: auto;
+    padding-top: var(--space-xs);
+  }
+  time {
     font-size: var(--step--1);
     color: var(--color-muted);
+  }
+  .card__more {
+    font-family: var(--font-heading);
+    font-size: var(--step--1);
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .card__arrow {
+    display: inline-block;
+    transition: transform 0.2s var(--ease);
+  }
+  .card:hover .card__arrow {
+    transform: translateX(3px);
+  }
+
+  /* cała karta klikalna: link z tytułu rozciągnięty na kartę; kategorie nad nim, więc działają osobno */
+  .card {
+    position: relative;
+  }
+  .card__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .card__cats a,
+  .card__more {
+    position: relative;
+    z-index: 2;
+  }
+  .card:hover .card__title a {
+    color: var(--color-primary);
+  }
+  .card:has(.card__title a:focus-visible) {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+  .card__title a:focus-visible {
+    outline: none;
   }
 </style>

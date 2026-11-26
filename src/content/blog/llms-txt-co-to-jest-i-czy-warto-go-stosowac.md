@@ -2,26 +2,26 @@
 title: llms.txt – co to jest i czy warto go stosować?
 seoTitle: llms.txt - co to jest i czy warto go stosować? | Kamil Wnęk
 description: Plik llms.txt – czy warto go wdrażać? Sprawdź, czy to marketingowy hype, czy nie.
-pubDate: 2026-02-24T15:33:37Z
-updatedDate: 2026-10-30T20:34:07Z
+pubDate: 2026-02-24
+updatedDate: 2026-10-30
 categories:
   - ai-w-seo
   - podstawy-seo
-cover: ../../assets/images/wp/2026/02/plik-llms-txt-jak-dziala.png
+cover: ../../assets/images/blog/llms-txt-co-to-jest-i-czy-warto-go-stosowac/cover.png
 coverAlt: Niebieska grafika z komputerem, na którego ekranie widać napis llms.txt
 faq:
   - id: faq-question-1771945432879
     question: Czy llms.txt to oficjalny standard internetowy?
-    answer: <p>Nie, llms.txt nie jest oficjalnie zatwierdzonym standardem, tak jak na przykład W3C.</p>
+    answer: Nie, llms.txt nie jest oficjalnie zatwierdzonym standardem, tak jak na przykład W3C.
   - id: faq-question-1771945449969
     question: Czy llms.txt wpływa na SEO/GEO?
-    answer: <p>Nie, nie ma wpływu na pozycje, indeksację czy crawlowanie. Nie jest czynnikiem rankingowym, ani nie zastępuje robots.txt czy pliku sitemap.xml.</p>
+    answer: Nie, nie ma wpływu na pozycje, indeksację czy crawlowanie. Nie jest czynnikiem rankingowym, ani nie zastępuje robots.txt czy pliku sitemap.xml.
   - id: faq-question-1771945459442
     question: Czy wdrożenie llms.txt zwiększa szansę na pojawienie się w odpowiedziach AI?
-    answer: <p>Nie ma na to żadnych technicznych dowodów na to, że obecność pliku llms.txt zwiększa widoczność w odpowiedziach generowanych przez modele językowe.</p>
+    answer: Nie ma na to żadnych technicznych dowodów na to, że obecność pliku llms.txt zwiększa widoczność w odpowiedziach generowanych przez modele językowe.
   - id: faq-question-1771945464531
     question: Gdzie umieścić plik llms.txt?
-    answer: "<p>Plik powinien znajdować się w katalogu głównym domeny, np.: https://twojadomena.pl/llms.txt. Analogicznie do robots.txt.</p>"
+    answer: "Plik powinien znajdować się w katalogu głównym domeny, np.: https://twojadomena.pl/llms.txt. Analogicznie do robots.txt."
 ---
 
 W branży SEO regularnie pojawia się potrzeba znalezienia „magicznego sposobu”, który rozwiąże problem. Tym razem padło na llms.txt. Według internetowych „ekspertów” jego wdrożenie ma zwiększyć szansę na pojawienie się w odpowiedziach AI.
@@ -88,7 +88,7 @@ Plik llms.txt powinien być umieszczony w głównym katalogu domeny, tak jak rob
 
 Przykład adresu:
 
-https://twojadomena.pl/llms.txt
+<LinkRel href="https://twojadomena.pl/llms.txt">https://twojadomena.pl/llms.txt</LinkRel>
 
 ## Czy modele AI respektują llms.txt?
 
@@ -102,5 +102,5 @@ Plik llms.txt to nic innego niż zwyczajna propozycja, która nic nie wnosi w kw
 
 To kolejna nowinka, która oddziela „eksperta” od specjalisty, jednocześnie pokazując, jak bardzo ludzie chcą uniknąć realnej pracy nad stroną czy sklepem. Szukanie prostych rozwiązań nic nie daje – ani w krótkiej, ani w dłuższej perspektywie. Jeśli chcesz być cytowany w LLM-ach, pracuj nad tekstem, autorytetem domeny i danymi strukturalnymi, które stanowią obecnie największą wartość zarówno dla wyszukiwarek, jak i AI.
 
-Jeśli szukasz skutecznego pozycjonowania, [skontaktuj się ze mną](/kontakt/) i skorzystaj z darmowej, 30-minutowej konsultacji.
+Jeśli szukasz skutecznego pozycjonowania, <LinkRel href="/kontakt/">skontaktuj się ze mną</LinkRel> i skorzystaj z darmowej, 30-minutowej konsultacji.
 

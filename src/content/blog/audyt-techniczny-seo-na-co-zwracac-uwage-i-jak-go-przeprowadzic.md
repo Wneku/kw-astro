@@ -2,26 +2,26 @@
 title: Audyt techniczny SEO – na co zwracać uwagę i jak go przeprowadzić?
 seoTitle: Audyt techniczny SEO - na co zwracać uwagę i jak go przeprowadzić? | Kamil Wnęk
 description: Jak przeprowadzić audyt techniczny SEO? Poznaj kluczowe elementy analizy i błędy, które obniżają widoczność strony w Google.
-pubDate: 2026-04-09T09:38:02Z
-updatedDate: 2026-10-30T20:31:30Z
+pubDate: 2026-04-09
+updatedDate: 2026-10-30
 categories:
   - podstawy-seo
   - techniczne-seo
-cover: ../../assets/images/wp/2026/04/technical-seo.jpg
+cover: ../../assets/images/blog/audyt-techniczny-seo-na-co-zwracac-uwage-i-jak-go-przeprowadzic/cover.jpg
 coverAlt: lupa skierowana w ekran laptopa
 faq:
   - id: faq-question-1774648477935
     question: Co zrobić po otrzymaniu raportu z technicznego audytu SEO?
-    answer: <p>Raport to jest punkt startowy. Po jego otrzymaniu należy przygotować plan wdrożeń według priorytetów. Następnie ustala się harmonogram i osoby odpowiedzialne za poprawki. Po wdrożeniu zmian należy sprawdzić efekty w Google Search Console i narzędziach analitycznych.</p>
+    answer: Raport to jest punkt startowy. Po jego otrzymaniu należy przygotować plan wdrożeń według priorytetów. Następnie ustala się harmonogram i osoby odpowiedzialne za poprawki. Po wdrożeniu zmian należy sprawdzić efekty w Google Search Console i narzędziach analitycznych.
   - id: faq-question-1774648537875
     question: Ile kosztuje techniczny audyt SEO?
-    answer: <p>Cena zależy od wielkości i złożoności serwisu. Sklep z tysiącami produktów wymaga więcej pracy niż prosta strona firmowa. Wpływ ma też technologia (CMS, frameworki JS) oraz zakres audytu.</p>
+    answer: Cena zależy od wielkości i złożoności serwisu. Sklep z tysiącami produktów wymaga więcej pracy niż prosta strona firmowa. Wpływ ma też technologia (CMS, frameworki JS) oraz zakres audytu.
   - id: faq-question-1774686026902
     question: Czy szybkość strony wpływa na indeksację?
-    answer: <p>Tak. Szybkość strony wpływa na pozycje i na zachowanie użytkowników. Wolna strona częściej traci odwiedzających, co wysyła słabe sygnały do Google. Google potwierdza, że metryki Core Web Vitals (LCP, INP, CLS) są elementem oceny strony. W praktyce warto regularnie sprawdzać PageSpeed Insights i poprawiać rzeczy, które spowalniają stronę (obrazy, kod, serwer, CDN). To poprawia UX i zwykle pomaga w SEO.</p>
+    answer: Tak. Szybkość strony wpływa na pozycje i na zachowanie użytkowników. Wolna strona częściej traci odwiedzających, co wysyła słabe sygnały do Google. Google potwierdza, że metryki Core Web Vitals (LCP, INP, CLS) są elementem oceny strony. W praktyce warto regularnie sprawdzać PageSpeed Insights i poprawiać rzeczy, które spowalniają stronę (obrazy, kod, serwer, CDN). To poprawia UX i zwykle pomaga w SEO.
 ---
 
-Audyt techniczny SEO to szczegółowe sprawdzenie strony lub sklepu internetowego. Jego celem jest upewnienie się, że roboty wyszukiwarki (np. Google) mogą łatwo znaleźć, odczytać, zrozumieć i zaindeksować stronę. To podstawowy krok, na którym opiera się reszta działań SEO, od pisania treści po [link building](/oferta/link-building/).
+Audyt techniczny SEO to szczegółowe sprawdzenie strony lub sklepu internetowego. Jego celem jest upewnienie się, że roboty wyszukiwarki (np. Google) mogą łatwo znaleźć, odczytać, zrozumieć i zaindeksować stronę. To podstawowy krok, na którym opiera się reszta działań SEO, od pisania treści po <LinkRel href="/oferta/link-building/">link building</LinkRel>.
 
 Dobrze wykonany audyt techniczny pozwala na usunięcie przeszkód, które ograniczają widoczność serwisu. Dodatkowo poprawia wygodę użytkownika – strona może zacząć działać szybciej i być łatwiejsza w obsłudze. Regularne audyty techniczne to stały element skutecznego SEO, ponieważ pozwalają na bieżąco dostosowywać witrynę do aktualnych wymagań Google.
 
@@ -52,7 +52,7 @@ Audyt SEO można podzielić na trzy części, które się uzupełniają, ale ana
 
 Każdy z tych obszarów jest ze sobą powiązany, ale problemy techniczne mogą blokować pozostałe działania. Jeśli strona nie jest poprawnie indeksowana, nawet najlepsze treści nie przyniosą efektów.
 
-> [Audyt SEO](/oferta/audyt-seo/)
+> <LinkRel href="/oferta/audyt-seo/">Audyt SEO</LinkRel>
 
 ## Kiedy warto przeprowadzić techniczny audyt SEO?
 
@@ -122,7 +122,7 @@ Czytelne adresy URL i sensowna architektura informacji pomagają i robotom wyszu
 
 Pomaga także płaska struktura, w której ważne podstrony są dostępne w maksymalnie trzech kliknięciach od strony głównej. Folder powinien odpowiadać nawigacji (np. /blog/k/podstawowe-seo), a nie prowadzić do długich i nieczytelnych ścieżek. Taka struktura ułatwia indeksowanie, wspiera linkowanie wewnętrzne i korzystanie ze strony.
 
-![](../../assets/images/wp/2026/03/image.png)
+![](../../assets/images/blog/audyt-techniczny-seo-na-co-zwracac-uwage-i-jak-go-przeprowadzic/image.png)
 
 _Przykład przyjaznego adresu URL_
 
@@ -138,7 +138,7 @@ Google mierzy jakość działania strony m.in. przez Core Web Vitals:
 
 Do sprawdzenia wydajności warto korzystać z takich narzędzi jak Google PageSpeed Insights, GTmetrix czy Lighthouse.
 
-![](../../assets/images/wp/2026/03/image-1.png)
+![](../../assets/images/blog/audyt-techniczny-seo-na-co-zwracac-uwage-i-jak-go-przeprowadzic/image-1.png)
 
 _Wynik PageSpeed Insights dla mobilnej wersji kamilwnek.pl_
 
@@ -186,14 +186,14 @@ Schema.org to standard używany przez największe wyszukiwarki. Dane strukturaln
 Przykładowe typy danych strukturalnych, które najczęściej się pojawiają:
 
 - **Article** – dla wpisów blogowych i artykułów, może pokazywać autora i datę.
-- **FAQ** – sekcja pytań i odpowiedzi, widoczna w wynikach jako rozwijane elementy (aktualizacja 30.10.2026. Obecnie sekcja FAQ nie jest wyświetlana w wynikach wyszukiwania. Więcej na ten temat w artykule „[Dane strukturalne – czym są i jak je wdrożyć?](/blog/dane-strukturalne-czym-sa-i-jak-wdrozyc-poradnik-schema-org/)„).
+- **FAQ** – sekcja pytań i odpowiedzi, widoczna w wynikach jako rozwijane elementy (aktualizacja 30.10.2026. Obecnie sekcja FAQ nie jest wyświetlana w wynikach wyszukiwania. Więcej na ten temat w artykule „<LinkRel href="/blog/dane-strukturalne-czym-sa-i-jak-wdrozyc-poradnik-schema-org/">Dane strukturalne – czym są i jak je wdrożyć?</LinkRel>„).
 - **Product** – cena, dostępność, oceny i recenzje (najważniejsze dla e-commerce).
 - **LocalBusiness** – dane firmy, takie jak godziny, adres i opinie.
 - **Review** – opinie i oceny, często jako gwiazdki.
 
 Dobrze wdrożone dane strukturalne sprawiają, że wynik wygląda lepiej i może zbierać więcej kliknięć.
 
-![](../../assets/images/wp/2026/03/image-2.png)
+![](../../assets/images/blog/audyt-techniczny-seo-na-co-zwracac-uwage-i-jak-go-przeprowadzic/image-2.png)
 
 _Dobrze wdrożone dane strukturalne w sklepie x-kom.pl_
 
@@ -203,13 +203,13 @@ _Dobrze wdrożone dane strukturalne w sklepie x-kom.pl_
 
 Przydaje się także Schema Markup Validator, który sprawdza poprawność składni oraz Chrome DevTools, gdzie można podejrzeć JSON-LD lub Microdata w kodzie. Regularna kontrola pomaga utrzymać poprawne oznaczenie i wykorzystać je w wynikach wyszukiwania.
 
-![](../../assets/images/wp/2026/03/zrzut-ekranu-rich-snippets-result.png)
+![](../../assets/images/blog/audyt-techniczny-seo-na-co-zwracac-uwage-i-jak-go-przeprowadzic/zrzut-ekranu-rich-snippets-result.png)
 
 _Wynik testu dla podstrony z artykułem „Google patentuje strony generowane przez AI”_
 
 Więcej na temat danych strukturalnych przeczytasz w poniższym artykule:
 
-> [Dane strukturalne – czym są i jak wdrożyć? Poradnik Schema.org](/blog/dane-strukturalne-czym-sa-i-jak-wdrozyc-poradnik-schema-org/)
+> <LinkRel href="/blog/dane-strukturalne-czym-sa-i-jak-wdrozyc-poradnik-schema-org/">Dane strukturalne – czym są i jak wdrożyć? Poradnik Schema.org</LinkRel>
 
 ### Optymalizacja grafik, kodu CSS i JavaScript
 
@@ -217,7 +217,7 @@ Optymalizacja obrazów i kodu wpływa na szybkość ładowania i sposób, w jaki
 
 **Wiele z tych problemów trudno wychwycić bez analizy danych i narzędzi.**
 
-**[Jeśli chcesz, mogę to sprawdzić za Ciebie!](/kontakt/)**
+<Cta label="Jeśli chcesz, mogę to sprawdzić za Ciebie!" href="/kontakt/" />
 
 ## Narzędzia do wykorzystania w technicznym audycie SEO
 

@@ -26,16 +26,16 @@ faqTitle: Najczęściej zadawane pytania i odpowiedzi
 faq:
   - id: faq-question-1769767750207
     question: Ile trwa pozycjonowanie sklepu internetowego?
-    answer: <p>SEO w e-commerce to proces długoterminowy. Pierwsze wzrosty zazwyczaj pojawiają się w ciągu pierwszych trzech miesięcy, ale to zależy od kilku czynników, takich jak aktualny stan sklepu czy szybkość wdrożeń.</p>
+    answer: SEO w e-commerce to proces długoterminowy. Pierwsze wzrosty zazwyczaj pojawiają się w ciągu pierwszych trzech miesięcy, ale to zależy od kilku czynników, takich jak aktualny stan sklepu czy szybkość wdrożeń.
   - id: faq-question-1769767831006
     question: Czy SEO w sklepie internetowym zwiększa sprzedaż?
-    answer: <p>Oczywiście, że tak. Warunek jest taki, że strategia prowadzona jest z myślą o intencji zakupowej, a nie tylko o ruchu. Dobrze zaplanowane SEO zwiększa widoczność kategorii i produktów, co przekłada się na sprzedaż.</p>
+    answer: Oczywiście, że tak. Warunek jest taki, że strategia prowadzona jest z myślą o intencji zakupowej, a nie tylko o ruchu. Dobrze zaplanowane SEO zwiększa widoczność kategorii i produktów, co przekłada się na sprzedaż.
   - id: faq-question-1769768063707
     question: Czy pozycjonowanie sklepu internetowego jest bezpieczne?
-    answer: <p>Tak, jeśli jest prowadzone zgodnie z wytycznymi dostarczonymi przez Google. Stawiam na długoterminowe, bezpieczne działania, bez ryzykownych technik, które mogą zaszkodzić sklepowi.</p>
+    answer: Tak, jeśli jest prowadzone zgodnie z wytycznymi dostarczonymi przez Google. Stawiam na długoterminowe, bezpieczne działania, bez ryzykownych technik, które mogą zaszkodzić sklepowi.
   - id: faq-question-1791212063292
     question: Planuję migrację sklepu na inną platformę. Czy możesz pomóc?
-    answer: <p>Tak. Przy migracji najważniejsze są przekierowania i zachowanie struktury adresów. Najlepiej zaplanować to przed startem prac programistów.</p>
+    answer: Tak. Przy migracji najważniejsze są przekierowania i zachowanie struktury adresów. Najlepiej zaplanować to przed startem prac programistów.
 ---
 
 ## Dlaczego SEO w sklepie wymaga innego podejścia?
@@ -48,7 +48,7 @@ Klient z Google zwykle wie już, czego szuka. Pytanie brzmi, czy trafi do Ciebie
 
 ### Audyt i plan
 
-Zaczynam od [audytu SEO](/oferta/audyt-seo/), który pokazuje, gdzie sklep traci ruch i które kategorie mają największy potencjał sprzedażowy.
+Zaczynam od <LinkRel href="/oferta/audyt-seo/">audytu SEO</LinkRel>, który pokazuje, gdzie sklep traci ruch i które kategorie mają największy potencjał sprzedażowy.
 
 ### Struktura kategorii i filtry
 
@@ -73,7 +73,7 @@ Zaczynam od [audytu SEO](/oferta/audyt-seo/), który pokazuje, gdzie sklep traci
 
 ### Link building
 
-Linki do kategorii i treści, które mają rosnąć, w bezpiecznym tempie i z tematycznych źródeł. Więcej: [link building](/oferta/link-building/).
+Linki do kategorii i treści, które mają rosnąć, w bezpiecznym tempie i z tematycznych źródeł. Więcej: <LinkRel href="/oferta/link-building/">link building</LinkRel>.
 
 ## Na jakich platformach pracuję?
 
@@ -104,7 +104,7 @@ Jeśli sklep działa na innej platformie, napisz, a sprawdzę, co da się w niej
 
 Nie sprzedaję gotowych pakietów. Zakres dobieram do potencjału sklepu, tak żeby SEO się zwracało. Budżet na linki ustalamy osobno.
 
-**[Zapytaj o wycenę dla sklepu](/kontakt/)**
+<Cta label="Zapytaj o wycenę dla sklepu" href="/kontakt/" />
 
 ## Jak raportuję wyniki?
 

@@ -26,19 +26,19 @@ faqTitle: Najczęściej zadawane pytania i odpowiedzi
 faq:
   - id: faq-question-1766843667380
     question: Czy pozycjonowanie strony jest bezpieczne?
-    answer: <p>Tak, pod warunkiem że działania są wykonywane zgodnie z wytycznymi Google.</p>
+    answer: Tak, pod warunkiem że działania są wykonywane zgodnie z wytycznymi Google.
   - id: faq-question-1766843673315
     question: Czy SEO działa w każdej branży?
-    answer: <p>W większości tak. Jeśli w Twojej branży ludzie nie szukają usług w Google albo potencjał jest za mały, powiem Ci to przed rozpoczęciem współpracy.</p>
+    answer: W większości tak. Jeśli w Twojej branży ludzie nie szukają usług w Google albo potencjał jest za mały, powiem Ci to przed rozpoczęciem współpracy.
   - id: faq-question-1766843690201
     question: Po jakim czasie widać efekty pozycjonowania?
-    answer: <p>SEO jest procesem długofalowym i nie daje efektów od razu. W większości przypadków efekty widać po 2-3 miesiącach, wzrost po 6-12 miesiącach.</p>
+    answer: SEO jest procesem długofalowym i nie daje efektów od razu. W większości przypadków efekty widać po 2-3 miesiącach, wzrost po 6-12 miesiącach.
   - id: faq-question-1791210889336
     question: Czy gwarantujesz pierwsze miejsce w Google?
-    answer: <p>Nie. Nikt uczciwie nie jest w stanie zagwarantować pozycji, bo zależy ona od algorytmu Google i działań konkurencji. Mogę obiecać plan, regularne wdrożenia i jasne raporty.</p>
+    answer: Nie. Nikt uczciwie nie jest w stanie zagwarantować pozycji, bo zależy ona od algorytmu Google i działań konkurencji. Mogę obiecać plan, regularne wdrożenia i jasne raporty.
   - id: faq-question-1791210925603
     question: Co się stanie, gdy zakończymy współpracę?
-    answer: <p>Wdrożone zmiany i linki zostają na stronie. Pozycje mogą utrzymać się przez jakiś czas, ale bez dalszych prac konkurencja może stopniowo Cię wyprzedzać.</p>
+    answer: Wdrożone zmiany i linki zostają na stronie. Pozycje mogą utrzymać się przez jakiś czas, ale bez dalszych prac konkurencja może stopniowo Cię wyprzedzać.
 ---
 
 ## Dla kogo jest ta usługa?
@@ -49,13 +49,13 @@ faq:
 
 Pozycjonowanie nie jest dobrym wyborem, gdy potrzebujesz klientów w ciągu najbliższego miesiąca. Wtedy lepiej zacząć od reklam, a SEO dodać równolegle. Jeśli tak będzie w Twoim przypadku, powiem Ci to na pierwszej rozmowie.
 
-Prowadzisz sklep? Zobacz [pozycjonowanie sklepów](/oferta/pozycjonowanie-sklepow/). Działasz w jednym mieście? Zobacz [pozycjonowanie lokalne](/oferta/pozycjonowanie-lokalne/).
+Prowadzisz sklep? Zobacz <LinkRel href="/oferta/pozycjonowanie-sklepow/">pozycjonowanie sklepów</LinkRel>. Działasz w jednym mieście? Zobacz <LinkRel href="/oferta/pozycjonowanie-lokalne/">pozycjonowanie lokalne</LinkRel>.
 
 ## Co robię w ramach pozycjonowania?
 
 ### Pierwszy miesiąc: audyt i strategia
 
-Zaczynam od [audytu SEO](/oferta/audyt-seo/), analizy fraz i konkurencji. Na tej podstawie przygotowuję plan na najbliższe miesiące: które podstrony rozwijać, jakie treści dodać i co naprawić technicznie.
+Zaczynam od <LinkRel href="/oferta/audyt-seo/">audytu SEO</LinkRel>, analizy fraz i konkurencji. Na tej podstawie przygotowuję plan na najbliższe miesiące: które podstrony rozwijać, jakie treści dodać i co naprawić technicznie.
 
 ### Każdy kolejny miesiąc
 
@@ -85,7 +85,7 @@ Nie raportuję setek fraz, które nie przynoszą klientów. Liczy się ruch, kt�
 
 Cena zależy od konkurencji w branży, stanu strony i zakresu prac. Budżet na linki ustalamy osobno. Dokładną wycenę poznasz po bezpłatnej rozmowie.
 
-**[Umów bezpłatną rozmowę](/kontakt/#kalendarz)**
+<Cta label="Umów bezpłatną rozmowę" href="/kontakt/" />
 
 ## Kiedy zobaczę efekty pozycjonowania?
 

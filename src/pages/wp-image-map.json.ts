@@ -6,7 +6,7 @@ import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import media from '../data/wp-media.json';
 
-const files = import.meta.glob<ImageMetadata>('/src/assets/images/wp/**/*.{jpg,jpeg,png,webp,gif}', {
+const files = import.meta.glob<ImageMetadata>('/src/assets/images/**/*.{jpg,jpeg,png,webp,gif}', {
   eager: true,
   import: 'default',
 });

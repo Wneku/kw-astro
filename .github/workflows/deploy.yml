@@ -1,5 +1,5 @@
 # Build i wdrożenie na seohost przy każdej zmianie w gałęzi main
-# (commit z Pages CMS, push z komputera albo ręcznie: zakładka Actions → Deploy → Run workflow).
+# (npm run publikuj, push z komputera albo ręcznie: zakładka Actions → Deploy → Run workflow).
 #
 # Wymagane sekrety (GitHub → Settings → Secrets and variables → Actions → Repository secrets):
 #   FTP_SERVER      – adres serwera FTP z panelu seohost (np. s1.seohost.pl)

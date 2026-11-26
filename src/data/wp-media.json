@@ -52,37 +52,37 @@
   {
     "oldPath": "/wp-content/uploads/2026/02/plik-llms-txt-jak-dziala",
     "ext": "png",
-    "file": "src/assets/images/wp/2026/02/plik-llms-txt-jak-dziala.png"
+    "file": "src/assets/images/blog/llms-txt-co-to-jest-i-czy-warto-go-stosowac/cover.png"
   },
   {
     "oldPath": "/wp-content/uploads/2026/03/image",
     "ext": "png",
-    "file": "src/assets/images/wp/2026/03/image.png"
+    "file": "src/assets/images/blog/audyt-techniczny-seo-na-co-zwracac-uwage-i-jak-go-przeprowadzic/image.png"
   },
   {
     "oldPath": "/wp-content/uploads/2026/03/image-1",
     "ext": "png",
-    "file": "src/assets/images/wp/2026/03/image-1.png"
+    "file": "src/assets/images/blog/audyt-techniczny-seo-na-co-zwracac-uwage-i-jak-go-przeprowadzic/image-1.png"
   },
   {
     "oldPath": "/wp-content/uploads/2026/03/image-2",
     "ext": "png",
-    "file": "src/assets/images/wp/2026/03/image-2.png"
+    "file": "src/assets/images/blog/audyt-techniczny-seo-na-co-zwracac-uwage-i-jak-go-przeprowadzic/image-2.png"
   },
   {
     "oldPath": "/wp-content/uploads/2026/03/wyszukiwarka-google-na-macbooku",
     "ext": "jpg",
-    "file": "src/assets/images/wp/2026/03/wyszukiwarka-google-na-macbooku.jpg"
+    "file": "src/assets/images/blog/google-patentuje-strony-generowane-przez-ai/cover.jpg"
   },
   {
     "oldPath": "/wp-content/uploads/2026/03/zrzut-ekranu-rich-snippets-result",
     "ext": "png",
-    "file": "src/assets/images/wp/2026/03/zrzut-ekranu-rich-snippets-result.png"
+    "file": "src/assets/images/blog/audyt-techniczny-seo-na-co-zwracac-uwage-i-jak-go-przeprowadzic/zrzut-ekranu-rich-snippets-result.png"
   },
   {
     "oldPath": "/wp-content/uploads/2026/04/technical-seo",
     "ext": "jpg",
-    "file": "src/assets/images/wp/2026/04/technical-seo.jpg"
+    "file": "src/assets/images/blog/audyt-techniczny-seo-na-co-zwracac-uwage-i-jak-go-przeprowadzic/cover.jpg"
   },
   {
     "oldPath": "/wp-content/uploads/2026/06/cropped-Logo-512",
@@ -92,12 +92,12 @@
   {
     "oldPath": "/wp-content/uploads/2026/06/dane-strukturalne-hero",
     "ext": "png",
-    "file": "src/assets/images/wp/2026/06/dane-strukturalne-hero.png"
+    "file": "src/assets/images/blog/dane-strukturalne-czym-sa-i-jak-wdrozyc-poradnik-schema-org/cover.png"
   },
   {
     "oldPath": "/wp-content/uploads/2026/06/gsc-dane-strukturalne",
     "ext": "jpg",
-    "file": "src/assets/images/wp/2026/06/gsc-dane-strukturalne.jpg"
+    "file": "src/assets/images/blog/dane-strukturalne-czym-sa-i-jak-wdrozyc-poradnik-schema-org/gsc-dane-strukturalne.jpg"
   },
   {
     "oldPath": "/wp-content/uploads/2026/06/Logo-512",
@@ -107,6 +107,6 @@
   {
     "oldPath": "/wp-content/uploads/2026/06/schema-organization",
     "ext": "jpg",
-    "file": "src/assets/images/wp/2026/06/schema-organization.jpg"
+    "file": "src/assets/images/blog/dane-strukturalne-czym-sa-i-jak-wdrozyc-poradnik-schema-org/schema-organization.jpg"
   }
 ]

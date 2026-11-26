@@ -25,16 +25,16 @@ faqTitle: Najczęstsze pytania i odpowiedzi
 faq:
   - id: faq-question-1791218715261
     question: Czy warto zdobywać każdy link, który ma konkurencja?
-    answer: <p>Nie. Część linków konkurencji jest słaba albo ryzykowna. W analizie zostawiam tylko te, które mają wartość i które da się zdobyć.</p>
+    answer: Nie. Część linków konkurencji jest słaba albo ryzykowna. W analizie zostawiam tylko te, które mają wartość i które da się zdobyć.
   - id: faq-question-1791218723369
     question: Czym różni się Link Gap od analizy profilu linków?
-    answer: <p><a href="/oferta/analiza-profilu-linkow/" data-type="page" data-id="378">Analiza profilu linków</a> ocenia linki, które już masz. Link Gap pokazuje linki, których Ci brakuje w porównaniu z konkurencją. Najlepiej działają razem.</p>
+    answer: "[Analiza profilu linków](/oferta/analiza-profilu-linkow/) ocenia linki, które już masz. Link Gap pokazuje linki, których Ci brakuje w porównaniu z konkurencją. Najlepiej działają razem."
   - id: faq-question-1791218738699
     question: Kogo uznajesz za konkurencję?
-    answer: <p>Strony, które są w TOP 10 na Twoje najważniejsze frazy. Możesz też wskazać firmy, z którymi konkurujesz na rynku.</p>
+    answer: Strony, które są w TOP 10 na Twoje najważniejsze frazy. Możesz też wskazać firmy, z którymi konkurujesz na rynku.
   - id: faq-question-1791218752294
     question: Czy mogę wdrożyć wyniki sam?
-    answer: <p>Tak. Arkusz jest przygotowany tak, żebyś Ty albo Twój zespół mógł od razu zacząć pozyskiwać linki.</p>
+    answer: Tak. Arkusz jest przygotowany tak, żebyś Ty albo Twój zespół mógł od razu zacząć pozyskiwać linki.
 ---
 
 ## Czym jest analiza link gap?
@@ -70,6 +70,6 @@ Link Gap (nazywany też link intersect) to różnica między profilem linków Tw
 | Twoja strona + 3 konkurentów | od 1200 zł | do 7 dni roboczych |
 | Twoja strona + 5 konkurentów | od 1800 zł | do 12 dni roboczych |
 
-Analizę możesz wdrożyć samodzielnie albo zlecić mi pozyskiwanie linków w ramach [link buildingu](/oferta/link-building/).
+Analizę możesz wdrożyć samodzielnie albo zlecić mi pozyskiwanie linków w ramach <LinkRel href="/oferta/link-building/">link buildingu</LinkRel>.
 
-**[Zamów analizę link gap](/kontakt/)**
+<Cta label="Zamów analizę link gap" href="/kontakt/" />

@@ -28,19 +28,19 @@ faqTitle: Najczęściej zadawane pytania i odpowiedzi
 faq:
   - id: faq-question-1769768151638
     question: Kiedy pojawiają się pierwsze efekty pozycjonowania lokalnego?
-    answer: <p>Pierwsze efekty zazwyczaj pojawiają się w ciągu pierwszych trzech miesięcy działań. Wszystko zależy od aktualnego stanu strony, konkurencji i wizytówki Google.</p>
+    answer: Pierwsze efekty zazwyczaj pojawiają się w ciągu pierwszych trzech miesięcy działań. Wszystko zależy od aktualnego stanu strony, konkurencji i wizytówki Google.
   - id: faq-question-1769768228170
     question: Czy pozycjonowanie lokalne obejmuje wizytówkę Google?
-    answer: <p>Tak. Wizytówka Google to jeden z kluczowych elementów w pozycjonowaniu lokalnym.</p>
+    answer: Tak. Wizytówka Google to jeden z kluczowych elementów w pozycjonowaniu lokalnym.
   - id: faq-question-1769768339471
     question: Ile kosztuje pozycjonowanie lokalne?
-    answer: <p>Koszt pozycjonowania lokalnego zaczyna się od 1500 zł netto miesięcznie.</p>
+    answer: Koszt pozycjonowania lokalnego zaczyna się od 1500 zł netto miesięcznie.
   - id: faq-question-1769770018045
     question: Czy pozycjonowanie lokalne działa tylko dla sklepów stacjonarnych?
-    answer: <p>Nie. Pozycjonowanie lokalne sprawdza się zarówno dla firm stacjonarnych, jak i usługowych, które dojeżdżają do klienta na konkretnym obszarze.</p>
+    answer: Nie. Pozycjonowanie lokalne sprawdza się zarówno dla firm stacjonarnych, jak i usługowych, które dojeżdżają do klienta na konkretnym obszarze.
   - id: faq-question-1769770077884
     question: Czy mogę się pozycjonować w kilku miastach?
-    answer: <p>Tak, ale strategia zależy od modelu biznesowego. Czasem lepiej skupić się na jednym mieście i zdominować lokalne wyniki, a czasem budować widoczność stopniowo w kilku lokalizacjach.</p>
+    answer: Tak, ale strategia zależy od modelu biznesowego. Czasem lepiej skupić się na jednym mieście i zdominować lokalne wyniki, a czasem budować widoczność stopniowo w kilku lokalizacjach.
 ---
 
 ## Dla kogo jest pozycjonowanie lokalne?
@@ -91,4 +91,4 @@ Wpisy w sprawdzonych katalogach firm, wzmianki w lokalnych portalach i u partner
 
 Jeśli potrzebujesz tylko jednorazowej optymalizacji wizytówki, to koszt od 700 zł netto. Cena zależy od konkurencji w branży, obszaru działania i zakresu prac.
 
-**[Sprawdź, jak wypadasz w mapach](/kontakt/)**
+<Cta label="Sprawdź, jak wypadasz w mapach" href="/kontakt/" />

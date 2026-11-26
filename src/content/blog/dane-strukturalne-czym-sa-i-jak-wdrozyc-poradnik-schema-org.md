@@ -2,29 +2,29 @@
 title: Dane strukturalne – czym są i jak wdrożyć? Poradnik Schema.org
 seoTitle: Dane strukturalne – kompletny poradnik | Kamil Wnęk
 description: Sprawdź, jak wdrożyć Schema.org na stronie. Poznaj najważniejsze typy danych strukturalnych, przykłady JSON-LD oraz znaczenie Schema dla SEO i AI.
-pubDate: 2026-06-19T10:18:54Z
-updatedDate: 2026-10-30T20:22:46Z
+pubDate: 2026-06-19
+updatedDate: 2026-10-30
 categories:
   - techniczne-seo
   - podstawy-seo
-cover: ../../assets/images/wp/2026/06/dane-strukturalne-hero.png
+cover: ../../assets/images/blog/dane-strukturalne-czym-sa-i-jak-wdrozyc-poradnik-schema-org/cover.png
 coverAlt: hero image do artykułu "Dane strukturalne - czym są i jak wdrożyć? Poradnik Schema.org"
 faq:
   - id: faq-question-1781551879067
     question: Czy Schema wpływają na pozycję w Google?
-    answer: <p>Nie. Poprawiają interpretację strony i mogą zwiększyć CTR dzięki rozszerzonym wynikom wyszukiwania, ale nie są czynnikiem rankingowym wpływającym na pozycje.</p>
+    answer: Nie. Poprawiają interpretację strony i mogą zwiększyć CTR dzięki rozszerzonym wynikom wyszukiwania, ale nie są czynnikiem rankingowym wpływającym na pozycje.
   - id: faq-question-1781552051463
     question: Czy każda strona powinna mieć Schema?
-    answer: <p>Tak. Każda strona może korzystać z takich typów danych jak Organization, Person lub Article.</p>
+    answer: Tak. Każda strona może korzystać z takich typów danych jak Organization, Person lub Article.
   - id: faq-question-1781552084290
     question: Czy WordPress dodaje automatycznie dane strukturalne?
-    answer: <p>Nie. Natomiast wiele motywów i wtyczek wdraża podstawowe dane strukturalne, jednak często wymagają one rozbudowy i uzupełnienia. Najczęściej jest to dostępne w płatnych wersjach.</p>
+    answer: Nie. Natomiast wiele motywów i wtyczek wdraża podstawowe dane strukturalne, jednak często wymagają one rozbudowy i uzupełnienia. Najczęściej jest to dostępne w płatnych wersjach.
   - id: faq-question-1781552203215
     question: Co to są dane strukturalne?
-    answer: <p>Dane strukturalne to znaczniki dodawane do kodu strony internetowej, które pomagają wyszukiwarkom i systemom AI zrozumieć jej zawartość. Dzięki nim można jednoznacznie określić, czy dana treść opisuje firmę, osobę, produkt, usługę, wydarzenie lub artykuł.</p>
+    answer: Dane strukturalne to znaczniki dodawane do kodu strony internetowej, które pomagają wyszukiwarkom i systemom AI zrozumieć jej zawartość. Dzięki nim można jednoznacznie określić, czy dana treść opisuje firmę, osobę, produkt, usługę, wydarzenie lub artykuł.
   - id: faq-question-1781552375651
     question: Czym jest Schema.org?
-    answer: <p>Schema.org to standard danych strukturalnych rozwijany przez największe wyszukiwarki internetowe. Zawiera zestaw typów i właściwości umożliwiających opisywanie różnych elementów strony w sposób zrozumiały dla robotów.</p>
+    answer: Schema.org to standard danych strukturalnych rozwijany przez największe wyszukiwarki internetowe. Zawiera zestaw typów i właściwości umożliwiających opisywanie różnych elementów strony w sposób zrozumiały dla robotów.
 ---
 
 Dane strukturalne (Schema.org) to dodatkowe informacje umieszczane w kodzie strony internetowej, które pomagają wyszukiwarkom i AI lepiej zrozumieć zawartość witryny. To dzięki nim w Google wyświetlane są rozszerzone wyniki wyszukiwania (np. cena produktu, dostępność).
@@ -108,14 +108,14 @@ Dane strukturalne można wdrożyć na trzy sposoby:
 
 Poniżej screen danych strukturalnych dla Organizacji.
 
-![](../../assets/images/wp/2026/06/schema-organization.jpg)
+![](../../assets/images/blog/dane-strukturalne-czym-sa-i-jak-wdrozyc-poradnik-schema-org/schema-organization.jpg)
 
 ## Jak wdrożyć dane strukturalne?
 
 Są co najmniej trzy drogi do wdrożenia danych strukturalnych:
 
 - ręczne pisanie kodu korzystając z dokumentacji schema.org,
-- użycie generatora schema (np. [https://technicalseo.com/tools/schema-markup-generator/](https://technicalseo.com/tools/schema-markup-generator/)),
+- użycie generatora schema (np. <LinkRel href="https://technicalseo.com/tools/schema-markup-generator/">https://technicalseo.com/tools/schema-markup-generator/</LinkRel>),
 - w przypadku korzystania z WordPressa użycie wtyczki takiej jak RankMath czy All in One SEO. Inne popularne CMSy posiadają również dedykowane rozwiązania do automatycznego generowania danych strukturalnych.
 
 **TIP: Niektóre szablony WordPress – w szczególności Buildery mają funkcję generowania automatycznych danych strukturalnych. Sprawdź w ustawieniach szablonu, jak je wyłączyć jeśli korzystasz z wtyczki lub sam dodajesz kod.**
@@ -124,12 +124,12 @@ Są co najmniej trzy drogi do wdrożenia danych strukturalnych:
 
 Poprawność danych strukturalnych można przetestować po wdrożeniu na produkcję lub przed wdrożeniem. Do testów używa się dwóch narzędzi:
 
-- [Schema Markup Validator](https://validator.schema.org/) od schema.org. Sprawdza całą składnię schema.org, nie skupia się na typach wspieranych przez Google.
-- [Rich Results Test](https://search.google.com/test/rich-results) od Google. Sprawdza, czy kod kwalifikuje się do rozszerzonych wyników wyszukiwania.
+- <LinkRel href="https://validator.schema.org/">Schema Markup Validator</LinkRel> od schema.org. Sprawdza całą składnię schema.org, nie skupia się na typach wspieranych przez Google.
+- <LinkRel href="https://search.google.com/test/rich-results">Rich Results Test</LinkRel> od Google. Sprawdza, czy kod kwalifikuje się do rozszerzonych wyników wyszukiwania.
 
 Kolejnym narzędziem do monitoringu poprawności i ewentualnych uwag w Schemie jest Google Search Console. W zależności od typu danych strukturalnych w panelu GSC mogą pojawić się następujące zakładki:
 
-![](../../assets/images/wp/2026/06/gsc-dane-strukturalne.jpg)
+![](../../assets/images/blog/dane-strukturalne-czym-sa-i-jak-wdrozyc-poradnik-schema-org/gsc-dane-strukturalne.jpg)
 
 ## Najważniejsze typy Schema.org
 
@@ -224,7 +224,7 @@ Najczęściej pojawiające się problemy dotyczące wdrożenia Schema to:
 
 ## Źródła
 
-- „We Tracked 1,885 Pages Adding Schema. AI Citations Barely Moved” Louise Linehan, Xibeijia Guan [https://ahrefs.com/blog/schema-ai-citations/](https://ahrefs.com/blog/schema-ai-citations/)
-- „Schema.org. Dane strukturalne, które rozumie Google (i co z nich zostaje w erze AI)” Ewelina Podrez-Siama [https://podrez.pl/dane-strukturalne-schema-w-pigulce/](https://podrez.pl/dane-strukturalne-schema-w-pigulce/)
-- [https://schema.org](https://schema.org)
-- [https://developers.google.com/search/updates?hl=pl#removing-faq-rich-result](https://developers.google.com/search/updates?hl=pl#removing-faq-rich-result)
+- „We Tracked 1,885 Pages Adding Schema. AI Citations Barely Moved” Louise Linehan, Xibeijia Guan <LinkRel href="https://ahrefs.com/blog/schema-ai-citations/">https://ahrefs.com/blog/schema-ai-citations/</LinkRel>
+- „Schema.org. Dane strukturalne, które rozumie Google (i co z nich zostaje w erze AI)” Ewelina Podrez-Siama <LinkRel href="https://podrez.pl/dane-strukturalne-schema-w-pigulce/">https://podrez.pl/dane-strukturalne-schema-w-pigulce/</LinkRel>
+- <LinkRel href="https://schema.org">https://schema.org</LinkRel>
+- <LinkRel href="https://developers.google.com/search/updates?hl=pl#removing-faq-rich-result">https://developers.google.com/search/updates?hl=pl#removing-faq-rich-result</LinkRel>

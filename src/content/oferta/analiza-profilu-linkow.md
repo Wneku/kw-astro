@@ -25,16 +25,16 @@ faqTitle: Najczęściej zadawane pytania i odpowiedzi
 faq:
   - id: faq-question-1769772190777
     question: Ile trwa analiza profilu linków?
-    answer: <p>Zwykle czas to 5 dni roboczych, a w przypadku większych projektów może potrwać nawet do dwóch tygodni. </p>
+    answer: Zwykle czas to 5 dni roboczych, a w przypadku większych projektów może potrwać nawet do dwóch tygodni.
   - id: faq-question-1769772400635
     question: Czy korzystasz z Google Disavow Tool?
-    answer: <p>Tak, ale tylko wtedy, gdy jest to niezbędne. Disavow to ostateczność, a nie standardowy krok w SEO.</p>
+    answer: Tak, ale tylko wtedy, gdy jest to niezbędne. Disavow to ostateczność, a nie standardowy krok w SEO.
   - id: faq-question-1769772507185
     question: Czy każdy słaby link należy usuwać?
-    answer: <p>Nie. Usuwanie linków „na zapas” potrafi bardziej zaszkodzić, niż pomóc. Analiza profilu linków pozwala odróżnić linki nieidealne od linków szkodliwych.</p>
+    answer: Nie. Usuwanie linków „na zapas” potrafi bardziej zaszkodzić, niż pomóc. Analiza profilu linków pozwala odróżnić linki nieidealne od linków szkodliwych.
   - id: faq-question-1791221534466
     question: Czego potrzebujesz ode mnie?
-    answer: <p>Dostępu do Google Search Console i, jeśli masz, informacji o wcześniejszych działaniach link buildingowych.</p>
+    answer: Dostępu do Google Search Console i, jeśli masz, informacji o wcześniejszych działaniach link buildingowych.
 ---
 
 ## Kiedy warto zrobić analizę linków?
@@ -71,11 +71,11 @@ faq:
 
 Ostateczna cena zależy od wielkości i złożoności profilu oraz zakresu analizy konkurencji. Termin liczę od otrzymania kompletu danych i dostępów.
 
-**[Zamów analizę linków](/kontakt/)**
+<Cta label="Zamów analizę linków" href="/kontakt/" />
 
 ## Co dalej po analizie?
 
 Analiza porządkuje obecny profil, ale nie zastępuje budowania nowych linków. Na jej podstawie możesz:
 
-- zacząć [link building](/oferta/link-building/) z jasnym planem,
-- sprawdzić, skąd linki mają konkurenci, w [analizie Link Gap](/oferta/link-gap/).
+- zacząć <LinkRel href="/oferta/link-building/">link building</LinkRel> z jasnym planem,
+- sprawdzić, skąd linki mają konkurenci, w <LinkRel href="/oferta/link-gap/">analizie Link Gap</LinkRel>.

@@ -19,7 +19,7 @@ const { title, items } = Astro.props;
       {title && <h2 id={slugify(title)}>{title}</h2>}
       <div class="faq">
         {items.map((item) => (
-          <details class="faq__item" id={item.id}>
+          <details class="faq__item" id={item.id || undefined}>
             <summary class="faq__q">{item.question}</summary>
             <div class="faq__a" set:html={item.answer} />
           </details>

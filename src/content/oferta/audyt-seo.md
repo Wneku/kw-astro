@@ -31,19 +31,19 @@ faqTitle: Najczęściej zadawane pytania i odpowiedzi
 faq:
   - id: faq-question-1766689781476
     question: Czy audyt SEO wystarczy, żeby strona była wysoko w Google?
-    answer: <p>Nie. Audyt pokazuje, co zrobić, a efekt daje dopiero wdrożenie zaleceń.</p>
+    answer: Nie. Audyt pokazuje, co zrobić, a efekt daje dopiero wdrożenie zaleceń.
   - id: faq-question-1790974766255
     question: Kto wdraża zmiany z audytu?
-    answer: <p>Zwykle wdraża Twój programista lub zespół, dlatego zalecenia opisuję konkretnie. Mogę też pomóc przy wdrożeniu w ramach konsultacji albo stałej współpracy.</p>
+    answer: Zwykle wdraża Twój programista lub zespół, dlatego zalecenia opisuję konkretnie. Mogę też pomóc przy wdrożeniu w ramach konsultacji albo stałej współpracy.
   - id: faq-question-1790974773480
     question: Jak często robić audyt?
-    answer: <p>Pełny audyt zwykle co 6–12 miesięcy, a dodatkowo po dużych zmianach na stronie i po spadkach ruchu.</p>
+    answer: Pełny audyt zwykle co 6–12 miesięcy, a dodatkowo po dużych zmianach na stronie i po spadkach ruchu.
   - id: faq-question-1790974779909
     question: Czego potrzebujesz ode mnie?
-    answer: <p>Dostępu do Google Search Console i GA4 oraz krótkiej informacji o celach biznesowych. Dostęp do panelu CMS nie jest konieczny.</p>
+    answer: Dostępu do Google Search Console i GA4 oraz krótkiej informacji o celach biznesowych. Dostęp do panelu CMS nie jest konieczny.
   - id: faq-question-1790974787074
     question: Czy po audycie możemy dalej współpracować?
-    answer: <p>Tak. Wiele osób zaczyna od audytu, a potem przechodzi na konsultacje albo stałe pozycjonowanie.</p>
+    answer: Tak. Wiele osób zaczyna od audytu, a potem przechodzi na konsultacje albo stałe pozycjonowanie.
 ---
 
 ## Kiedy audyt SEO jest potrzebny?
@@ -100,7 +100,7 @@ Raport otrzymujesz w formacie PDF + arkusz Excel z listą URL-i.
 
 Cena zależy od wielkości strony i zakresu. Można też zamówić audyt tylko jednego obszaru, na przykład audyt techniczny albo linków. Dokładną wycenę podaję po krótkiej rozmowie.
 
-**[Zapytaj o wycenę audytu](/kontakt/)**
+<Cta label="Zapytaj o wycenę audytu" href="/kontakt/" />
 
 ## Jak wygląda współpraca?
 

@@ -35,5 +35,5 @@ export const MEGA_MENU_CTA = {
   title: 'Nie wiesz, od czego zacząć?',
   text: 'Umów bezpłatną rozmowę – sprawdzimy, które działania SEO dadzą Twojej stronie najwięcej.',
   label: 'Umów rozmowę',
-  href: '/kontakt/#kalendarz',
+  href: '/kontakt/',
 };

@@ -13,7 +13,7 @@
     "check": "astro check",
     "import:wp": "node scripts/import-wp.mjs",
     "verify": "node scripts/verify-migration.mjs",
-    "nowy-wpis": "node scripts/new-post.mjs"
+    "publikuj": "node scripts/publish.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.10",
@@ -26,7 +26,15 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@tiptap/core": "^3.35.0",
+    "@tiptap/extension-image": "^3.35.0",
+    "@tiptap/extension-table": "^3.35.0",
+    "@tiptap/extensions": "^3.35.0",
+    "@tiptap/pm": "^3.35.0",
+    "@tiptap/starter-kit": "^3.35.0",
     "cheerio": "^1.2.0",
+    "rehype-parse": "^9.0.1",
+    "rehype-remark": "^10.0.1",
     "turndown": "^7.2.5",
     "turndown-plugin-gfm": "^1.0.2",
     "typescript": "^6.0.3",
