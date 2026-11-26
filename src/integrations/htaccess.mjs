@@ -1,7 +1,7 @@
 /**
  * Generuje dist/.htaccess dla hostingu seohost (LiteSpeed/Apache):
  *  - HTTPS + domena bez www,
- *  - 301 ze starych adresów WordPressa (feed, sitemapy Rank Math, autor, paginacja, obrazki),
+ *  - 301 ze starych adresów WordPressa (feed, inne nazwy sitemap, autor, paginacja, obrazki),
  *  - strona 404, cache dla zasobów, nagłówki bezpieczeństwa.
  */
 import fs from 'node:fs/promises';
@@ -55,7 +55,8 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
 # Stare adresy WordPressa
 RewriteRule ^(blog/)?feed/?$ /rss.xml [R=301,L]
 RewriteRule ^(.+)/feed/?$ /$1/ [R=301,L]
-RewriteRule ^(sitemap_index|page-sitemap|post-sitemap|category-sitemap|sitemap)\\.xml$ /sitemap-index.xml [R=301,L]
+# sitemapy mają te same adresy co w Rank Math; inne popularne nazwy → spis map
+RewriteRule ^(sitemap|sitemap-index|wp-sitemap)\\.xml$ /sitemap_index.xml [R=301,L]
 RewriteRule ^author/ /o-mnie/ [R=301,L]
 RewriteRule ^strona-glowna/?$ / [R=301,L]
 # paginacja: /page/1/ to strona główna listingu (kolejne strony istnieją)

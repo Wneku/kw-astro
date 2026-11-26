@@ -93,4 +93,4 @@ Wysyłka bez zewnętrznych usług: `public/api/kontakt.php` (PHP `mail()` na seo
 2. Wgraj **zawartość** `dist/` (łącznie z ukrytym plikiem `.htaccess` i folderem `api/`) do katalogu domeny (`public_html`) przez FTP/menedżer plików.
    Przed wgraniem zrób kopię obecnego WordPressa i przenieś go poza `public_html`.
 3. Przetestuj formularze (sekcja wyżej).
-4. Google Search Console → prześlij `https://kamilwnek.pl/sitemap-index.xml`, sprawdź kilka adresów w „Sprawdzanie adresu URL”.
+4. Google Search Console → prześlij `https://kamilwnek.pl/sitemap_index.xml`, sprawdź kilka adresów w „Sprawdzanie adresu URL”.
