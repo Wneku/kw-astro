@@ -10,6 +10,8 @@
 #   FTP_SERVER                               – adres serwera FTP z panelu seohost (np. s1.seohost.pl), wspólny
 #   FTP_USERNAME, FTP_PASSWORD               – konto FTP głównej domeny kamilwnek.pl
 #   FTP_TEST_USERNAME, FTP_TEST_PASSWORD     – konto FTP subdomeny dev.kamilwnek.pl
+#   TEST_HTTP_AUTH                           – login:hasło, którym otwiera się dev.kamilwnek.pl w przeglądarce
+#                                              (ochrona hasłem z panelu seohost; potrzebne do kontroli celu)
 #
 # Zabezpieczenie: przed wysyłką workflow wgrywa plik kontrolny i sprawdza, że widać go pod adresem
 # docelowej strony. Jeśli dane FTP wskazują inną stronę (np. pomylone sekrety), nic nie zostanie wysłane.
@@ -59,10 +61,11 @@ jobs:
           PROD_PASS: ${{ secrets.FTP_PASSWORD }}
           TEST_USER: ${{ secrets.FTP_TEST_USERNAME }}
           TEST_PASS: ${{ secrets.FTP_TEST_PASSWORD }}
+          TEST_HTTP_AUTH: ${{ secrets.TEST_HTTP_AUTH }}
         run: |
           if [ "$IS_PROD" = "true" ]; then
             echo "Środowisko: PRODUKCJA ($PROD_HOST)"
-            user="$PROD_USER"; pass="$PROD_PASS"; dir="$FTP_DIR_PROD"; host="$PROD_HOST"; names="FTP_USERNAME / FTP_PASSWORD"
+            user="$PROD_USER"; pass="$PROD_PASS"; dir="$FTP_DIR_PROD"; host="$PROD_HOST"; names="FTP_USERNAME / FTP_PASSWORD"; http_auth=""
             echo "DEPLOY_ENV=production" >> "$GITHUB_ENV"
             if [ "$PROD_DEPLOY" != "true" ]; then
               echo "::notice::Produkcja jeszcze na WordPressie (PROD_DEPLOY: 'false') – tylko sprawdzenie i build, bez wysyłki."
@@ -71,7 +74,7 @@ jobs:
             fi
           else
             echo "Środowisko: TEST ($TEST_HOST)"
-            user="$TEST_USER"; pass="$TEST_PASS"; dir="$FTP_DIR_TEST"; host="$TEST_HOST"; names="FTP_TEST_USERNAME / FTP_TEST_PASSWORD"
+            user="$TEST_USER"; pass="$TEST_PASS"; dir="$FTP_DIR_TEST"; host="$TEST_HOST"; names="FTP_TEST_USERNAME / FTP_TEST_PASSWORD"; http_auth="$TEST_HTTP_AUTH"
             echo "DEPLOY_ENV=test" >> "$GITHUB_ENV"
           fi
           [ -z "$FTP_SERVER" ] && { echo "::error::Brak sekretu FTP_SERVER"; exit 1; }
@@ -85,9 +88,14 @@ jobs:
           echo "$token" > kw-deploy-check.txt
           ftp() { curl -sS -k --ssl-reqd --user "$user:$pass" "$@"; }
           ftp -T kw-deploy-check.txt "ftp://$FTP_SERVER/${dir}kw-deploy-check.txt" || { echo "::error::Nie udało się połączyć z FTP ($names)"; exit 1; }
-          seen=$(curl -s "https://$host/kw-deploy-check.txt?$token" || true)
+          code=$(curl -s -o seen.txt -w '%{http_code}' ${http_auth:+-u "$http_auth"} "https://$host/kw-deploy-check.txt?$token" || true)
+          seen=$(cat seen.txt 2>/dev/null || true); rm -f seen.txt
           ftp "ftp://$FTP_SERVER/" -Q "DELE ${dir}kw-deploy-check.txt" -o /dev/null || true
           rm -f kw-deploy-check.txt
+          if [ "$code" = "401" ]; then
+            echo "::error::$host wymaga hasła, a kontrola go nie zna albo jest błędne – dodaj/popraw sekret TEST_HTTP_AUTH (login:hasło do strony). Nic nie zostało wysłane."
+            exit 1
+          fi
           if [ "$seen" != "$token" ]; then
             echo "::error::Dane FTP ($names, katalog $dir) NIE wskazują na $host – plik kontrolny nie pojawił się pod tym adresem. Nic nie zostało wysłane. Sprawdź sekrety."
             exit 1

@@ -92,7 +92,7 @@ dostęp na hasło (ustawiony w panelu seohost), `robots.txt` z `Disallow: /`, be
 
 [.github/workflows/deploy.yml](.github/workflows/deploy.yml): push do `main` lub `dev` → `npm run check` → `npm run build`
 → wysyłka FTPS na seohost (tylko zmienione pliki). Sekrety w GitHub → Settings → Secrets and variables → Actions:
-`FTP_SERVER` (wspólny), `FTP_USERNAME` + `FTP_PASSWORD` (konto głównej domeny kamilwnek.pl), `FTP_TEST_USERNAME` + `FTP_TEST_PASSWORD` (konto dev.kamilwnek.pl).
+`FTP_SERVER` (wspólny), `FTP_USERNAME` + `FTP_PASSWORD` (konto głównej domeny kamilwnek.pl), `FTP_TEST_USERNAME` + `FTP_TEST_PASSWORD` (konto dev.kamilwnek.pl), `TEST_HTTP_AUTH` (`login:hasło` do dev.kamilwnek.pl – do kontroli celu).
 Katalogi docelowe są w samym workflow (`FTP_DIR_PROD: public_html/`, `FTP_DIR_TEST`) – **względem folderu po zalogowaniu
 danym kontem FTP**, nie pełna ścieżka `/home/…`.
 
