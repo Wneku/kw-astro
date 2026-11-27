@@ -1,5 +1,5 @@
 # Build i wdrożenie na seohost:
-#   gałąź main → produkcja (kamilwnek.pl)
+#   gałąź main → produkcja (kamilwnek.pl) – dopiero gdy PROD_DEPLOY: 'true' (dzień przenosin z WordPressa)
 #   gałąź dev  → wersja testowa (dev.kamilwnek.pl, noindex)
 #
 # Treści publikuje przycisk „Opublikuj” w /admin (npm run publikuj) – od razu na main i dev.
@@ -8,8 +8,11 @@
 #
 # Sekrety (GitHub → Settings → Secrets and variables → Actions → Repository secrets):
 #   FTP_SERVER                               – adres serwera FTP z panelu seohost (np. s1.seohost.pl), wspólny
-#   FTP_USERNAME, FTP_PASSWORD               – konto FTP produkcji
-#   FTP_TEST_USERNAME, FTP_TEST_PASSWORD     – osobne konto FTP subdomeny dev.kamilwnek.pl
+#   FTP_USERNAME, FTP_PASSWORD               – konto FTP głównej domeny kamilwnek.pl
+#   FTP_TEST_USERNAME, FTP_TEST_PASSWORD     – konto FTP subdomeny dev.kamilwnek.pl
+#
+# Zabezpieczenie: przed wysyłką workflow wgrywa plik kontrolny i sprawdza, że widać go pod adresem
+# docelowej strony. Jeśli dane FTP wskazują inną stronę (np. pomylone sekrety), nic nie zostanie wysłane.
 #
 # Katalogi docelowe nie są tajne, więc są tutaj. Ścieżki są WZGLĘDNE – od folderu, w którym ląduje się
 # po zalogowaniu danym kontem FTP. Nie wpisuj pełnej ścieżki /home/… – zostałaby odtworzona w środku.
@@ -21,8 +24,12 @@ on:
   workflow_dispatch:
 
 env:
+  # Produkcja stoi jeszcze na WordPressie. Push na main tylko sprawdza i buduje stronę – bez wysyłki.
+  # W dniu przenosin (kopia WordPressa zrobiona, public_html opróżnione) zmień na 'true'.
+  PROD_DEPLOY: 'false'
+  PROD_HOST: kamilwnek.pl
+  TEST_HOST: dev.kamilwnek.pl
   FTP_DIR_PROD: public_html/
-  # folder dev.kamilwnek.pl widziany po zalogowaniu kontem FTP_TEST_* (np. ./ albo public_html/)
   FTP_DIR_TEST: public_html/
 
 # jedno wdrożenie naraz na gałąź; kolejne czeka (nie przerywamy wysyłki w połowie)
@@ -54,18 +61,38 @@ jobs:
           TEST_PASS: ${{ secrets.FTP_TEST_PASSWORD }}
         run: |
           if [ "$IS_PROD" = "true" ]; then
-            echo "Środowisko: PRODUKCJA (kamilwnek.pl)"
-            user="$PROD_USER"; pass="$PROD_PASS"; dir="$FTP_DIR_PROD"; names="FTP_USERNAME / FTP_PASSWORD"
+            echo "Środowisko: PRODUKCJA ($PROD_HOST)"
+            user="$PROD_USER"; pass="$PROD_PASS"; dir="$FTP_DIR_PROD"; host="$PROD_HOST"; names="FTP_USERNAME / FTP_PASSWORD"
             echo "DEPLOY_ENV=production" >> "$GITHUB_ENV"
+            if [ "$PROD_DEPLOY" != "true" ]; then
+              echo "::notice::Produkcja jeszcze na WordPressie (PROD_DEPLOY: 'false') – tylko sprawdzenie i build, bez wysyłki."
+              echo "UPLOAD=false" >> "$GITHUB_ENV"
+              exit 0
+            fi
           else
-            echo "Środowisko: TEST (subdomena)"
-            user="$TEST_USER"; pass="$TEST_PASS"; dir="$FTP_DIR_TEST"; names="FTP_TEST_USERNAME / FTP_TEST_PASSWORD"
+            echo "Środowisko: TEST ($TEST_HOST)"
+            user="$TEST_USER"; pass="$TEST_PASS"; dir="$FTP_DIR_TEST"; host="$TEST_HOST"; names="FTP_TEST_USERNAME / FTP_TEST_PASSWORD"
             echo "DEPLOY_ENV=test" >> "$GITHUB_ENV"
           fi
           [ -z "$FTP_SERVER" ] && { echo "::error::Brak sekretu FTP_SERVER"; exit 1; }
           [ -z "$user" ] || [ -z "$pass" ] && { echo "::error::Brak sekretów $names – dodaj je w Settings → Secrets and variables → Actions"; exit 1; }
-          [ -z "$dir" ] && { echo "::error::Nie ustawiono katalogu docelowego (FTP_DIR_TEST w .github/workflows/deploy.yml)"; exit 1; }
+          [ -z "$dir" ] && { echo "::error::Nie ustawiono katalogu docelowego w .github/workflows/deploy.yml"; exit 1; }
           echo "FTP_DIR=$dir" >> "$GITHUB_ENV"
+          echo "UPLOAD=true" >> "$GITHUB_ENV"
+
+          # Kontrola celu: plik z losowym kodem przez FTP → musi być widoczny pod https://$host/
+          token=$(openssl rand -hex 16)
+          echo "$token" > kw-deploy-check.txt
+          ftp() { curl -sS -k --ssl-reqd --user "$user:$pass" "$@"; }
+          ftp -T kw-deploy-check.txt "ftp://$FTP_SERVER/${dir}kw-deploy-check.txt" || { echo "::error::Nie udało się połączyć z FTP ($names)"; exit 1; }
+          seen=$(curl -s "https://$host/kw-deploy-check.txt?$token" || true)
+          ftp "ftp://$FTP_SERVER/" -Q "DELE ${dir}kw-deploy-check.txt" -o /dev/null || true
+          rm -f kw-deploy-check.txt
+          if [ "$seen" != "$token" ]; then
+            echo "::error::Dane FTP ($names, katalog $dir) NIE wskazują na $host – plik kontrolny nie pojawił się pod tym adresem. Nic nie zostało wysłane. Sprawdź sekrety."
+            exit 1
+          fi
+          echo "Cel potwierdzony: $names → https://$host/"
 
       - run: npm ci
 
@@ -77,6 +104,7 @@ jobs:
         run: npm run build
 
       - name: Wysyłka na seohost (tylko zmienione pliki)
+        if: env.UPLOAD == 'true'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}

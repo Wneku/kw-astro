@@ -71,6 +71,11 @@ Uwaga: adres URL opublikowanej pozycji jest zablokowany („zmień” pyta o pot
 | `main` | produkcja – kamilwnek.pl           | treści („Opublikuj”) + kod po `npm run wdroz`       |
 | `dev`  | wersja testowa – dev.kamilwnek.pl  | treści („Opublikuj”) + każdy push kodu              |
 
+> **Do dnia przenosin z WordPressa** produkcja jest wyłączona (`PROD_DEPLOY: 'false'` w workflow): push na `main`
+> tylko sprawdza i buduje stronę. Przed włączeniem: kopia WordPressa, opróżnione `public_html`, potem `'true'`.
+> Każde wdrożenie najpierw sprawdza plikiem kontrolnym, że dane FTP wskazują właściwą stronę – pomylone sekrety
+> zatrzymują wdrożenie, zanim cokolwiek zostanie wysłane.
+
 Lokalnie pracujesz zawsze na **`dev`**:
 
 - **Treść** (wpis, strona, usługa) → **Opublikuj** w `/admin`. Commit samych treści idzie na `dev` i – bez przełączania
@@ -87,7 +92,7 @@ dostęp na hasło (ustawiony w panelu seohost), `robots.txt` z `Disallow: /`, be
 
 [.github/workflows/deploy.yml](.github/workflows/deploy.yml): push do `main` lub `dev` → `npm run check` → `npm run build`
 → wysyłka FTPS na seohost (tylko zmienione pliki). Sekrety w GitHub → Settings → Secrets and variables → Actions:
-`FTP_SERVER` (wspólny), `FTP_USERNAME` + `FTP_PASSWORD` (produkcja), `FTP_TEST_USERNAME` + `FTP_TEST_PASSWORD` (subdomena).
+`FTP_SERVER` (wspólny), `FTP_USERNAME` + `FTP_PASSWORD` (konto głównej domeny kamilwnek.pl), `FTP_TEST_USERNAME` + `FTP_TEST_PASSWORD` (konto dev.kamilwnek.pl).
 Katalogi docelowe są w samym workflow (`FTP_DIR_PROD: public_html/`, `FTP_DIR_TEST`) – **względem folderu po zalogowaniu
 danym kontem FTP**, nie pełna ścieżka `/home/…`.
 
