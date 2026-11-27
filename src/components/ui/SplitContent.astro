@@ -1,0 +1,31 @@
+---
+/**
+ * Wstawia dodatkowy blok (slot "insert") na końcu wybranej sekcji treści z Markdown,
+ * czyli tuż przed nagłówkiem h2, który następuje po nagłówku o id `afterHeading`.
+ *
+ *   <SplitContent afterHeading="dziele-sie-wiedza" class="prose">
+ *     <Content />
+ *     <div slot="insert">…</div>
+ *   </SplitContent>
+ *
+ * Treść po obu stronach zostaje w kontenerze z klasą `class` (np. .prose), a wstawka jest poza nim –
+ * style treści nie psują kart i ikon. Gdy nagłówka nie ma (np. zmieniony tytuł sekcji), wstawka trafia na koniec.
+ */
+export interface Props {
+  afterHeading: string;
+  class?: string;
+}
+const { afterHeading, class: className } = Astro.props;
+const html = await Astro.slots.render('default');
+
+const start = html.indexOf(`<h2 id="${afterHeading}"`);
+const next = start === -1 ? -1 : html.indexOf('<h2', start + 1);
+const cut = next === -1 ? html.length : next;
+if (start === -1) console.warn(`[SplitContent] Nie ma nagłówka #${afterHeading} – wstawka trafi na koniec treści.`);
+const before = html.slice(0, cut);
+const after = html.slice(cut);
+---
+
+<div class={className} set:html={before} />
+<slot name="insert" />
+{after && <div class={className} set:html={after} />}

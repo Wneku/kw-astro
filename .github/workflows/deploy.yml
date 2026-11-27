@@ -1,33 +1,42 @@
-# Build i wdrożenie na seohost przy każdej zmianie w gałęzi main
-# (npm run publikuj, push z komputera albo ręcznie: zakładka Actions → Deploy → Run workflow).
+# Build i wdrożenie na seohost:
+#   gałąź main → produkcja (kamilwnek.pl)
+#   gałąź dev  → wersja testowa (dev.kamilwnek.pl, noindex)
 #
-# Wymagane sekrety (GitHub → Settings → Secrets and variables → Actions → Repository secrets):
-#   FTP_SERVER      – adres serwera FTP z panelu seohost (np. s1.seohost.pl)
-#   FTP_USERNAME    – login FTP
-#   FTP_PASSWORD    – hasło FTP
+# Treści publikuje przycisk „Opublikuj” w /admin (npm run publikuj) – od razu na main i dev.
+# Kod: push na dev → test; `npm run wdroz` → dev scalone z main → produkcja.
+# Ręcznie: zakładka Actions → Deploy → Run workflow (wybierz gałąź).
 #
-# Katalog docelowy (FTP_DIR niżej) nie jest tajny, więc jest tutaj, a nie w sekretach.
-# Ścieżka jest WZGLĘDNA – od folderu, w którym ląduje się po zalogowaniu FTP.
-# Nie wpisuj pełnej ścieżki /home/… – zostałaby odtworzona w środku katalogu FTP.
+# Sekrety (GitHub → Settings → Secrets and variables → Actions → Repository secrets):
+#   FTP_SERVER                               – adres serwera FTP z panelu seohost (np. s1.seohost.pl), wspólny
+#   FTP_USERNAME, FTP_PASSWORD               – konto FTP produkcji
+#   FTP_TEST_USERNAME, FTP_TEST_PASSWORD     – osobne konto FTP subdomeny dev.kamilwnek.pl
+#
+# Katalogi docelowe nie są tajne, więc są tutaj. Ścieżki są WZGLĘDNE – od folderu, w którym ląduje się
+# po zalogowaniu danym kontem FTP. Nie wpisuj pełnej ścieżki /home/… – zostałaby odtworzona w środku.
 name: Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   workflow_dispatch:
 
 env:
-  FTP_DIR: public_html/
+  FTP_DIR_PROD: public_html/
+  # folder dev.kamilwnek.pl widziany po zalogowaniu kontem FTP_TEST_* (np. ./ albo public_html/)
+  FTP_DIR_TEST: public_html/
 
-# jedno wdrożenie naraz; kolejne czeka (nie przerywamy wysyłki w połowie)
+# jedno wdrożenie naraz na gałąź; kolejne czeka (nie przerywamy wysyłki w połowie)
 concurrency:
-  group: deploy
+  group: deploy-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
   deploy:
+    if: github.ref_name == 'main' || github.ref_name == 'dev'
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      IS_PROD: ${{ github.ref_name == 'main' }}
     steps:
       - uses: actions/checkout@v5
 
@@ -36,21 +45,27 @@ jobs:
           node-version: 24
           cache: npm
 
-      # Sprawdzenie sekretów przed buildem – czytelny błąd zamiast komunikatu z akcji FTP
-      - name: Sprawdzenie sekretów FTP
+      - name: Wybór środowiska
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          PROD_USER: ${{ secrets.FTP_USERNAME }}
+          PROD_PASS: ${{ secrets.FTP_PASSWORD }}
+          TEST_USER: ${{ secrets.FTP_TEST_USERNAME }}
+          TEST_PASS: ${{ secrets.FTP_TEST_PASSWORD }}
         run: |
-          missing=""
-          for name in FTP_SERVER FTP_USERNAME FTP_PASSWORD; do
-            [ -z "${!name}" ] && missing="$missing $name"
-          done
-          if [ -n "$missing" ]; then
-            echo "::error::Brak sekretów:$missing – dodaj je w Settings → Secrets and variables → Actions → Repository secrets"
-            exit 1
+          if [ "$IS_PROD" = "true" ]; then
+            echo "Środowisko: PRODUKCJA (kamilwnek.pl)"
+            user="$PROD_USER"; pass="$PROD_PASS"; dir="$FTP_DIR_PROD"; names="FTP_USERNAME / FTP_PASSWORD"
+            echo "DEPLOY_ENV=production" >> "$GITHUB_ENV"
+          else
+            echo "Środowisko: TEST (subdomena)"
+            user="$TEST_USER"; pass="$TEST_PASS"; dir="$FTP_DIR_TEST"; names="FTP_TEST_USERNAME / FTP_TEST_PASSWORD"
+            echo "DEPLOY_ENV=test" >> "$GITHUB_ENV"
           fi
+          [ -z "$FTP_SERVER" ] && { echo "::error::Brak sekretu FTP_SERVER"; exit 1; }
+          [ -z "$user" ] || [ -z "$pass" ] && { echo "::error::Brak sekretów $names – dodaj je w Settings → Secrets and variables → Actions"; exit 1; }
+          [ -z "$dir" ] && { echo "::error::Nie ustawiono katalogu docelowego (FTP_DIR_TEST w .github/workflows/deploy.yml)"; exit 1; }
+          echo "FTP_DIR=$dir" >> "$GITHUB_ENV"
 
       - run: npm ci
 
@@ -65,8 +80,8 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          username: ${{ github.ref_name == 'main' && secrets.FTP_USERNAME || secrets.FTP_TEST_USERNAME }}
+          password: ${{ github.ref_name == 'main' && secrets.FTP_PASSWORD || secrets.FTP_TEST_PASSWORD }}
           # FTPS (szyfrowane). Gdyby seohost odrzucał połączenie – zmień na: ftp
           protocol: ftps
           local-dir: ./dist/

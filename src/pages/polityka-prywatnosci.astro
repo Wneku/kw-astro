@@ -19,12 +19,12 @@ const crumbs = [
   crumbs={crumbs}
   dateModified={page.data.updatedDate}
 >
-  <header class="container page-head">
+  <header class="container container--narrow page-head">
     <Breadcrumbs crumbs={crumbs} />
     <h1>{page.data.title}</h1>
     {page.data.updatedDate && <p class="updated">Ostatnia aktualizacja: {formatDate(page.data.updatedDate)}</p>}
   </header>
-  <div class="container">
+  <div class="container container--narrow">
     <article class="prose">
       <Content />
     </article>

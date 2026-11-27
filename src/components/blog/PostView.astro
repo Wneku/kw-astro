@@ -5,7 +5,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../ui/Breadcrumbs.astro';
 import AuthorBox from './AuthorBox.astro';
 import PostCard from './PostCard.astro';
-import Button from '../ui/Button.astro';
 import Faq from '../ui/Faq.astro';
 import Toc from './Toc.astro';
 import { formatDate, readingTime, wordCount, postHref, categoryHref, type Post } from '../../lib/blog';
@@ -124,10 +123,17 @@ const crumbs = [
         {/* FAQ z pól formularza (nowe wpisy z CMS). Wpisy z WordPressa mają FAQ wpisane w treść – wtedy nie dublujemy. */}
         {faqFromFields && <Faq title="Najczęściej zadawane pytania i odpowiedzi" items={data.faq} />}
 
-        <div class="post-cta">
-          <p>Chcesz, żebym sprawdził to na Twojej stronie?</p>
-          <Button href="/kontakt/">Umów bezpłatną rozmowę</Button>
-        </div>
+        <aside class="cta-box">
+          <p class="cta-box__title">Chcesz, żebym sprawdził to na Twojej stronie?</p>
+          <p class="cta-box__text">
+            Pracuję jako niezależny specjalista SEO, bez pośredników i przekazywania projektu dalej. Z kim porozmawiasz na początku, ten
+            zrobi audyt, poprowadzi konsultacje i zajmie się Twoją stroną.
+          </p>
+          <p class="cta-box__actions">
+            <a class="cta-box__btn" href="/kontakt/">Umów bezpłatną rozmowę</a>
+            <a class="cta-box__link" href="/oferta/konsultacje-seo/">Konsultacje SEO <span aria-hidden="true">→</span></a>
+          </p>
+        </aside>
 
         <AuthorBox />
       </div>
@@ -235,21 +241,6 @@ const crumbs = [
   }
   .post-body .prose {
     max-width: none;
-  }
-  .post-cta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-m);
-    padding: var(--space-l) var(--space-xl);
-    border-radius: var(--radius-l);
-    border: 1px solid var(--color-border);
-  }
-  .post-cta p {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    color: var(--color-heading);
   }
   .related-title {
     font-size: var(--step-3);

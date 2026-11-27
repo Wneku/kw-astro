@@ -112,6 +112,9 @@ $hits[] = $now;
 
 /* ───────────── Wiadomość ───────────── */
 $subject = 'Nowe zapytanie: ' . $source;
+// wersja testowa (subdomena) – od razu widać w skrzynce, że to nie prawdziwe zapytanie
+$host = preg_replace('/[^a-z0-9.:-]/', '', strtolower($_SERVER['HTTP_HOST'] ?? ''));
+if ($host !== 'kamilwnek.pl' && $host !== 'www.kamilwnek.pl') $subject = '[TEST ' . $host . '] ' . $subject;
 $body = implode("\n", [
     "Nowa wiadomość z formularza na " . SITE_NAME,
     str_repeat('-', 48),

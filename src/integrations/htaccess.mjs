@@ -34,6 +34,7 @@ export default function htaccess({ host = 'kamilwnek.pl' } = {}) {
         }
 
         const hostRe = escapeRe(host);
+
         const content = `# Wygenerowane automatycznie przez src/integrations/htaccess.mjs – nie edytuj w dist/
 Options -MultiViews -Indexes
 DirectoryIndex index.html
@@ -91,7 +92,7 @@ Header set Cache-Control "public, max-age=31536000, immutable"
 <FilesMatch "\\.html$">
 Header set Cache-Control "public, max-age=0, must-revalidate"
 </FilesMatch>
-Header always set X-Content-Type-Options "nosniff"
+${process.env.DEPLOY_ENV === 'test' ? '# wersja testowa – poza wyszukiwarkami\nHeader always set X-Robots-Tag "noindex, nofollow"\n' : ''}Header always set X-Content-Type-Options "nosniff"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
 Header always set X-Frame-Options "SAMEORIGIN"
 Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"

@@ -26,6 +26,8 @@ export default function sitemapCheck() {
     name: 'kamilwnek-sitemap-check',
     hooks: {
       'astro:build:done': async ({ dir, logger }) => {
+        // wersja testowa ma noindex na wszystkich stronach – kontrola dotyczy tylko produkcji
+        if (process.env.DEPLOY_ENV === 'test') return;
         const root = fileURLToPath(dir);
         const inMaps = new Set();
         for (const map of MAPS) {

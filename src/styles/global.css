@@ -100,6 +100,17 @@ button {
   margin-inline: auto;
 }
 
+/* Wąska, wyśrodkowana kolumna – strony z samą treścią, bez bocznej kolumny (o mnie, polityka prywatności) */
+.container--narrow {
+  width: min(100% - 2 * var(--space-l), 860px);
+}
+.container--narrow .prose {
+  max-width: none;
+}
+.container--narrow .prose > :first-child {
+  margin-top: 0;
+}
+
 .eyebrow {
   font-family: var(--font-heading);
   font-size: var(--step--1);
@@ -266,6 +277,85 @@ button {
   transform: translateY(-1px);
 }
 
+/* Box CTA – ciemny blok z nagłówkiem, opisem i przyciskiem.
+   W treści: <CtaBox … /> z edytora (src/lib/remark-components.mjs); na końcu wpisu: PostView.astro */
+.cta-box {
+  display: grid;
+  gap: var(--space-s);
+  padding: var(--space-xl) clamp(var(--space-l), 4vw, var(--space-2xl));
+  border-radius: var(--radius-l);
+  background: var(--color-heading);
+  color: var(--color-on-dark-muted);
+}
+.prose .cta-box {
+  margin-block: 2.2em;
+}
+.cta-box > * + * {
+  margin-top: 0;
+}
+.cta-box__title {
+  font-family: var(--font-heading);
+  font-size: var(--step-2);
+  font-weight: 700;
+  line-height: var(--leading-snug);
+  color: var(--color-on-dark);
+  text-wrap: balance;
+}
+.cta-box__text {
+  max-width: 60ch;
+}
+.cta-box__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-m) var(--space-xl);
+  margin-top: var(--space-s);
+}
+.cta-box__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.95em 1.9em;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  box-shadow: 0 8px 20px -8px rgb(40 114 250 / 0.6);
+  transition:
+    background-color 0.15s,
+    transform 0.15s;
+}
+.cta-box__btn:hover {
+  background: var(--color-primary-hover);
+  color: var(--color-on-primary);
+  transform: translateY(-1px);
+}
+.cta-box__link {
+  padding-block: 0.3em;
+  border-bottom: 2px solid var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-on-dark);
+  text-decoration: none;
+}
+.cta-box__link span {
+  display: inline-block;
+  transition: transform 0.2s var(--ease);
+}
+.cta-box__link:hover {
+  color: var(--color-on-dark);
+  border-color: var(--color-on-dark);
+}
+.cta-box__link:hover span {
+  transform: translateX(3px);
+}
+.cta-box :focus-visible {
+  outline-color: var(--color-on-dark);
+}
+
 /* FAQ – akordeon (komponent Faq.astro i bloki w treści wpisów) */
 .faq {
   display: grid;
@@ -339,6 +429,22 @@ button {
 }
 .section {
   margin-top: var(--space-3xl);
+}
+
+/* Etykieta wersji testowej (DEPLOY_ENV=test, src/lib/env.ts) */
+.env-badge {
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  z-index: 1000;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #e8860c;
+  color: #fff;
+  font: 700 12px/1 var(--font-heading);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
 }
 
 .visually-hidden {

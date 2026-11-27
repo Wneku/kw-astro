@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
 import SocialLinks from '../components/ui/SocialLinks.astro';
 import PostList from '../components/blog/PostList.astro';
+import SplitContent from '../components/ui/SplitContent.astro';
 import { getPosts } from '../lib/blog';
 import { ID, ref } from '../lib/schema';
 
@@ -24,52 +25,59 @@ const crumbs = [
   dateModified={page.data.updatedDate}
   schema={{ type: 'ProfilePage', mainEntity: ref(ID.person) }}
 >
-  <header class="container page-head">
+  <header class="container container--narrow page-head">
     <Breadcrumbs crumbs={crumbs} />
     {page.data.eyebrow && <p class="eyebrow">{page.data.eyebrow}</p>}
     <h1>{page.data.title}</h1>
   </header>
 
-  <div class="container">
-    <article class="prose about">
+  <article class="container about-page">
+    {/* social media i 3 ostatnie wpisy na końcu sekcji „Dzielę się wiedzą” (jak w WordPressie) */}
+    <SplitContent afterHeading="dziele-sie-wiedza" class="prose about">
       <Content />
-      <SocialLinks />
-    </article>
-  </div>
-
-  <section class="container section">
-    <h2 class="latest-title">Najnowsze na blogu</h2>
-    <PostList posts={posts} headingLevel="h3" />
-  </section>
+      <div slot="insert" class="share">
+        <div class="share__socials"><SocialLinks /></div>
+        <PostList posts={posts} headingLevel="h3" />
+      </div>
+    </SplitContent>
+  </article>
 </BaseLayout>
 
 <style>
-  .about {
+  /* tekst w wąskiej kolumnie na środku, karty wpisów na pełną szerokość */
+  .about-page :global(.about) {
     max-width: 860px;
+    margin-inline: auto;
   }
   /* Zdjęcie z pierwszego akapitu obok wstępu (jak kolumny w WordPressie) */
-  .about :global(> p:first-child) {
+  .about-page :global(.about:first-child > p:first-child) {
     float: right;
     width: min(46%, 420px);
     margin: 0 0 var(--space-l) var(--space-xl);
   }
-  .about :global(> p:first-child img) {
+  .about-page :global(.about:first-child > p:first-child img) {
     width: 100%;
     border-radius: var(--radius-l);
     border: 0;
   }
-  .about :global(> h2:nth-of-type(1)) {
+  .about-page :global(.about:first-child > h2:nth-of-type(1)) {
     margin-top: 0;
   }
-  .about :global(> h2:nth-of-type(2)) {
+  .about-page :global(.about > h2:nth-of-type(2)) {
     clear: both;
   }
-  .latest-title {
-    font-size: var(--step-3);
-    margin-bottom: var(--space-l);
+  .share__socials {
+    width: 100%;
+    max-width: 860px;
+    margin-inline: auto;
+  }
+  .share {
+    display: grid;
+    gap: var(--space-xl);
+    margin-block: var(--space-l) var(--space-2xl);
   }
   @media (max-width: 760px) {
-    .about :global(> p:first-child) {
+    .about-page :global(.about:first-child > p:first-child) {
       float: none;
       width: 100%;
       margin: 0 0 var(--space-l);

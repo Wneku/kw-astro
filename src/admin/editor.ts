@@ -1,6 +1,6 @@
 /**
  * Edytor treści (TipTap): pasek narzędzi, link z rel, obrazki (wklej / przeciągnij / przycisk),
- * tabele, przycisk CTA, ramka, blok kodu HTML i zakładka „HTML”.
+ * tabele, przycisk CTA, box CTA, ramka, blok kodu HTML i zakładka „HTML”.
  */
 import { Editor, Node, mergeAttributes } from '@tiptap/core';
 import { NodeSelection } from '@tiptap/pm/state';
@@ -40,6 +40,40 @@ const Cta = Node.create({
   },
   parseHTML: () => [{ tag: 'div[data-cta]' }],
   renderHTML: ({ HTMLAttributes }) => ['div', mergeAttributes(HTMLAttributes, { 'data-cta': '', class: 'adm-cta' })],
+});
+
+/** Box CTA: nagłówek, opis, przycisk i opcjonalny drugi link. W .md: <CtaBox tytul="…" … /> */
+const CTA_BOX_FIELDS = ['tytul', 'tekst', 'przycisk', 'href', 'link', 'linkHref'] as const;
+const dataAttr = (k: string) => 'data-' + k.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
+const CtaBox = Node.create({
+  name: 'ctaBox',
+  group: 'block',
+  atom: true,
+  selectable: true,
+  draggable: true,
+  addAttributes() {
+    return Object.fromEntries(
+      CTA_BOX_FIELDS.map((k) => [k, { default: '', parseHTML: (el: HTMLElement) => el.getAttribute(dataAttr(k)) ?? '', renderHTML: (a: Record<string, string>) => (a[k] ? { [dataAttr(k)]: a[k] } : {}) }]),
+    );
+  },
+  parseHTML: () => [{ tag: 'div[data-cta-box]' }],
+  renderHTML: ({ HTMLAttributes }) => ['div', mergeAttributes(HTMLAttributes, { 'data-cta-box': '' })],
+  addNodeView() {
+    return ({ node }) => {
+      const a = node.attrs as Record<string, string>;
+      const dom = document.createElement('div');
+      dom.className = 'cta-box adm-cta-box';
+      dom.innerHTML =
+        `<span class="adm-cta-box__label">Box CTA · kliknij dwukrotnie, żeby edytować</span>` +
+        (a.tytul ? `<p class="cta-box__title">${esc(a.tytul)}</p>` : '') +
+        (a.tekst ? `<p class="cta-box__text">${esc(a.tekst)}</p>` : '') +
+        `<p class="cta-box__actions">` +
+        (a.przycisk ? `<span class="cta-box__btn" title="${esc(a.href)}">${esc(a.przycisk)}</span>` : '') +
+        (a.link && a.linkHref ? `<span class="cta-box__link" title="${esc(a.linkHref)}">${esc(a.link)} <span>→</span></span>` : '') +
+        `</p>`;
+      return { dom };
+    };
+  },
 });
 
 const Ramka = Node.create({
@@ -93,7 +127,7 @@ function protectUnknownBlocks(source: string) {
   for (const el of [...doc.body.children]) {
     const known =
       BLOCK_OK.has(el.tagName) ||
-      (el.tagName === 'DIV' && (el.hasAttribute('data-cta') || el.hasAttribute('data-raw-html'))) ||
+      (el.tagName === 'DIV' && (el.hasAttribute('data-cta') || el.hasAttribute('data-cta-box') || el.hasAttribute('data-raw-html'))) ||
       (el.tagName === 'ASIDE' && el.hasAttribute('data-ramka'));
     if (!known) {
       const d = doc.createElement('div');
@@ -204,6 +238,42 @@ async function ctaDialog(editor: Editor, edit = false) {
   else editor.chain().focus().insertContent({ type: 'cta', attrs }).run();
 }
 
+async function ctaBoxDialog(editor: Editor, ctx: EditorContext, edit = false) {
+  const cur: Record<string, string> = edit
+    ? editor.getAttributes('ctaBox')
+    : {
+        tytul: 'Chcesz, żebym sprawdził to na Twojej stronie?',
+        tekst: 'Pracuję jako niezależny specjalista SEO, bez pośredników i przekazywania projektu dalej.',
+        przycisk: 'Umów bezpłatną rozmowę',
+        href: '/kontakt/',
+        link: '',
+        linkHref: '',
+      };
+  const links = `<datalist id="adm-cta-links">${ctx.links().map((l) => `<option value="${esc(l.url)}">${esc(l.title)}</option>`).join('')}</datalist>`;
+  const res = await modal({
+    title: 'Box CTA',
+    body: `
+      <label class="adm-f"><span>Nagłówek (duży, pogrubiony)</span><input name="tytul" required value="${esc(cur.tytul)}"></label>
+      <label class="adm-f"><span>Opis (mniejszy tekst pod nagłówkiem, opcjonalnie)</span><textarea name="tekst" rows="3">${esc(cur.tekst)}</textarea></label>
+      <div class="adm-pair">
+        <label class="adm-f"><span>Tekst przycisku</span><input name="przycisk" required value="${esc(cur.przycisk)}"></label>
+        <label class="adm-f"><span>Adres przycisku</span><input name="href" required list="adm-cta-links" value="${esc(cur.href || '/kontakt/')}"></label>
+      </div>
+      <div class="adm-pair">
+        <label class="adm-f"><span>Drugi link – tekst (opcjonalnie)</span><input name="link" value="${esc(cur.link)}" placeholder="np. Konsultacje SEO"></label>
+        <label class="adm-f"><span>Drugi link – adres</span><input name="linkHref" list="adm-cta-links" value="${esc(cur.linkHref)}" placeholder="/oferta/konsultacje-seo/"></label>
+      </div>
+      ${links}`,
+    actions: [{ value: 'ok', label: edit ? 'Zapisz' : 'Wstaw', kind: 'primary' }],
+    wide: true,
+  });
+  if (!res) return editor.commands.focus();
+  const attrs = Object.fromEntries(CTA_BOX_FIELDS.map((k) => [k, String(res.data[k] ?? '').replace(/\s+/g, ' ').trim()]));
+  if (attrs.link && !attrs.linkHref) toast('Drugi link ma tekst, ale nie ma adresu – nie pokaże się na stronie.', 'error');
+  if (edit) editor.chain().focus().updateAttributes('ctaBox', attrs).run();
+  else editor.chain().focus().insertContent({ type: 'ctaBox', attrs }).run();
+}
+
 async function rawDialog(editor: Editor, edit = false) {
   const cur = edit ? editor.getAttributes('rawHtml').html : '';
   const res = await modal({
@@ -294,6 +364,7 @@ export function createEditor(mount: HTMLElement, html: string, ctx: EditorContex
       TableKit.configure({ table: { resizable: false } }),
       Placeholder.configure({ placeholder: 'Zacznij pisać… (obrazek: wklej Ctrl+V albo przeciągnij plik)' }),
       Cta,
+      CtaBox,
       Ramka,
       RawHtml,
     ],
@@ -315,9 +386,12 @@ export function createEditor(mount: HTMLElement, html: string, ctx: EditorContex
         insertFiles(files, pos);
         return true;
       },
-      handleDoubleClickOn(_view, _pos, node) {
+      handleDoubleClickOn(_view, _pos, node, nodePos) {
+        // okno edycji czyta atrybuty z zaznaczenia – najpierw zaznaczamy kliknięty blok
+        if (['image', 'cta', 'ctaBox', 'rawHtml'].includes(node.type.name)) editor.commands.setNodeSelection(nodePos);
         if (node.type.name === 'image') imageDialog(editor, ctx, true);
         else if (node.type.name === 'cta') ctaDialog(editor, true);
+        else if (node.type.name === 'ctaBox') ctaBoxDialog(editor, ctx, true);
         else if (node.type.name === 'rawHtml') rawDialog(editor, true);
         else return false;
         return true;
@@ -349,6 +423,7 @@ export function createEditor(mount: HTMLElement, html: string, ctx: EditorContex
     ],
     [
       { id: 'cta', label: 'Przycisk', title: 'Przycisk CTA', run: () => ctaDialog(editor) },
+      { id: 'ctaBox', label: 'Box CTA', title: 'Box CTA: nagłówek, opis, przycisk i drugi link', run: () => ctaBoxDialog(editor, ctx) },
       { id: 'ramka', label: 'Ramka', title: 'Ramka: informacja / uwaga / wskazówka', run: () => ramkaDialog(editor), active: () => editor.isActive('ramka') },
       { id: 'raw', label: '&lt;HTML&gt;', title: 'Blok kodu HTML (embed, iframe…)', run: () => rawDialog(editor) },
       { id: 'pre', label: '{ }', title: 'Blok kodu (wyświetlany jako kod)', run: () => c().toggleCodeBlock().run(), active: () => editor.isActive('codeBlock') },
@@ -413,6 +488,8 @@ export function createEditor(mount: HTMLElement, html: string, ctx: EditorContex
       );
     } else if (node?.type.name === 'cta') {
       context.append(info(`<b>Przycisk</b> „${esc(node.attrs.label)}” → ${esc(node.attrs.href)}`), ctxBtn('Edytuj', () => ctaDialog(editor, true)), ctxBtn('Usuń', () => c().deleteSelection().run(), 'danger'));
+    } else if (node?.type.name === 'ctaBox') {
+      context.append(info(`<b>Box CTA</b> „${esc(node.attrs.tytul)}” · przycisk → ${esc(node.attrs.href)}${node.attrs.link ? ` · link → ${esc(node.attrs.linkHref)}` : ''}`), ctxBtn('Edytuj', () => ctaBoxDialog(editor, ctx, true)), ctxBtn('Usuń', () => c().deleteSelection().run(), 'danger'));
     } else if (node?.type.name === 'rawHtml') {
       context.append(info('<b>Kod HTML</b>'), ctxBtn('Edytuj kod', () => rawDialog(editor, true)), ctxBtn('Usuń', () => c().deleteSelection().run(), 'danger'));
     } else if (editor.isActive('link')) {

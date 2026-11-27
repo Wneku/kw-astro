@@ -131,10 +131,14 @@ function git(args) {
   });
 }
 
+const CONTENT_PATHS = ['src/content', 'src/assets/images'];
 async function status() {
-  const out = await git(['status', '--porcelain', '--', 'src/content', 'src/assets/images']);
+  const lines = (out) => out.split('\n').filter(Boolean).map((l) => l.slice(3).replace(/^"|"$/g, ''));
+  const changes = lines(await git(['status', '--porcelain', '--', ...CONTENT_PATHS]));
+  // zmiany poza treściami (kod) – „Opublikuj” ich nie wysyła
+  const code = lines(await git(['status', '--porcelain'])).filter((f) => !CONTENT_PATHS.some((p) => f.startsWith(p)));
   const branch = (await git(['rev-parse', '--abbrev-ref', 'HEAD'])).trim();
-  return { branch, changes: out.split('\n').filter(Boolean).map((l) => l.slice(3)) };
+  return { branch, changes, code };
 }
 
 function publish(message) {

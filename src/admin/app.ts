@@ -552,7 +552,7 @@ function renderHome(main: HTMLElement) {
 
 async function refreshStatus() {
   try {
-    const s = await api<{ branch: string; changes: string[] }>('status');
+    const s = await api<{ branch: string; changes: string[]; code: string[] }>('status');
     const el = $('.adm-status');
     el.textContent = s.changes.length ? `${s.changes.length} nieopublikowanych zmian` : 'wszystko opublikowane';
     el.classList.toggle('has-changes', s.changes.length > 0);
@@ -566,13 +566,18 @@ async function refreshStatus() {
 async function publish() {
   if (current?.dirty && !(await current.save())) return;
   const s = await refreshStatus();
-  const branchWarn =
-    s && s.branch !== 'main' ? `<p class="adm-warn">Jesteś na gałęzi <b>${esc(s.branch)}</b> – zmiany trafią na serwer dopiero po scaleniu z <b>main</b>.</p>` : '';
+  if (s && !s.changes.length) return toast('Brak zmian w treściach do opublikowania.');
+  const where =
+    s?.branch === 'main' ? 'na stronę (kamilwnek.pl)' : `na stronę (kamilwnek.pl) i na wersję testową (gałąź <b>${esc(s?.branch ?? '?')}</b>)`;
+  const codeInfo = s?.code?.length
+    ? `<details><summary>Zostają tylko u Ciebie – zmiany w kodzie (${s.code.length})</summary><pre class="adm-log">${esc(s.code.join('\n'))}</pre>
+       <p>Kod wdrażasz osobno: commit i push na <b>dev</b> → wersja testowa, potem <code>npm run wdroz</code> → produkcja.</p></details>`
+    : '';
   const res = await modal({
-    title: 'Opublikować zmiany?',
-    body: `${branchWarn}
-      <p>Sprawdzę, czy strona się buduje, zrobię commit i push. Serwer zaktualizuje się po 2–3 minutach.</p>
-      <details><summary>Zmienione pliki treści (${s?.changes.length ?? '?'})</summary><pre class="adm-log">${esc(s?.changes.join('\n') || '—')}</pre></details>
+    title: 'Opublikować treści?',
+    body: `<p>Wyślę <b>tylko treści i obrazki</b> ${where}. Najpierw sprawdzę, czy strona się buduje. Serwer zaktualizuje się po 2–3 minutach.</p>
+      <details><summary>Publikowane pliki (${s?.changes.length ?? '?'})</summary><pre class="adm-log">${esc(s?.changes.join('\n') || '—')}</pre></details>
+      ${codeInfo}
       <label class="adm-f"><span>Opis zmian (commit)</span><input name="message" value="${esc(current ? `Treść: ${current.title.value}` : 'Treść: aktualizacja')}"></label>`,
     actions: [{ value: 'ok', label: 'Opublikuj', kind: 'primary' }],
   });

@@ -64,6 +64,14 @@ const handlers = {
       const href = String(node.properties.dataHref ?? '');
       return html(`<Cta label="${escAttr(label)}" href="${escAttr(href)}" />`);
     }
+    if (has(node, 'dataCtaBox')) {
+      const one = (v) => String(v ?? '').replace(/\s+/g, ' ').trim();
+      const attrs = ['tytul', 'tekst', 'przycisk', 'href', 'link', 'linkHref']
+        .map((k) => [k, one(node.properties[`data${k[0].toUpperCase()}${k.slice(1)}`])])
+        .filter(([, v]) => v)
+        .map(([k, v]) => `${k}="${escAttr(v)}"`);
+      return html(`<CtaBox ${attrs.join(' ')} />`);
+    }
     if (has(node, 'dataRawHtml')) {
       // blok HTML w Markdown nie może mieć pustych linii (pusta linia go kończy)
       const code = String(node.properties.dataRawHtml).replace(/\r\n?/g, '\n').replace(/\n\s*\n/g, '\n').trim();
