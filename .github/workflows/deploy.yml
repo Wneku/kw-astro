@@ -84,24 +84,34 @@ jobs:
           echo "UPLOAD=true" >> "$GITHUB_ENV"
 
           # Kontrola celu: plik z losowym kodem przez FTP → musi być widoczny pod https://$host/
+          # (za każdym razem nowa nazwa – serwer nie może podać zapamiętanej wcześniej odpowiedzi)
           token=$(openssl rand -hex 16)
-          echo "$token" > kw-deploy-check.txt
+          check="kw-deploy-check-$token.txt"
+          echo "$token" > "$check"
           ftp() { curl -sS -k --ssl-reqd --user "$user:$pass" "$@"; }
-          ftp -T kw-deploy-check.txt "ftp://$FTP_SERVER/${dir}kw-deploy-check.txt" || { echo "::error::Nie udało się połączyć z FTP ($names)"; exit 1; }
-          code=$(curl -s -o seen.txt -w '%{http_code}' ${http_auth:+-u "$http_auth"} "https://$host/kw-deploy-check.txt?$token" || true)
-          seen=$(cat seen.txt 2>/dev/null || true); rm -f seen.txt
-          ftp "ftp://$FTP_SERVER/" -Q "DELE ${dir}kw-deploy-check.txt" -o /dev/null || true
-          rm -f kw-deploy-check.txt
+          ftp -T "$check" "ftp://$FTP_SERVER/${dir}$check" || { echo "::error::Nie udało się wgrać pliku kontrolnego przez FTP ($names)"; exit 1; }
+          # serwer może pokazać nowy plik z opóźnieniem – do 5 prób co 3 s
+          for i in 1 2 3 4 5; do
+            code=$(curl -s -o seen.txt -w '%{http_code}' -H 'Cache-Control: no-cache' ${http_auth:+-u "$http_auth"} "https://$host/$check" || true)
+            seen=$(cat seen.txt 2>/dev/null || true)
+            { [ "$seen" = "$token" ] || [ "$code" = "401" ]; } && break
+            sleep 3
+          done
+          rm -f seen.txt
+          if [ "$seen" != "$token" ] && [ "$code" != "401" ]; then
+            # diagnostyka: co odpowiedziała strona i co widać na koncie FTP (same nazwy plików), zanim plik zniknie
+            echo "Odpowiedź https://$host/$check: HTTP $code, treść: $(printf '%s' "$seen" | head -c 120 | tr -s '[:space:]' ' ')"
+            echo "Katalog po zalogowaniu FTP:"; ftp --list-only "ftp://$FTP_SERVER/" | head -30 || true
+            echo "Katalog $dir:"; ftp --list-only "ftp://$FTP_SERVER/$dir" | head -40 || true
+          fi
+          ftp "ftp://$FTP_SERVER/" -Q "DELE ${dir}$check" -o /dev/null || true
+          rm -f "$check"
           if [ "$code" = "401" ]; then
             echo "::error::$host wymaga hasła, a kontrola go nie zna albo jest błędne – dodaj/popraw sekret TEST_HTTP_AUTH (login:hasło do strony). Nic nie zostało wysłane."
             exit 1
           fi
           if [ "$seen" != "$token" ]; then
-            # diagnostyka: co odpowiedziała strona i co widać na koncie FTP (same nazwy plików)
-            echo "Odpowiedź https://$host/kw-deploy-check.txt: HTTP $code, treść: $(printf '%s' "$seen" | head -c 120 | tr -s '[:space:]' ' ')"
-            echo "Katalog po zalogowaniu FTP:"; ftp --list-only "ftp://$FTP_SERVER/" | head -30 || true
-            echo "Katalog $dir:"; ftp --list-only "ftp://$FTP_SERVER/$dir" | head -40 || true
-            echo "::error::Dane FTP ($names, katalog $dir) NIE wskazują na $host (HTTP $code) – plik kontrolny nie pojawił się pod tym adresem. Nic nie zostało wysłane. Szczegóły w logu kroku „Wybór środowiska”."
+            echo "::error::Plik kontrolny wgrany przez FTP ($names, katalog $dir) nie pojawił się na $host (HTTP $code). Nic nie zostało wysłane. Szczegóły w logu kroku „Wybór środowiska”."
             exit 1
           fi
           echo "Cel potwierdzony: $names → https://$host/"
