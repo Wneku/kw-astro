@@ -97,7 +97,11 @@ jobs:
             exit 1
           fi
           if [ "$seen" != "$token" ]; then
-            echo "::error::Dane FTP ($names, katalog $dir) NIE wskazują na $host – plik kontrolny nie pojawił się pod tym adresem. Nic nie zostało wysłane. Sprawdź sekrety."
+            # diagnostyka: co odpowiedziała strona i co widać na koncie FTP (same nazwy plików)
+            echo "Odpowiedź https://$host/kw-deploy-check.txt: HTTP $code, treść: $(printf '%s' "$seen" | head -c 120 | tr -s '[:space:]' ' ')"
+            echo "Katalog po zalogowaniu FTP:"; ftp --list-only "ftp://$FTP_SERVER/" | head -30 || true
+            echo "Katalog $dir:"; ftp --list-only "ftp://$FTP_SERVER/$dir" | head -40 || true
+            echo "::error::Dane FTP ($names, katalog $dir) NIE wskazują na $host (HTTP $code) – plik kontrolny nie pojawił się pod tym adresem. Nic nie zostało wysłane. Szczegóły w logu kroku „Wybór środowiska”."
             exit 1
           fi
           echo "Cel potwierdzony: $names → https://$host/"
