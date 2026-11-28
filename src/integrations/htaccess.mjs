@@ -38,6 +38,10 @@ export default function htaccess({ host = 'kamilwnek.pl' } = {}) {
         const content = `# Wygenerowane automatycznie przez src/integrations/htaccess.mjs – nie edytuj w dist/
 Options -MultiViews -Indexes
 DirectoryIndex index.html
+# plik stanu wdrożenia (GitHub Actions → FTP) – lista plików strony, nie dla odwiedzających
+<Files ".ftp-deploy-sync-state.json">
+Require all denied
+</Files>
 # /o-mnie → 301 → /o-mnie/ (jeden adres na stronę)
 DirectorySlash On
 ErrorDocument 404 /404.html
