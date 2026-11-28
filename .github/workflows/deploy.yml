@@ -28,7 +28,7 @@ on:
 env:
   # Produkcja stoi jeszcze na WordPressie. Push na main tylko sprawdza i buduje stronę – bez wysyłki.
   # W dniu przenosin (kopia WordPressa zrobiona, public_html opróżnione) zmień na 'true'.
-  PROD_DEPLOY: 'false'
+  PROD_DEPLOY: 'true'
   PROD_HOST: kamilwnek.pl
   TEST_HOST: dev.kamilwnek.pl
   FTP_DIR_PROD: public_html/
