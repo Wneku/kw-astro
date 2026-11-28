@@ -64,18 +64,16 @@ faq:
 
 ## Ile kosztuje analiza profilu linków?
 
-| WIELKOŚĆ PROFILU | CENA NETTO | CZAS |
-| --- | --- | --- |
-| Do 500 domen linkujących | od 1000 zł | do 7 dni roboczych |
+| WIELKOŚĆ PROFILU            | CENA NETTO | CZAS                |
+| --------------------------- | ---------- | ------------------- |
+| Do 500 domen linkujących    | od 1000 zł | do 7 dni roboczych  |
 | Ponad 500 domen linkujących | od 1500 zł | do 14 dni roboczych |
 
 Ostateczna cena zależy od wielkości i złożoności profilu oraz zakresu analizy konkurencji. Termin liczę od otrzymania kompletu danych i dostępów.
-
-<Cta label="Zamów analizę linków" href="/kontakt/" />
 
 ## Co dalej po analizie?
 
 Analiza porządkuje obecny profil, ale nie zastępuje budowania nowych linków. Na jej podstawie możesz:
 
-- zacząć <LinkRel href="/oferta/link-building/">link building</LinkRel> z jasnym planem,
-- sprawdzić, skąd linki mają konkurenci, w <LinkRel href="/oferta/link-gap/">analizie Link Gap</LinkRel>.
+- zacząć [link building](/oferta/link-building/) z jasnym planem,
+- sprawdzić, skąd linki mają konkurenci, w [analizie Link Gap](/oferta/link-gap/).

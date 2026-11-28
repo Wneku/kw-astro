@@ -48,7 +48,7 @@ Klient z Google zwykle wie już, czego szuka. Pytanie brzmi, czy trafi do Ciebie
 
 ### Audyt i plan
 
-Zaczynam od <LinkRel href="/oferta/audyt-seo/">audytu SEO</LinkRel>, który pokazuje, gdzie sklep traci ruch i które kategorie mają największy potencjał sprzedażowy.
+Zaczynam od [audytu SEO](/oferta/audyt-seo/), który pokazuje, gdzie sklep traci ruch i które kategorie mają największy potencjał sprzedażowy.
 
 ### Struktura kategorii i filtry
 
@@ -73,7 +73,7 @@ Zaczynam od <LinkRel href="/oferta/audyt-seo/">audytu SEO</LinkRel>, który poka
 
 ### Link building
 
-Linki do kategorii i treści, które mają rosnąć, w bezpiecznym tempie i z tematycznych źródeł. Więcej: <LinkRel href="/oferta/link-building/">link building</LinkRel>.
+Linki do kategorii i treści, które mają rosnąć, w bezpiecznym tempie i z tematycznych źródeł. Więcej: [link building](/oferta/link-building/).
 
 ## Na jakich platformach pracuję?
 
@@ -96,15 +96,13 @@ Jeśli sklep działa na innej platformie, napisz, a sprawdzę, co da się w niej
 
 ## Ile kosztuje pozycjonowanie sklepu?
 
-| WIELKOŚĆ SKLEPU | CENA NETTO / MIESIĄC |
-| --- | --- |
-| Mały sklep (orientacyjnie do 500 produktów) | od 3000 zł |
-| Średni sklep | od 4500 zł |
-| Duży sklep lub konkurencyjna branża | wycena indywidualna |
+| WIELKOŚĆ SKLEPU                             | CENA NETTO / MIESIĄC |
+| ------------------------------------------- | -------------------- |
+| Mały sklep (orientacyjnie do 500 produktów) | od 3000 zł           |
+| Średni sklep                                | od 4500 zł           |
+| Duży sklep lub konkurencyjna branża         | wycena indywidualna  |
 
 Nie sprzedaję gotowych pakietów. Zakres dobieram do potencjału sklepu, tak żeby SEO się zwracało. Budżet na linki ustalamy osobno.
-
-<Cta label="Zapytaj o wycenę dla sklepu" href="/kontakt/" />
 
 ## Jak raportuję wyniki?
 

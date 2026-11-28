@@ -65,11 +65,9 @@ Link Gap (nazywany też link intersect) to różnica między profilem linków Tw
 
 ## Ile kosztuje link gap?
 
-| ZAKRES | CENA NETTO | CZAS |
-| --- | --- | --- |
-| Twoja strona + 3 konkurentów | od 1200 zł | do 7 dni roboczych |
+| ZAKRES                       | CENA NETTO | CZAS                |
+| ---------------------------- | ---------- | ------------------- |
+| Twoja strona + 3 konkurentów | od 1200 zł | do 7 dni roboczych  |
 | Twoja strona + 5 konkurentów | od 1800 zł | do 12 dni roboczych |
 
-Analizę możesz wdrożyć samodzielnie albo zlecić mi pozyskiwanie linków w ramach <LinkRel href="/oferta/link-building/">link buildingu</LinkRel>.
-
-<Cta label="Zamów analizę link gap" href="/kontakt/" />
+Analizę możesz wdrożyć samodzielnie albo zlecić mi pozyskiwanie linków w ramach [link buildingu](/oferta/link-building/).

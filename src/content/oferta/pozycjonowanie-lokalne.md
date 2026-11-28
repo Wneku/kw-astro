@@ -83,12 +83,10 @@ Wpisy w sprawdzonych katalogach firm, wzmianki w lokalnych portalach i u partner
 
 ## Ile kosztuje pozycjonowanie lokalne?
 
-| ZAKRES | CENA NETTO / MIESIĄC |
-| --- | --- |
-| 1 lokalizacja, mniejsze miasto | od 1500 zł |
-| 1 lokalizacja, duże miasto | od 2500 zł |
-| Kilka lokalizacji | Wycena indywidualna |
+| ZAKRES                         | CENA NETTO / MIESIĄC |
+| ------------------------------ | -------------------- |
+| 1 lokalizacja, mniejsze miasto | od 1500 zł           |
+| 1 lokalizacja, duże miasto     | od 2500 zł           |
+| Kilka lokalizacji              | Wycena indywidualna  |
 
 Jeśli potrzebujesz tylko jednorazowej optymalizacji wizytówki, to koszt od 700 zł netto. Cena zależy od konkurencji w branży, obszaru działania i zakresu prac.
-
-<Cta label="Sprawdź, jak wypadasz w mapach" href="/kontakt/" />

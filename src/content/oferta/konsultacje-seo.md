@@ -65,17 +65,17 @@ Warto pamiętać, że konsultacje SEO nie zastąpią długofalowej optymalizacji
 ## Ile kosztują konsultacje SEO?
 
 | LICZBA GODZIN | CENA / NETTO |
-| --- | --- |
-| 1 godzina | 250 zł |
-| 2 godziny | 450 zł |
-| 5 godzin | 1000 zł |
-| 10 godzin | 1800 zł |
+| ------------- | ------------ |
+| 1 godzina     | 250 zł       |
+| 2 godziny     | 450 zł       |
+| 5 godzin      | 1000 zł      |
+| 10 godzin     | 1800 zł      |
 
 Godziny z pakietu możesz wykorzystać w ciągu dwóch miesięcy, w przypadku pakietu 10 godzin masz na to pół roku. Konsultacje stacjonarne wyceniam indywidualnie. Jeśli nie wiesz, który pakiet wybrać, napisz, z czym masz problem, a doradzę.
 
 ## Jak wyglądają konsultacje SEO?
 
-1. Piszesz przez formularz kontaktowy lub bezpośrednio na maila <LinkRel href="mailto:kontakt@kamilwnek.pl">kontakt@kamilwnek.pl</LinkRel>: adres strony i jak najbardziej szczegółowy opis problemu.
+1. Piszesz przez formularz kontaktowy lub bezpośrednio na maila <kontakt@kamilwnek.pl>: adres strony i jak najbardziej szczegółowy opis problemu.
 2. Odpowiadam z propozycją terminów. Trzy dni przed spotkaniem otrzymasz przypomnienie.
 3. Przed spotkaniem analizuję stronę i dane.
 4. Spotykamy się online i przechodzimy przez problemy oraz rozwiązania.
@@ -84,5 +84,5 @@ Godziny z pakietu możesz wykorzystać w ciągu dwóch miesięcy, w przypadku pa
 ## Konsultacja, audyt czy stała współpraca?
 
 - **Konsultacja SEO**: masz konkretne pytanie albo potrzebujesz kierunku, a wdrożenia zrobisz sam lub z zespołem.
-- **<LinkRel href="/oferta/audyt-seo/">Audyt SEO</LinkRel>**: potrzebujesz pełnej diagnozy strony z listą wszystkich problemów.
-- **<LinkRel href="/oferta/pozycjonowanie-stron/">Pozycjonowanie</LinkRel>**: chcesz, żeby ktoś prowadził SEO za Ciebie co miesiąc.
+- **[Audyt SEO](/oferta/audyt-seo/)**: potrzebujesz pełnej diagnozy strony z listą wszystkich problemów.
+- **[Pozycjonowanie](/oferta/pozycjonowanie-stron/)**: chcesz, żeby ktoś prowadził SEO za Ciebie co miesiąc.

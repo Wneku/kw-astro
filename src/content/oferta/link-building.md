@@ -43,7 +43,7 @@ faq:
 
 ## Jak wygląda współpraca?
 
-1. **Analiza na start**. Sprawdzam obecny <LinkRel href="/oferta/analiza-profilu-linkow/">profil linków</LinkRel> i <LinkRel href="/oferta/link-gap/">linki konkurencji</LinkRel>. Wiem dzięki temu, ilu i jakich linków potrzebujesz.
+1. **Analiza na start**. Sprawdzam obecny [profil linków](/oferta/analiza-profilu-linkow/) i [linki konkurencji](/oferta/link-gap/). Wiem dzięki temu, ilu i jakich linków potrzebujesz.
 2. **Plan**. Ustalamy, które podstrony wzmacniamy, jakie anchory stosujemy i jaki jest miesięczny budżet.
 3. **Pozyskiwanie linków**. Dobieram miejsca publikacji, przygotowuję lub zlecam treści, pilnuję publikacji.
 4. **Raport**. Co miesiąc dostajesz listę linków z adresem, datą, anchorem i podstroną docelową.
@@ -59,11 +59,11 @@ Każde źródło oceniam pod kątem tematyki, ruchu i jakości, a nie tylko wska
 
 ## Czym różni się bezpieczny link building od ryzykownego?
 
-| BEZPIECZNY LINK BUILDING | RYZYKOWNY LINK BUILDING |
-| --- | --- |
+| BEZPIECZNY LINK BUILDING                           | RYZYKOWNY LINK BUILDING                              |
+| -------------------------------------------------- | ---------------------------------------------------- |
 | Linki z tematycznych stron, które mają własny ruch | Linki ze stron stworzonych tylko do sprzedaży linków |
-| Różne anchory: nazwa marki, adres URL, fraza | Większość linków z dokładną frazą |
-| Linki w treści, która ma sens dla czytelnika | Linki w przypadkowym tekście, bez kontekstu |
+| Różne anchory: nazwa marki, adres URL, fraza       | Większość linków z dokładną frazą                    |
+| Linki w treści, która ma sens dla czytelnika       | Linki w przypadkowym tekście, bez kontekstu          |
 
 ## Linki a widoczność w AI
 
@@ -75,5 +75,3 @@ Koszt składa się z dwóch części:
 
 - **Obsługa (od 500 zł netto miesięcznie)** – analiza, plan, dobór i weryfikacja źródeł, koordynacja publikacji oraz raport.
 - **Budżet na publikacje, zwykle od 1000 zł netto miesięcznie** – ustalany indywidualnie, zależnie od branży, konkurencji i wybranych portali.
-
-<Cta label="Zamów usługę link buildingu" href="/kontakt/" />

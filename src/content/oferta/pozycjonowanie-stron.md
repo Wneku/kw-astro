@@ -49,13 +49,13 @@ faq:
 
 Pozycjonowanie nie jest dobrym wyborem, gdy potrzebujesz klientów w ciągu najbliższego miesiąca. Wtedy lepiej zacząć od reklam, a SEO dodać równolegle. Jeśli tak będzie w Twoim przypadku, powiem Ci to na pierwszej rozmowie.
 
-Prowadzisz sklep? Zobacz <LinkRel href="/oferta/pozycjonowanie-sklepow/">pozycjonowanie sklepów</LinkRel>. Działasz w jednym mieście? Zobacz <LinkRel href="/oferta/pozycjonowanie-lokalne/">pozycjonowanie lokalne</LinkRel>.
+Prowadzisz sklep? Zobacz [pozycjonowanie sklepów](/oferta/pozycjonowanie-sklepow/). Działasz w jednym mieście? Zobacz [pozycjonowanie lokalne](/oferta/pozycjonowanie-lokalne/).
 
 ## Co robię w ramach pozycjonowania?
 
 ### Pierwszy miesiąc: audyt i strategia
 
-Zaczynam od <LinkRel href="/oferta/audyt-seo/">audytu SEO</LinkRel>, analizy fraz i konkurencji. Na tej podstawie przygotowuję plan na najbliższe miesiące: które podstrony rozwijać, jakie treści dodać i co naprawić technicznie.
+Zaczynam od [audytu SEO](/oferta/audyt-seo/), analizy fraz i konkurencji. Na tej podstawie przygotowuję plan na najbliższe miesiące: które podstrony rozwijać, jakie treści dodać i co naprawić technicznie.
 
 ### Każdy kolejny miesiąc
 
@@ -77,15 +77,13 @@ Nie raportuję setek fraz, które nie przynoszą klientów. Liczy się ruch, kt�
 
 ## Ile kosztuje pozycjonowanie stron?
 
-| ZAKRES | CENA NETTO / MIESIĄC |
-| --- | --- |
-| Mała strona firmowa | od 2000 zł |
-| Strona usługowa lub B2B | od 3500 zł |
-| Duży serwis | wycena indywidualna |
+| ZAKRES                  | CENA NETTO / MIESIĄC |
+| ----------------------- | -------------------- |
+| Mała strona firmowa     | od 2000 zł           |
+| Strona usługowa lub B2B | od 3500 zł           |
+| Duży serwis             | wycena indywidualna  |
 
 Cena zależy od konkurencji w branży, stanu strony i zakresu prac. Budżet na linki ustalamy osobno. Dokładną wycenę poznasz po bezpłatnej rozmowie.
-
-<Cta label="Umów bezpłatną rozmowę" href="/kontakt/" />
 
 ## Kiedy zobaczę efekty pozycjonowania?
 

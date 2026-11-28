@@ -92,15 +92,13 @@ Raport otrzymujesz w formacie PDF + arkusz Excel z listą URL-i.
 
 ## Ile kosztuje audyt SEO i ile trwa?
 
-| Rodzaj strony | Cena netto | Czas realizacji |
-| --- | --- | --- |
-| Strona firmowa (do 50 podstron) | 2500-3000 zł | 10-15 dni roboczych |
-| Sklep internetowy (do 5000 podstron) | 3500-7000 zł | 15–25 dni roboczych |
-| Duży serwis lub sklep | od 7000 zł – wycena indywidualna | ustalany indywidualnie, zwykle 25–40 dni roboczych |
+| Rodzaj strony                        | Cena netto                       | Czas realizacji                                    |
+| ------------------------------------ | -------------------------------- | -------------------------------------------------- |
+| Strona firmowa (do 50 podstron)      | 2500-3000 zł                     | 10-15 dni roboczych                                |
+| Sklep internetowy (do 5000 podstron) | 3500-7000 zł                     | 15–25 dni roboczych                                |
+| Duży serwis lub sklep                | od 7000 zł – wycena indywidualna | ustalany indywidualnie, zwykle 25–40 dni roboczych |
 
 Cena zależy od wielkości strony i zakresu. Można też zamówić audyt tylko jednego obszaru, na przykład audyt techniczny albo linków. Dokładną wycenę podaję po krótkiej rozmowie.
-
-<Cta label="Zapytaj o wycenę audytu" href="/kontakt/" />
 
 ## Jak wygląda współpraca?
 
